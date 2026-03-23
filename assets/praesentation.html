@@ -3,313 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategie-Pitch Constantin Paul - sense electra</title>
+    <title>Präsentation Constantin Paul - sense electra GmbH</title>
     <style>
-        :root {
-            --bg-dark: #1e1e1e;
-            --bg-card: #2d2d2d;
-            --text-main: #f0f0f0;
-            --accent: #886E4C;
-            --accent-hover: #a3855c;
-            --highlight: #00B0F0;
-        }
+        /* --- GRUNDLAGEN --- */
+        * { box-sizing: border-box; }
         
         body {
             margin: 0;
-            padding: 40px;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Calibri', Arial, sans-serif;
-            line-height: 1.6;
+            padding: 0;
+            background-color: #555555;
+            font-family: 'Calibri', 'Segoe UI', Arial, Helvetica, sans-serif;
+            color: #004d55;
+            -webkit-font-smoothing: antialiased;
             display: flex;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        #app {
-            width: 100%;
-            max-width: 1000px;
+        /* --- QUERFORMAT PAPIER SETUP (16:9 Screen-Sharing optimiert) --- */
+        .presentation-container {
+            width: 1200px; 
+            height: 675px; /* 16:9 Format */
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            position: relative;
+            display: flex; 
+            flex-direction: column;
         }
 
-        .header-container {
-            text-align: center;
-            margin-bottom: 50px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 20px;
+        /* --- HEADER --- */
+        .header {
+            background-color: #F9F8F6; 
+            color: #886E4C;
+            padding: 25px 50px; 
+            border-bottom: 3px solid #886E4C;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
-            color: var(--text-main);
-            margin-bottom: 5px;
-            font-size: 32px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .header-left { display: flex; flex-direction: column; }
+        .header-name { font-size: 26px; letter-spacing: 1px; text-transform: uppercase; font-weight:bold; color: #886E4C; }
+        .header-text { font-size: 16px; color: #886E4C; margin-top: 5px; }
+        
+        /* --- SLIDES --- */
+        .slide-wrapper {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
         }
 
-        .subtitle {
-            color: var(--accent);
-            font-size: 18px;
-            font-style: italic;
-        }
-
-        /* DASHBOARD GRID */
-        #dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .card-btn {
-            background-color: var(--bg-card);
-            border: 1px solid #444;
-            border-top: 4px solid var(--accent);
-            color: var(--text-main);
-            padding: 30px;
-            border-radius: 6px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .card-btn:hover {
-            transform: translateY(-5px);
-            border-top-color: var(--highlight);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-
-        .card-number {
-            font-size: 40px;
-            font-weight: bold;
-            color: rgba(136, 110, 76, 0.3);
-            margin-bottom: -10px;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--text-main);
-            margin-bottom: 15px;
-        }
-
-        .card-desc {
-            font-size: 15px;
-            color: #aaa;
-        }
-
-        /* DETAILANSICHT */
-        .detail-view {
+        .slide {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            padding: 50px 80px;
             display: none;
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 8px;
-            border-top: 5px solid var(--highlight);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            flex-direction: column;
+            justify-content: center;
             animation: fadeIn 0.4s ease-in-out;
         }
+
+        .slide.active { display: flex; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .back-btn {
-            background-color: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 30px;
-            font-size: 15px;
+        /* --- TYPOGRAFIE INHALTE --- */
+        .title-slide { text-align: center; }
+        .title-slide h1 { font-size: 48px; color: #004d55; text-transform: uppercase; margin-bottom: 20px; border: none; }
+        .title-slide h2 { font-size: 28px; color: #886E4C; font-weight: normal; border: none; margin: 0; text-transform: none; font-style: italic; }
+
+        .pillar-number {
+            font-size: 80px;
             font-weight: bold;
-            transition: all 0.2s;
+            color: rgba(136, 110, 76, 0.15);
+            position: absolute;
+            top: 30px; left: 80px;
+            line-height: 1;
+            z-index: 0;
         }
 
-        .back-btn:hover {
-            background-color: var(--accent);
-            color: #fff;
-        }
-
-        .detail-header {
-            font-size: 28px;
-            color: var(--text-main);
+        .slide-title {
+            font-size: 34px; 
+            color: #004d55; 
+            text-transform: uppercase; 
             margin-top: 0;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 15px;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #886E4C;
+            padding-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .strategy-box h3 {
-            color: var(--accent);
-            font-size: 18px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .strategy-box ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .strategy-box li {
-            margin-bottom: 12px;
+        .content-block { margin-bottom: 35px; position: relative; z-index: 1; }
+        
+        .label {
             font-size: 16px;
+            text-transform: uppercase;
+            color: #886E4C;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
         }
 
-        .highlight-box {
-            background-color: rgba(0, 176, 240, 0.1);
-            border-left: 4px solid var(--highlight);
-            padding: 20px;
-            border-radius: 0 4px 4px 0;
+        .text {
+            font-size: 22px;
+            line-height: 1.5;
+            color: #004d55;
+            padding-left: 20px;
+            border-left: 4px solid #F9F8F6;
         }
 
-        .highlight-box p {
-            margin: 0;
-            font-size: 18px;
-            font-style: italic;
+        .text.highlight {
+            border-left-color: #886E4C;
+            font-weight: bold;
         }
 
+        /* --- FOOTER MIT NAVIGATION --- */
+        .footer {
+            background-color: #F9F8F6; 
+            color: #886E4C;
+            padding: 15px 50px; 
+            font-size: 14px; 
+            border-top: 1px solid #886E4C; 
+            margin-top: auto; 
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 2px solid #886E4C;
+            color: #886E4C;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #886E4C;
+            color: #F9F8F6;
+        }
+
+        .nav-btn:disabled {
+            border-color: #ccc;
+            color: #ccc;
+            cursor: not-allowed;
+            background: none;
+        }
     </style>
 </head>
 <body>
 
-    <div id="app">
-        <div class="header-container">
-            <h1>Vertriebsstrategie & Jobgestaltung</h1>
-            <div class="subtitle">Constantin Paul &bull; Sales Manager sense electra GmbH</div>
-        </div>
-
-        <div id="dashboard">
-            <button class="card-btn" onclick="showDetail('inbound')">
-                <span class="card-number">01</span>
-                <div class="card-title">Inbound & Lead-Qualifizierung</div>
-                <div class="card-desc">Fokus auf Effizienz: Von der reinen Lead-Quantität zur messbaren Abschluss-Qualität.</div>
-            </button>
-            <button class="card-btn" onclick="showDetail('upsell')">
-                <span class="card-number">02</span>
-                <div class="card-title">Bestandskunden & Upselling</div>
-                <div class="card-desc">"Land & Expand": Strategischer Ausbau von Accounts durch proaktive Bedarfsanalysen.</div>
-            </button>
-            <button class="card-btn" onclick="showDetail('c-level')">
-                <span class="card-number">03</span>
-                <div class="card-title">C-Level Kommunikation</div>
-                <div class="card-desc">CAPEX vs. OPEX: Wie wir Investitionsrisiken in finanzielle Sicherheit übersetzen.</div>
-            </button>
-            <button class="card-btn" onclick="showDetail('prozesse')">
-                <span class="card-number">04</span>
-                <div class="card-title">Prozess-Exzellenz</div>
-                <div class="card-desc">Die Brücke zwischen internen IT-Systemen und dem operativen Vertriebsalltag.</div>
-            </button>
-        </div>
-
-        <div id="inbound" class="detail-view">
-            <button class="back-btn" onclick="showDashboard()">&#10094; Zurück zur Übersicht</button>
-            <h2 class="detail-header">01. Inbound & Lead-Qualifizierung</h2>
-            
-            <div class="content-grid">
-                <div class="strategy-box">
-                    <h3>Die aktuelle Herausforderung</h3>
-                    <ul>
-                        <li>Rudimentäre Web-Formulare generieren hohe Quantität, aber unklare Qualität.</li>
-                        <li>Hoher manueller Aufwand im Vertriebsinnendienst zur Vorqualifizierung (MQL zu SQL).</li>
-                        <li>Zeitverlust bei nicht passgenauen Anfragen.</li>
-                    </ul>
-                </div>
-                <div class="strategy-box highlight-box">
-                    <h3>Mein Lösungsansatz</h3>
-                    <p>"Implementierung interaktiver Potenzialrechner. Wir filtern Parameter wie Gebäudeart und Verbrauch bereits digital, damit ich meine 100%ige Energie in die lukrativsten Beratungsmandate stecken kann."</p>
-                </div>
+    <div class="presentation-container">
+        
+        <div class="header">
+            <div class="header-left">
+                <span class="header-name">Constantin Paul</span>
+                <span class="header-text">Strategisches Rollenverständnis</span>
+            </div>
+            <div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=886E4C&bgcolor=F9F8F6&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3APaul%3BConstantin%0AFN%3AConstantin+Paul%0ATEL%3BTYPE%3DCELL%3A015254275824%0AEMAIL%3Aconstantin.paul%40gmail.com%0AEND%3AVCARD" alt="vCard" width="60" style="display:block; border: none;">
             </div>
         </div>
 
-        <div id="upsell" class="detail-view">
-            <button class="back-btn" onclick="showDashboard()">&#10094; Zurück zur Übersicht</button>
-            <h2 class="detail-header">02. Bestandskunden & Upselling</h2>
+        <div class="slide-wrapper">
             
-            <div class="content-grid">
-                <div class="strategy-box">
-                    <h3>Die "Land & Expand" Strategie</h3>
-                    <ul>
-                        <li><strong>Einstieg:</strong> Energieaudits, Rechnungsprüfung, Stromtarife.</li>
-                        <li><strong>Analyse:</strong> Proaktive Nutzung von Smart Meter-Daten und gesetzlichen Fristen (z.B. Heizungsaustausch).</li>
-                        <li><strong>Upsell:</strong> Platzierung von Wärmecontracting und PV-Anlagen als logische Konsequenz.</li>
-                    </ul>
+            <div class="slide active title-slide" id="slide-0">
+                <h1>Mein Rollenverständnis als Sales Manager</h1>
+                <h2>Für die sense electra GmbH</h2>
+            </div>
+
+            <div class="slide" id="slide-1">
+                <div class="pillar-number">01</div>
+                <h2 class="slide-title">Inbound & Qualifizierung</h2>
+                
+                <div class="content-block">
+                    <div class="label">Mein Fokus</div>
+                    <div class="text">Die kontinuierlich hohe Anzahl an Web-Anfragen in messbare Abschluss-Qualität übersetzen.</div>
                 </div>
-                <div class="strategy-box highlight-box">
-                    <h3>Mein Lösungsansatz</h3>
-                    <p>"Ein Audit ist kein Abschluss, sondern der Startschuss. Durch gezielte White-Space-Analysen im Kundenportfolio entwickeln wir einfache Tarifkunden zu ganzheitlichen Energie-Partnern."</p>
+                
+                <div class="content-block">
+                    <div class="label">Das Ziel</div>
+                    <div class="text highlight">100 % der Vertriebsenergie fließen direkt in optimal vorbereitete, lukrative Beratungsmandate (SQLs).</div>
                 </div>
             </div>
-        </div>
 
-        <div id="c-level" class="detail-view">
-            <button class="back-btn" onclick="showDashboard()">&#10094; Zurück zur Übersicht</button>
-            <h2 class="detail-header">03. C-Level Kommunikation (CAPEX vs. OPEX)</h2>
-            
-            <div class="content-grid">
-                <div class="strategy-box">
-                    <h3>Investitionshürden abbauen</h3>
-                    <ul>
-                        <li>Die größte Hürde für CFOs/Geschäftsführer ist die hohe Anfangsinvestition (CAPEX).</li>
-                        <li>Die Angst vor technischem Ausfallrisiko und Wartungskosten blockiert Entscheidungen.</li>
-                        <li>Mein Fokus liegt auf Total Cost of Ownership (TCO) und Liquiditätsschonung.</li>
-                    </ul>
+            <div class="slide" id="slide-2">
+                <div class="pillar-number">02</div>
+                <h2 class="slide-title">Bestandskundenentwicklung</h2>
+                
+                <div class="content-block">
+                    <div class="label">Mein Fokus</div>
+                    <div class="text">Das hohe Vertrauen aus Erstprojekten (Audits, Tarife) für den kontinuierlichen Ausbau der Partnerschaft nutzen.</div>
                 </div>
-                <div class="strategy-box highlight-box">
-                    <h3>Mein Lösungsansatz</h3>
-                    <p>"Wir verkaufen keine Heizkessel, wir verkaufen Liquidität. Mit unseren Contracting-Modellen wandeln wir das Risiko des Kunden in sichere, planbare Betriebskosten (OPEX) um."</p>
+                
+                <div class="content-block">
+                    <div class="label">Das Ziel</div>
+                    <div class="text highlight">Systematische Identifikation von Wachstums-Potenzialen (z. B. freie Dachflächen) zum exakt richtigen Zeitpunkt für den Upsell zum Contracting.</div>
                 </div>
             </div>
+
+            <div class="slide" id="slide-3">
+                <div class="pillar-number">03</div>
+                <h2 class="slide-title">Investitionsbegleitung & Inflationsschutz</h2>
+                
+                <div class="content-block">
+                    <div class="label">Mein Fokus</div>
+                    <div class="text">Die Makro-Ökonomie (Energiekrise, steigende Netzentgelte) als Treiber für strategische Anlagen-Projekte nutzen.</div>
+                </div>
+                
+                <div class="content-block">
+                    <div class="label">Das Ziel</div>
+                    <div class="text highlight">Den C-Level durch unsere Contracting-Modelle nicht nur vor Investitionsrisiken, sondern durch feste Kalkulationen aktiv vor der historischen Energiepreis-Inflation schützen.</div>
+                </div>
+            </div>
+
+            <div class="slide" id="slide-4">
+                <div class="pillar-number">04</div>
+                <h2 class="slide-title">Markterschließung & Social Selling</h2>
+                
+                <div class="content-block">
+                    <div class="label">Mein Fokus</div>
+                    <div class="text">Gezielte Durchdringung extrem energieintensiver Großbetriebe (Produzierendes Gewerbe, Logistik, Hospitality) auf allen Kanälen.</div>
+                </div>
+                
+                <div class="content-block">
+                    <div class="label">Das Ziel</div>
+                    <div class="text highlight">Direkter Entscheider-Austausch auf Fachmessen und Nutzung von B2B-Social-Media zur Lead-Generierung direkt an der Quelle.</div>
+                </div>
+            </div>
+
+            <div class="slide" id="slide-5">
+                <div class="pillar-number">05</div>
+                <h2 class="slide-title">Prozess-Schnittstellen</h2>
+                
+                <div class="content-block">
+                    <div class="label">Mein Fokus</div>
+                    <div class="text">Das perfekte Zusammenspiel der starken internen Eigenentwicklungen (MS SQL, .NET) mit dem operativen Vertriebsalltag.</div>
+                </div>
+                
+                <div class="content-block">
+                    <div class="label">Das Ziel</div>
+                    <div class="text highlight">Das CRM als aktiven, treibenden Motor für Abschlüsse nutzen und den reibungslosen Wissenstransfer zwischen System und Kunde sicherstellen.</div>
+                </div>
+            </div>
+
         </div>
 
-        <div id="prozesse" class="detail-view">
-            <button class="back-btn" onclick="showDashboard()">&#10094; Zurück zur Übersicht</button>
-            <h2 class="detail-header">04. Prozess-Exzellenz & IT-Schnittstellen</h2>
-            
-            <div class="content-grid">
-                <div class="strategy-box">
-                    <h3>Reibungslose Abläufe</h3>
-                    <ul>
-                        <li>Sense electra nutzt starke Eigenentwicklungen (MS SQL, .NET).</li>
-                        <li>Der Erfolg des Vertriebs hängt von einem reibungslosen Zusammenspiel mit diesen Datenbanken ab.</li>
-                        <li>Verlorene Deals müssen systematisch auf Wiedervorlage (veränderte Gesetze/Preise).</li>
-                    </ul>
-                </div>
-                <div class="strategy-box highlight-box">
-                    <h3>Mein Lösungsansatz</h3>
-                    <p>"Als Schnittstellen-Manager (z.B. bei Bonava) spreche ich die Sprache der IT und des Vertriebs. Ich sorge dafür, dass Daten nicht nur gesammelt, sondern aktiv für den nächsten Abschluss genutzt werden."</p>
-                </div>
+        <div class="footer">
+            <div id="page-indicator">Constantin Paul &bull; Seite 1 von 6</div>
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">&#10095;</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        function showDetail(id) {
-            document.getElementById('dashboard').style.display = 'none';
-            const details = document.getElementsByClassName('detail-view');
-            for(let i=0; i<details.length; i++) {
-                details[i].style.display = 'none';
-            }
-            document.getElementById(id).style.display = 'block';
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('page-indicator');
+
+        function updateUI() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if(index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            pageIndicator.innerHTML = `Constantin Paul &bull; Seite ${currentSlide + 1} von ${slides.length}`;
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
         }
 
-        function showDashboard() {
-            const details = document.getElementsByClassName('detail-view');
-            for(let i=0; i<details.length; i++) {
-                details[i].style.display = 'none';
-            }
-            document.getElementById('dashboard').style.display = 'grid';
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            updateUI();
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                changeSlide(-1);
+            }
+        });
+
+        updateUI();
     </script>
 </body>
 </html>
