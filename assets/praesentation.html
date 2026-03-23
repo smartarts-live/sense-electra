@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollenverständnis Constantin Paul - sense electra</title>
+    <style>
+        :root {
+            --bg-main: #f8f9fa;
+            --text-dark: #2d3436;
+            --accent-blue: #0984e3;
+            --accent-gold: #886E4C;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 3px solid var(--accent-gold);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-size: 34px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: var(--accent-blue);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* Zentriert die 5. Karte in der letzten Reihe */
+        .card:nth-child(5) {
+            grid-column: 1 / -1;
+            max-width: 535px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-top: 5px solid var(--accent-blue);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-number {
+            font-size: 45px;
+            font-weight: 800;
+            color: rgba(9, 132, 227, 0.1);
+            position: absolute;
+            margin-top: -20px;
+            margin-left: -10px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="header-container">
+            <h1>Mein Rollenverständnis</h1>
+            <div class="subtitle">Constantin Paul &bull; Sales Manager sense electra</div>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <span class="card-number">01</span>
+                <div class="card-title">Inbound & Qualifizierung</div>
+                <div class="section-title">Mein Fokus</div>
+                <p>Die kontinuierlich hohe Anzahl an Web-Anfragen in messbare Abschluss-Qualität übersetzen.</p>
+                <div class="section-title">Das Ziel</div>
+                <p>100 % der Vertriebsenergie fließen direkt in optimal vorbereitete, lukrative Beratungsmandate (SQLs).</p>
+            </div>
+
+            <div class="card">
+                <span class="card-number">02</span>
+                <div class="card-title">Bestandskundenentwicklung</div>
+                <div class="section-title">Mein Fokus</div>
+                <p>Das hohe Vertrauen aus Erstprojekten (Audits, Tarife) für den kontinuierlichen Ausbau der Partnerschaft nutzen.</p>
+                <div class="section-title">Das Ziel</div>
+                <p>Systematische Identifikation von Wachstums-Potenzialen (z. B. freie Dachflächen) zum exakt richtigen Zeitpunkt für den Upsell zum Contracting.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-number">03</span>
+                <div class="card-title">Investitionsbegleitung (C-Level)</div>
+                <div class="section-title">Mein Fokus</div>
+                <p>Begleitung von großen Anlagen-Projekten (BHKW, PV) auf Geschäftsführungsebene.</p>
+                <div class="section-title">Das Ziel</div>
+                <p>Die strategische Nutzung von Contracting-Modellen und die Übernahme von Förderanträgen (BAFA, KfW) als aktive Verkaufsargumente und Service-Leistungen.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-number">04</span>
+                <div class="card-title">Proaktive Markterschließung</div>
+                <div class="section-title">Mein Fokus</div>
+                <p>Gezielte Durchdringung extrem energieintensiver Großbetriebe (Produzierendes Gewerbe, Logistik, Hospitality).</p>
+                <div class="section-title">Das Ziel</div>
+                <p>Direkter Entscheider-Austausch auf Fachmessen und Nutzung etablierter Netzwerke zur Lead-Generierung abseits der telefonischen Kaltakquise.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-number">05</span>
+                <div class="card-title">Prozess-Schnittstellen</div>
+                <div class="section-title">Mein Fokus</div>
+                <p>Das perfekte Zusammenspiel der starken internen Eigenentwicklungen (MS SQL, .NET) mit dem operativen Vertriebsalltag.</p>
+                <div class="section-title">Das Ziel</div>
+                <p>Das CRM als aktiven, treibenden Motor für Abschlüsse nutzen und den reibungslosen Wissenstransfer zwischen System und Kunde sicherstellen.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
