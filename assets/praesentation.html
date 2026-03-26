@@ -2,323 +2,704 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Präsentation Constantin Paul - sense electra GmbH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business Cases - sense electra GmbH</title>
     <style>
-        /* --- GRUNDLAGEN --- */
-        * { box-sizing: border-box; }
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --accent-blue: #00B0F0;
+            --accent-gold: #886E4C;
+            --success-green: #2ecc71;
+            --danger-red: #e74c3c;
+        }
         
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         body {
             margin: 0;
             padding: 0;
-            background-color: #555555;
-            font-family: 'Calibri', 'Segoe UI', Arial, Helvetica, sans-serif;
-            color: #004d55;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
         }
 
-        /* --- QUERFORMAT PAPIER SETUP (16:9 Screen-Sharing optimiert) --- */
-        .presentation-container {
-            width: 1200px; 
-            height: 675px; /* 16:9 Format */
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            position: relative;
-            display: flex; 
+        #app {
+            width: 100%;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
             flex-direction: column;
-        }
-
-        /* --- HEADER --- */
-        .header {
-            background-color: #F9F8F6; 
-            color: #886E4C;
-            padding: 25px 50px; 
-            border-bottom: 3px solid #886E4C;
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-left { display: flex; flex-direction: column; }
-        .header-name { font-size: 26px; letter-spacing: 1px; text-transform: uppercase; font-weight:bold; color: #886E4C; }
-        .header-text { font-size: 16px; color: #886E4C; margin-top: 5px; }
-        
-        /* --- SLIDES --- */
-        .slide-wrapper {
-            flex-grow: 1;
             position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
+        }
+
+        /* --- HEADER (MOBILE OPTIMIERT) --- */
+        .header {
+            padding: 20px 20px;
+            background-color: var(--bg-card);
+            border-bottom: 2px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header span {
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+        
+        .header-sub {
+            color: #888;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* --- HOME DASHBOARD (GESTAPELT) --- */
+        #home-view {
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr; /* Single Column für Handy */
+            gap: 20px;
+            flex-grow: 1;
+            padding-bottom: 40px;
+        }
+
+        .case-card {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border: 1px solid #333;
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .case-card:active {
+            transform: scale(0.98);
+            border-top-color: var(--accent-blue);
+        }
+
+        .case-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 20px;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .case-desc {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* --- SCENARIO VIEWS --- */
+        .scenario-container {
+            display: none;
+            flex-grow: 1;
+            flex-direction: column;
+            padding-bottom: 90px; /* Platz für Sticky Footer */
         }
 
         .slide {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            padding: 50px 80px;
             display: none;
-            flex-direction: column;
-            justify-content: center;
-            animation: fadeIn 0.4s ease-in-out;
+            padding: 25px 20px;
+            flex-grow: 1;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .slide.active { display: flex; }
+        .slide.active {
+            display: block;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- TYPOGRAFIE INHALTE --- */
-        .title-slide { text-align: center; }
-        .title-slide h1 { font-size: 48px; color: #004d55; text-transform: uppercase; margin-bottom: 20px; border: none; }
-        .title-slide h2 { font-size: 28px; color: #886E4C; font-weight: normal; border: none; margin: 0; text-transform: none; font-style: italic; }
-
-        .pillar-number {
-            font-size: 80px;
+        .step-indicator {
+            font-size: 12px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: rgba(136, 110, 76, 0.15);
-            position: absolute;
-            top: 30px; left: 80px;
-            line-height: 1;
-            z-index: 0;
         }
 
         .slide-title {
-            font-size: 34px; 
-            color: #004d55; 
-            text-transform: uppercase; 
+            font-size: 24px;
+            line-height: 1.2;
             margin-top: 0;
-            margin-bottom: 40px;
-            border-bottom: 3px solid #886E4C;
-            padding-bottom: 10px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
         }
 
-        .content-block { margin-bottom: 35px; position: relative; z-index: 1; }
-        
-        .label {
-            font-size: 16px;
+        /* Data Grid for content (SINGLE COLUMN) */
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Untereinander auf dem Smartphone */
+            gap: 20px;
+        }
+
+        .data-box {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #444;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .data-box.highlight {
+            border-left-color: var(--accent-gold);
+            background-color: rgba(136, 110, 76, 0.05);
+        }
+
+        .data-box.alert {
+            border-left-color: var(--danger-red);
+            background-color: rgba(231, 76, 60, 0.05);
+        }
+
+        .data-box.success {
+            border-left-color: var(--success-green);
+            background-color: rgba(46, 204, 113, 0.05);
+            text-align: center;
+        }
+
+        .data-label {
+            font-size: 11px;
             text-transform: uppercase;
-            color: #886E4C;
+            color: #999;
+            margin-bottom: 5px;
             font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
         }
 
-        .text {
+        .data-value {
             font-size: 22px;
-            line-height: 1.5;
-            color: #004d55;
-            padding-left: 20px;
-            border-left: 4px solid #F9F8F6;
-        }
-
-        .text.highlight {
-            border-left-color: #886E4C;
             font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+        
+        .data-value.red { color: var(--danger-red); }
+        .data-value.green { color: var(--success-green); font-size: 28px; }
+
+        .data-box p {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 5px;
+            margin-bottom: 0;
         }
 
-        /* --- FOOTER MIT NAVIGATION --- */
+        ul.styled-list {
+            margin: 0; 
+            padding-left: 20px;
+        }
+
+        ul.styled-list li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total-cost {
+            margin-top: 25px; 
+            text-align: center;
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* --- MATRIX TABLE (HORIZONTAL SCROLL) --- */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 10px;
+            border: 1px solid #333;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px; /* Erzwingt Scrolling auf kleinen Displays */
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
+
+        .matrix-table th {
+            background-color: #1a1a1a;
+            color: var(--accent-gold);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .matrix-table td:first-child {
+            font-weight: bold;
+            color: var(--accent-blue);
+            background-color: #1a1a1a;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            border-right: 2px solid #333;
+        }
+
+        .highlight-row td {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        /* --- STICKY FOOTER & NAVIGATION (TOUCH OPTIMIERT) --- */
         .footer {
-            background-color: #F9F8F6; 
-            color: #886E4C;
-            padding: 15px 50px; 
-            font-size: 14px; 
-            border-top: 1px solid #886E4C; 
-            margin-top: auto; 
-            flex-shrink: 0;
+            padding: 15px 20px;
+            background-color: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .nav-controls {
             display: flex;
-            align-items: center;
-            gap: 20px;
+            gap: 10px;
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-left: 10px;
         }
 
-        .nav-btn {
-            background: none;
-            border: 2px solid #886E4C;
-            color: #886E4C;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
+        .btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 14px 12px;
+            font-size: 14px;
             font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+            text-align: center;
         }
 
-        .nav-btn:hover {
-            background-color: #886E4C;
-            color: #F9F8F6;
+        .btn:active { background-color: #444; transform: scale(0.98); }
+        
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: #fff;
+            flex: 1;
         }
+        .btn-primary:active { background-color: #9c805a; }
 
-        .nav-btn:disabled {
-            border-color: #ccc;
-            color: #ccc;
-            cursor: not-allowed;
-            background: none;
+        .btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="presentation-container">
-        
+    <div id="app">
         <div class="header">
-            <div class="header-left">
-                <span class="header-name">Constantin Paul</span>
-                <span class="header-text">Strategisches Rollenverständnis</span>
-            </div>
-            <div>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=886E4C&bgcolor=F9F8F6&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3APaul%3BConstantin%0AFN%3AConstantin+Paul%0ATEL%3BTYPE%3DCELL%3A015254275824%0AEMAIL%3Aconstantin.paul%40gmail.com%0AEND%3AVCARD" alt="vCard" width="60" style="display:block; border: none;">
-            </div>
+            <h1>Business Cases <span>sense electra</span></h1>
+            <div class="header-sub">Constantin Paul &bull; Sales Manager</div>
         </div>
 
-        <div class="slide-wrapper">
+        <div id="home-view">
+            <div class="case-card" onclick="startScenario('tankstelle')">
+                <div class="case-icon">⚡</div>
+                <div class="case-title">01. Tankstelle</div>
+                <div class="case-desc">E-Mobilität, PV, Speicher & Spotmarkt</div>
+            </div>
             
-            <div class="slide active title-slide" id="slide-0">
-                <h1>Mein Rollenverständnis als Sales Manager</h1>
-                <h2>Für die sense electra GmbH</h2>
+            <div class="case-card" onclick="startScenario('hotel')">
+                <div class="case-icon">🏨</div>
+                <div class="case-title">02. Wellness-Hotel</div>
+                <div class="case-desc">Thermische Grundlast, BHKW & Contracting</div>
             </div>
 
-            <div class="slide" id="slide-1">
-                <div class="pillar-number">01</div>
-                <h2 class="slide-title">Inbound & Qualifizierung</h2>
-                
-                <div class="content-block">
-                    <div class="label">Mein Fokus</div>
-                    <div class="text">Die kontinuierlich hohe Anzahl an Web-Anfragen in messbare Abschluss-Qualität übersetzen.</div>
-                </div>
-                
-                <div class="content-block">
-                    <div class="label">Das Ziel</div>
-                    <div class="text highlight">100 % der Vertriebsenergie fließen direkt in optimal vorbereitete, lukrative Beratungsmandate (SQLs).</div>
-                </div>
+            <div class="case-card" onclick="startScenario('industrie')">
+                <div class="case-icon">🏭</div>
+                <div class="case-title">03. Food-Produktion</div>
+                <div class="case-desc">Regionales Projekt: PV, Speicher & Peak-Shaving</div>
             </div>
 
-            <div class="slide" id="slide-2">
-                <div class="pillar-number">02</div>
-                <h2 class="slide-title">Bestandskundenentwicklung</h2>
-                
-                <div class="content-block">
-                    <div class="label">Mein Fokus</div>
-                    <div class="text">Das hohe Vertrauen aus Erstprojekten (Audits, Tarife) für den kontinuierlichen Ausbau der Partnerschaft nutzen.</div>
-                </div>
-                
-                <div class="content-block">
-                    <div class="label">Das Ziel</div>
-                    <div class="text highlight">Systematische Identifikation von Wachstums-Potenzialen (z. B. freie Dachflächen) zum exakt richtigen Zeitpunkt für den Upsell zum Contracting.</div>
-                </div>
+            <div class="case-card" onclick="startScenario('matrix')" style="border-top-color: var(--accent-blue);">
+                <div class="case-icon">📊</div>
+                <div class="case-title" style="color: var(--accent-blue);">04. Matrix</div>
+                <div class="case-desc">Alle Hebel und KPIs im direkten Vergleich</div>
             </div>
-
-            <div class="slide" id="slide-3">
-                <div class="pillar-number">03</div>
-                <h2 class="slide-title">Investitionsbegleitung & Inflationsschutz</h2>
-                
-                <div class="content-block">
-                    <div class="label">Mein Fokus</div>
-                    <div class="text">Die Makro-Ökonomie (Energiekrise, steigende Netzentgelte) als Treiber für strategische Anlagen-Projekte nutzen.</div>
-                </div>
-                
-                <div class="content-block">
-                    <div class="label">Das Ziel</div>
-                    <div class="text highlight">Den C-Level durch unsere Contracting-Modelle nicht nur vor Investitionsrisiken, sondern durch feste Kalkulationen aktiv vor der historischen Energiepreis-Inflation schützen.</div>
-                </div>
-            </div>
-
-            <div class="slide" id="slide-4">
-                <div class="pillar-number">04</div>
-                <h2 class="slide-title">Markterschließung & Social Selling</h2>
-                
-                <div class="content-block">
-                    <div class="label">Mein Fokus</div>
-                    <div class="text">Gezielte Durchdringung extrem energieintensiver Großbetriebe (Produzierendes Gewerbe, Logistik, Hospitality) auf allen Kanälen.</div>
-                </div>
-                
-                <div class="content-block">
-                    <div class="label">Das Ziel</div>
-                    <div class="text highlight">Direkter Entscheider-Austausch auf Fachmessen und Nutzung von B2B-Social-Media zur Lead-Generierung direkt an der Quelle.</div>
-                </div>
-            </div>
-
-            <div class="slide" id="slide-5">
-                <div class="pillar-number">05</div>
-                <h2 class="slide-title">Prozess-Schnittstellen</h2>
-                
-                <div class="content-block">
-                    <div class="label">Mein Fokus</div>
-                    <div class="text">Das perfekte Zusammenspiel der starken internen Eigenentwicklungen (MS SQL, .NET) mit dem operativen Vertriebsalltag.</div>
-                </div>
-                
-                <div class="content-block">
-                    <div class="label">Das Ziel</div>
-                    <div class="text highlight">Das CRM als aktiven, treibenden Motor für Abschlüsse nutzen und den reibungslosen Wissenstransfer zwischen System und Kunde sicherstellen.</div>
-                </div>
-            </div>
-
         </div>
 
-        <div class="footer">
-            <div id="page-indicator">Constantin Paul &bull; Seite 1 von 6</div>
+        <div id="scenario-tankstelle" class="scenario-container">
+            <div class="slide slide-tankstelle active">
+                <div class="step-indicator">Schritt 1 von 4 &bull; Status Quo</div>
+                <h2 class="slide-title">Die Ausgangslage: Tankstelle mit HPC</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Jahresverbrauch Strom</div>
+                        <div class="data-value">250.000 kWh</div>
+                        <div class="data-label">Aktueller Strompreis</div>
+                        <div class="data-value" style="margin-bottom: 0;">0,24 € / kWh</div>
+                    </div>
+                    <div class="data-box alert">
+                        <div class="data-label">Gemessene Lastspitze (RLM)</div>
+                        <div class="data-value red">100 kW</div>
+                        <div class="data-label">Leistungspreis (Netzentgelt)</div>
+                        <div class="data-value red" style="margin-bottom: 0;">130,00 € pro kW/a</div>
+                    </div>
+                </div>
+                <div class="total-cost">
+                    <div class="data-label" style="margin-bottom: 5px;">Bisherige Energiekosten gesamt</div>
+                    <span style="font-size: 22px; color: var(--danger-red); font-weight: bold;">73.000 € / Jahr</span>
+                </div>
+            </div>
+
+            <div class="slide slide-tankstelle">
+                <div class="step-indicator">Schritt 2 von 4 &bull; Analyse</div>
+                <h2 class="slide-title">Die Kostenfresser</h2>
+                <div class="data-grid">
+                    <div class="data-box alert">
+                        <div class="data-label">Pain Point 1: 24/7 Grundlast</div>
+                        <p>Kühlaggregate im Shop und Licht sorgen für extremen Dauerverbrauch.</p>
+                    </div>
+                    <div class="data-box alert">
+                        <div class="data-label">Pain Point 2: Unkalkulierbare Peaks</div>
+                        <p>Wenn Kunden parallel E-Autos laden (HPC), explodieren die Netzentgelte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide slide-tankstelle">
+                <div class="step-indicator">Schritt 3 von 4 &bull; sense electra OPEX</div>
+                <h2 class="slide-title">Unsere Lösung: 0 € CapEx</h2>
+                <div class="data-box highlight">
+                    <div class="data-label" style="margin-bottom: 15px;">Die Technologie</div>
+                    <ul class="styled-list">
+                        <li><strong>100 kWp PV:</strong> Deckung der Kühl-Grundlast.</li>
+                        <li><strong>100 kWh Speicher:</strong> Kappung der Ladespitzen (100 kW -> 50 kW).</li>
+                        <li><strong>Spotmarkt:</strong> Speicher lädt nachts zu Tiefstpreisen.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slide slide-tankstelle">
+                <div class="step-indicator">Schritt 4 von 4 &bull; Business Case</div>
+                <h2 class="slide-title">Der ROI</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Neue Energiekosten (Netz)</div>
+                        <div class="data-value" style="margin-top: 10px; margin-bottom: 5px;">40.500 € / Jahr</div>
+                        <div class="data-label" style="color: var(--accent-blue);">Brutto-Ersparnis: 32.500 €</div>
+                    </div>
+                    <div class="data-box success">
+                        <div class="data-label">Netto-Gewinn für den Kunden</div>
+                        <div class="data-value green">+ 10.900 € / a</div>
+                        <div style="font-size: 12px; color: #fff; font-weight: bold; margin-top: 10px;">Vollwartung & Risiko-Transfer inkl.!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="scenario-hotel" class="scenario-container">
+            <div class="slide slide-hotel active">
+                <div class="step-indicator">Schritt 1 von 4 &bull; Status Quo</div>
+                <h2 class="slide-title">Ausgangslage: Wellness-Hotel</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Jahresverbrauch Strom</div>
+                        <div class="data-value" style="margin-bottom: 5px;">600k kWh</div>
+                    </div>
+                    <div class="data-box alert">
+                        <div class="data-label">Jahresverbrauch Gas (Wärme)</div>
+                        <div class="data-value" style="margin-bottom: 5px;">1.2 Mio. kWh</div>
+                    </div>
+                </div>
+                <div class="total-cost">
+                    <div class="data-label" style="margin-bottom: 5px;">Bisherige Energiekosten gesamt</div>
+                    <span style="font-size: 22px; color: var(--danger-red); font-weight: bold;">234.000 € / Jahr</span>
+                </div>
+            </div>
+
+            <div class="slide slide-hotel">
+                <div class="step-indicator">Schritt 2 von 4 &bull; Analyse</div>
+                <h2 class="slide-title">Die Kostenfresser</h2>
+                <div class="data-grid">
+                    <div class="data-box alert">
+                        <div class="data-label">Pain Point 1: Thermische Grundlast</div>
+                        <p>Pool, Spa und Warmwasser-Zirkulation treiben den Gasverbrauch in die Höhe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide slide-hotel">
+                <div class="step-indicator">Schritt 3 von 4 &bull; sense electra OPEX</div>
+                <h2 class="slide-title">Unsere Lösung: 0 € CapEx</h2>
+                <div class="data-box highlight">
+                    <div class="data-label" style="margin-bottom: 15px;">Die Technologie (Spark-Spread)</div>
+                    <ul class="styled-list">
+                        <li><strong>50kW el. / 100kW th. BHKW:</strong> Wärmegeführte Grundlast.</li>
+                        <li><strong>Eigenerzeugung:</strong> 300.000 kWh Strom direkt vor Ort generiert & verbraucht!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slide slide-hotel">
+                <div class="step-indicator">Schritt 4 von 4 &bull; Business Case</div>
+                <h2 class="slide-title">Der ROI</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Neue Energiekosten (Betrieb)</div>
+                        <div class="data-value" style="margin-top: 10px; margin-bottom: 5px;">190.500 € / Jahr</div>
+                        <div class="data-label" style="color: var(--accent-blue);">Brutto-Ersparnis: 43.500 €</div>
+                    </div>
+                    <div class="data-box success">
+                        <div class="data-label">Netto-Gewinn für den Kunden</div>
+                        <div class="data-value green">+ 13.500 € / a</div>
+                        <div style="font-size: 12px; color: #fff; font-weight: bold; margin-top: 10px;">+ Upside: Energiesteuer-Erstattung!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="scenario-industrie" class="scenario-container">
+            <div class="slide slide-industrie active">
+                <div class="step-indicator">Schritt 1 von 4 &bull; Status Quo</div>
+                <h2 class="slide-title">peaceful delicious</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Jahresverbrauch Strom</div>
+                        <div class="data-value">1 Mio. kWh</div>
+                    </div>
+                    <div class="data-box alert">
+                        <div class="data-label">Gemessene Lastspitze (RLM)</div>
+                        <div class="data-value red">250 kW</div>
+                    </div>
+                </div>
+                <div class="total-cost">
+                    <div class="data-label" style="margin-bottom: 5px;">Bisherige Energiekosten gesamt</div>
+                    <span style="font-size: 22px; color: var(--danger-red); font-weight: bold;">252.500 € / Jahr</span>
+                </div>
+            </div>
+
+            <div class="slide slide-industrie">
+                <div class="step-indicator">Schritt 2 von 4 &bull; Analyse</div>
+                <h2 class="slide-title">Die Kostenfresser</h2>
+                <div class="data-grid">
+                    <div class="data-box alert">
+                        <div class="data-label">Pain Point 1: Die Lastspitzen-Falle</div>
+                        <p>Produktionsmaschinen ziehen beim Hochfahren extremen Anlaufstrom.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide slide-industrie">
+                <div class="step-indicator">Schritt 3 von 4 &bull; sense electra OPEX</div>
+                <h2 class="slide-title">Unsere Lösung: 0 € CapEx</h2>
+                <div class="data-box highlight">
+                    <div class="data-label" style="margin-bottom: 15px;">Die Technologie</div>
+                    <ul class="styled-list">
+                        <li><strong>250 kWp PV:</strong> Dachpacht. Deckung 24/7 Kühl-Grundlast.</li>
+                        <li><strong>200 kWh Speicher:</strong> Peak-Shaving. Kappt Maschinen-Anlaufstrom.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slide slide-industrie">
+                <div class="step-indicator">Schritt 4 von 4 &bull; Business Case</div>
+                <h2 class="slide-title">Der ROI</h2>
+                <div class="data-grid">
+                    <div class="data-box">
+                        <div class="data-label">Neue Energiekosten (Netz)</div>
+                        <div class="data-value" style="margin-top: 10px; margin-bottom: 5px;">159.000 € / Jahr</div>
+                        <div class="data-label" style="color: var(--accent-blue);">Brutto-Ersparnis: 93.500 €</div>
+                    </div>
+                    <div class="data-box success">
+                        <div class="data-label">Netto-Gewinn für den Kunden</div>
+                        <div class="data-value green">+ 39.500 € / a</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="scenario-matrix" class="scenario-container">
+            <div class="slide slide-matrix active">
+                <div class="step-indicator">Executive Summary &bull; Wisch-Tabelle</div>
+                <h2 class="slide-title">Die B2B-Kalkulationsmatrix</h2>
+                <p style="font-size: 13px; color: #aaa; margin-bottom: 15px;"><em>Bitte Tabelle nach rechts und links wischen, um die Spalten zu vergleichen.</em></p>
+                
+                <div class="table-responsive">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Kennzahl / Bereich</th>
+                                <th>01. Tankstelle (HPC)</th>
+                                <th>02. Hotel (120 Zi.)</th>
+                                <th>03. Food-Produktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Fokus / Schmerzpunkt</td>
+                                <td>Unkalkulierbare Lade-Peaks, 24/7 Kühl-Grundlast</td>
+                                <td>Gigantische thermische Grundlast (Spa, Pool)</td>
+                                <td>24/7 Kühlung, hohe Maschinen-Anlaufströme</td>
+                            </tr>
+                            <tr>
+                                <td>Unsere Technologie</td>
+                                <td>100 kWp PV + 100 kWh Speicher</td>
+                                <td>50 kW el. / 100 kW th. BHKW</td>
+                                <td>250 kWp PV + 200 kWh Speicher</td>
+                            </tr>
+                            <tr>
+                                <td>Strategischer Hebel</td>
+                                <td>Peak-Shaving + Spotmarkt-Arbitrage</td>
+                                <td>Spark-Spread (Wärmegeführt)</td>
+                                <td>Peak-Shaving + Eigenverbrauch</td>
+                            </tr>
+                            <tr>
+                                <td>IST: Energiekosten / Jahr</td>
+                                <td>73.000 €</td>
+                                <td>234.000 €</td>
+                                <td>252.500 €</td>
+                            </tr>
+                            <tr>
+                                <td>Kosten-Übernahme (CapEx)</td>
+                                <td>0 € (OPEX-Modell)</td>
+                                <td>0 € (OPEX-Modell)</td>
+                                <td>0 € (OPEX-Modell)</td>
+                            </tr>
+                            <tr>
+                                <td>Brutto-Ersparnis (Energie)</td>
+                                <td>32.500 € / Jahr</td>
+                                <td>43.500 € / Jahr</td>
+                                <td>93.500 € / Jahr</td>
+                            </tr>
+                            <tr>
+                                <td>Contracting-Rate (sense)</td>
+                                <td>21.600 € / Jahr</td>
+                                <td>30.000 € / Jahr</td>
+                                <td>54.000 € / Jahr</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>NETTO-GEWINN KUNDE</td>
+                                <td>+ 10.900 € / Jahr</td>
+                                <td>+ 13.500 € / Jahr</td>
+                                <td>+ 39.500 € / Jahr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" id="main-footer" style="display: none;">
+            <button class="btn" onclick="showHome()">&#10094; Menü</button>
             <div class="nav-controls">
-                <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">&#10094;</button>
-                <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">&#10095;</button>
+                <button class="btn btn-primary" id="prevBtn" onclick="navigate(-1)">&#10094; Zurück</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Weiter &#10095;</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageIndicator = document.getElementById('page-indicator');
+        let currentScenario = '';
+        let currentSlideIndex = 0;
 
-        function updateUI() {
+        function showHome() {
+            document.getElementById('home-view').style.display = 'grid';
+            document.getElementById('scenario-tankstelle').style.display = 'none';
+            document.getElementById('scenario-hotel').style.display = 'none';
+            document.getElementById('scenario-industrie').style.display = 'none';
+            document.getElementById('scenario-matrix').style.display = 'none';
+            document.getElementById('main-footer').style.display = 'none';
+            window.scrollTo(0, 0);
+            currentScenario = '';
+        }
+
+        function startScenario(scenario) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('scenario-tankstelle').style.display = 'none';
+            document.getElementById('scenario-hotel').style.display = 'none';
+            document.getElementById('scenario-industrie').style.display = 'none';
+            document.getElementById('scenario-matrix').style.display = 'none';
+            
+            currentScenario = scenario;
+            currentSlideIndex = 0;
+            
+            document.getElementById('scenario-' + scenario).style.display = 'flex';
+            document.getElementById('main-footer').style.display = 'flex';
+            
+            window.scrollTo(0, 0);
+            updateSlides();
+        }
+
+        function navigate(direction) {
+            const slides = document.querySelectorAll('.slide-' + currentScenario);
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
+            
+            window.scrollTo(0, 0);
+            updateSlides();
+        }
+
+        function updateSlides() {
+            const slides = document.querySelectorAll('.slide-' + currentScenario);
+            
             slides.forEach((slide, index) => {
                 slide.classList.remove('active');
-                if(index === currentSlide) {
+                if(index === currentSlideIndex) {
                     slide.classList.add('active');
                 }
             });
 
-            pageIndicator.innerHTML = `Constantin Paul &bull; Seite ${currentSlide + 1} von ${slides.length}`;
-
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === slides.length - 1;
-        }
-
-        function changeSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = 0;
-            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
-            updateUI();
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
-                changeSlide(1);
-            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
-                changeSlide(-1);
+            // Button States
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (slides.length <= 1) {
+                // If there's only 1 slide (like in the matrix), hide the prev/next buttons
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+                prevBtn.disabled = currentSlideIndex === 0;
+                nextBtn.disabled = currentSlideIndex === slides.length - 1;
             }
-        });
-
-        updateUI();
+        }
     </script>
 </body>
 </html>
