@@ -25,7 +25,6 @@
             padding-bottom: calc(var(--nav-height) + 20px);
         }
 
-        /* Sticky Search Header */
         header {
             position: sticky;
             top: 0;
@@ -50,7 +49,6 @@
             outline: none;
         }
 
-        /* Content Sections */
         .container {
             padding: 15px;
             max-width: 800px;
@@ -80,7 +78,6 @@
 
         .highlight { background: #e8f4fd; border-left: 4px solid var(--accent); padding: 10px; font-weight: bold; }
 
-        /* Bottom Nav */
         nav {
             position: fixed;
             bottom: 0;
@@ -111,14 +108,12 @@
 
         .nav-item.active { color: var(--accent); font-weight: bold; }
 
-        /* Tables & Lists */
         ul { padding-left: 20px; }
         li { margin-bottom: 8px; }
         
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
-        /* Utility */
         .hidden { display: none; }
     </style>
 </head>
@@ -127,101 +122,88 @@
 <header>
     <h1>Vertriebs-Leitfaden apoll.on</h1>
     <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Suche nach Begriffen (z.B. RLM, Spot, Käufer)..." onkeyup="searchContent()">
+        <input type="text" id="searchBar" placeholder="Suche..." onkeyup="searchContent()">
     </div>
 </header>
 
 <div class="container">
     <section id="grundlagen">
         <h2>1. Grundlagen & Vpsp</h2>
-        [span_0](start_span)<p>Als Energiedienstleister beraten wir B2B-Kunden und vermitteln passende Strom- und Gasverträge[span_0](end_span).</p>
+        <p>Als Energiedienstleister beraten wir B2B-Kunden und vermitteln passende Strom- und Gasverträge.</p>
         
         <h3>Marktformen im Vergleich</h3>
         <div class="grid">
             <div class="card">
                 <strong>Spotmarkt</strong>
                 <ul>
-                    [span_1](start_span)<li>Tagesaktuelle Preise[span_1](end_span)</li>
-                    [span_2](start_span)<li>Hohe Transparenz & Flexibilität[span_2](end_span)</li>
-                    [span_3](start_span)<li>Risiko bei Marktspitzen[span_3](end_span)</li>
+                    <li>Tagesaktuelle Preise</li>
+                    <li>Hohe Transparenz</li>
+                    <li>Risiko bei Marktspitzen</li>
                 </ul>
             </div>
             <div class="card">
                 <strong>Terminmarkt</strong>
                 <ul>
-                    [span_4](start_span)<li>Fixierte Preise & Planungssicherheit[span_4](end_span)</li>
-                    [span_5](start_span)<li>Schutz vor Preisspitzen[span_5](end_span)</li>
-                    [span_6](start_span)<li>Risikozuschläge enthalten[span_6](end_span)</li>
+                    <li>Fixierte Preise</li>
+                    <li>Planungssicherheit</li>
+                    <li>Schutz vor Volatilität</li>
                 </ul>
             </div>
         </div>
 
-        <h3>Begriffe & Abrechnung</h3>
+        <h3>Begriffe</h3>
         <ul>
-            [span_7](start_span)[span_8](start_span)<li><strong>Grundpreis:</strong> Feste Gebühr für Anschluss & Wartung[span_7](end_span)[span_8](end_span).</li>
-            [span_9](start_span)<li><strong>Arbeitspreis:</strong> Preis pro verbrauchte kWh[span_9](end_span).</li>
-            [span_10](start_span)[span_11](start_span)<li><strong>Leistungspreis:</strong> Basiert auf der höchsten kW-Last[span_10](end_span)[span_11](end_span).</li>
-            [span_12](start_span)[span_13](start_span)<li><strong>RLM:</strong> Registrierende Leistungsmessung (>100k kWh Strom)[span_12](end_span)[span_13](end_span).</li>
-            [span_14](start_span)[span_15](start_span)<li><strong>SLP:</strong> Standardlastprofil (Privat/Kleingewerbe)[span_14](end_span)[span_15](end_span).</li>
+            <li><strong>Grundpreis:</strong> Unabhängig vom Verbrauch.</li>
+            <li><strong>Arbeitspreis:</strong> Preis pro verbrauchte kWh.</li>
+            <li><strong>RLM:</strong> Registrierende Leistungsmessung.</li>
+            <li><strong>SLP:</strong> Standardlastprofil.</li>
         </ul>
     </section>
 
     <section id="uebergabe">
         <h2>2. Lead-Übergabe</h2>
-        <div class="highlight">Prozess: Backoffice ➔ Vertrieb</div>
-        [span_16](start_span)<p>Anfragen aus Google AdWords landen im Vpsp zur Vorauswahl[span_16](end_span).</p>
+        <div class="highlight">Backoffice ➔ Vertrieb</div>
+        <p>Anfragen werden im Vpsp vorqualifiziert.</p>
         <ul>
-            [span_17](start_span)<li><strong>Vorauswahl:</strong> Das Backoffice prüft die Daten und schließt reine Privatanfragen aus[span_17](end_span).</li>
-            [span_18](start_span)<li><strong>Checkliste Vpsp:</strong> Prüfung auf Dubletten über die globale Suche (E-Mail/Name)[span_18](end_span).</li>
-            <li><strong>Zuweisung:</strong> Qualifizierte Leads werden im System an den Vertrieb übergeben.</li>
+            <li>Prüfung auf geschäftlichen Kontext.</li>
+            <li>Dublettenprüfung über globale Suche.</li>
+            <li>Zuweisung an den zuständigen Vertriebler.</li>
         </ul>
     </section>
 
     <section id="erstkontakt">
-        <h2>3. Erstkontakt & Telefon</h2>
-        [span_19](start_span)<p>Ziel: Vertrauen aufbauen und Daten für das Angebot sichern[span_19](end_span).</p>
-        
-        [span_20](start_span)<h3>Telefon-Checkliste [cite: 33-38]</h3>
+        <h2>3. Erstkontakt</h2>
+        <p>Erster Eindruck: Anhauen, Umhauen, Abhauen.</p>
         <ol>
-            <li>Vorstellung (Schnellstrom + Name).</li>
-            <li>Bedarf klären (Wofür? Ziel? Termin?).</li>
-            [cite_start]<li><strong>Zuhören & Mitschreiben:</strong> Konjunktive weglassen, einfache Wörter nutzen[span_20](end_span).</li>
-            [span_21](start_span)[span_22](start_span)<li>Nach Rechnung oder Lastgang fragen (per E-Mail/Fax)[span_21](end_span)[span_22](end_span).</li>
+            <li>Vorstellung: "Schnellstrom + Name".</li>
+            <li>Zuhören und Bedarfsermittlung.</li>
+            <li>Um Rechnung oder Lastgang bitten.</li>
+            <li>Zweitgespräch terminieren.</li>
         </ol>
-
-        [span_23](start_span)<h3>Käufertypen[span_23](end_span)</h3>
-        <div class="card"><strong>Schnäppchenjäger:</strong> Braucht Verhandlungsspielraum. Gib ihm das Gefühl, gewonnen zu haben.</div>
-        <div class="card"><strong>Verlustaversiv:</strong> Misstrauisch gegenüber Neuem. Betone Liefersicherheit & Erfahrung.</div>
-        <div class="card"><strong>Gewohnheitskäufer:</strong> Will nicht wechseln. Suche direkt den Entscheider.</div>
+        <h3>Käufertypen</h3>
+        <div class="card"><strong>Schnäppchenjäger:</strong> Will den besten Preis.</div>
+        <div class="card"><strong>Verlustaversiv:</strong> Angst vor Fehlentscheidung.</div>
+        <div class="card"><strong>Gewohnheitskäufer:</strong> Möchte eigentlich bleiben.</div>
     </section>
 
     <section id="angebot">
         <h2>4. Angebotserstellung</h2>
-        <div class="highlight">Prozess: Vertrieb ➔ Backoffice</div>
-        <p>Nach dem Gespräch pflegt der Vertrieb alle Infos ins Vpsp ein.</p>
+        <div class="highlight">Vertrieb ➔ Backoffice</div>
+        <p>Vertrieb dokumentiert, Backoffice erstellt.</p>
         <ul>
-            [span_24](start_span)[span_25](start_span)<li><strong>Datenpflege:</strong> Verbrauchswerte (HT/NT), Zählernummer und MaLo-ID erfassen[span_24](end_span)[span_25](end_span).</li>
-            <li><strong>Auftrag:</strong> Infos zur Anfrage werden im System als Aufgabe an das Backoffice gegeben.</li>
-            <li><strong>Versand:</strong> Das Backoffice erstellt das Angebot und sendet es <strong>im Namen des Vertrieblers</strong> an den Kunden.</li>
+            <li>Eingabe technischer Daten ins Vpsp.</li>
+            <li>Aufgabe an Backoffice erstellen.</li>
+            <li>Versand erfolgt im Namen des Vertriebs.</li>
         </ul>
     </section>
 
     <section id="abschluss">
-        <h2>5. Zweitgespräch & Abschluss</h2>
-        <p>Nach Erhalt des Angebots erfolgt das Follow-up durch den Vertrieb.</p>
-        
-        [span_26](start_span)<h3>Argumente für lange Laufzeiten [cite: 23-32]</h3>
+        <h2>5. Abschluss</h2>
+        <p>Argumentation für Planungssicherheit.</p>
         <ul>
-            <li>Steigende CO2-Preise (Prognose 80-100€/t bis 2029).</li>
+            <li>CO2-Preise steigen (Prognose bis 2029).</li>
             <li>Steigende Netzentgelte durch Netzausbau.</li>
-            <li>Schutz vor Preisspitzen durch Kernkraft/Kohle-Ausstieg.</li>
-        </ul>
-
-        [cite_start]<h3>Abschlusstechniken[span_26](end_span)</h3>
-        <ul>
-            <li>"Was haben Sie zu verlieren? Sie gehen kein Risiko ein."</li>
-            <li>"Wenn der Preis stimmt, sollten Sie unbedingt kaufen!"</li>
-            [span_27](start_span)<li>Bei Zusage: Sofort Eingangsbestätigung senden und alle Vollmachten einholen[span_27](end_span).</li>
+            <li>"Sie gehen keinerlei Risiko ein."</li>
         </ul>
     </section>
 </div>
@@ -238,38 +220,23 @@
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
         let sections = document.getElementsByTagName('section');
-        
         for (let section of sections) {
             let text = section.innerText.toLowerCase();
-            if (text.includes(input)) {
-                section.classList.remove('hidden');
-            } else {
-                section.classList.add('hidden');
-            }
+            section.classList.toggle('hidden', !text.includes(input));
         }
     }
 
-    // Nav-Highlighting
     window.addEventListener('scroll', () => {
         let current = "";
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item');
-
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 120) {
-                current = section.getAttribute('id');
-            }
+            if (pageYOffset >= section.offsetTop - 120) current = section.getAttribute('id');
         });
-
         navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').includes(current)) {
-                item.classList.add('active');
-            }
+            item.classList.toggle('active', item.getAttribute('href').includes(current));
         });
     });
 </script>
-
 </body>
 </html>
