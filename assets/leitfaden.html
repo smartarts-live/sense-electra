@@ -11,18 +11,19 @@
             --bg: #f4f7f6;
             --text: #333;
             --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --nav-height: 65px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --nav-height: 70px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--bg);
             margin: 0;
-            padding-bottom: calc(var(--nav-height) + 20px);
+            padding-bottom: calc(var(--nav-height) + 40px);
         }
 
         header {
@@ -34,49 +35,77 @@
             box-shadow: var(--shadow);
         }
 
+        h1 { color: var(--white); font-size: 1.1rem; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+
         .search-container {
-            position: relative;
             max-width: 600px;
             margin: 0 auto;
         }
 
         #searchBar {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px 20px;
             border-radius: 25px;
             border: none;
             font-size: 16px;
             outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .container {
-            padding: 15px;
+            padding: 20px 15px;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        section {
+        /* Reveal Effect Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
             background: var(--white);
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 12px;
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             scroll-margin-top: 100px;
         }
 
-        h1 { color: var(--white); font-size: 1.2rem; margin: 0 0 10px 0; text-align: center; }
-        h2 { color: var(--accent); border-left: 4px solid var(--accent); padding-left: 10px; margin-top: 0; }
-        h3 { color: var(--primary); font-size: 1.1rem; }
-
-        .card {
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .highlight { background: #e8f4fd; border-left: 4px solid var(--accent); padding: 10px; font-weight: bold; }
+        h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; font-size: 1.4rem; }
+        h3 { color: var(--primary); font-size: 1.15rem; margin-top: 20px; }
+
+        .card {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 5px solid var(--accent);
+            padding: 15px;
+            border-radius: 4px 12px 12px 4px;
+            font-weight: 500;
+            margin: 15px 0;
+        }
+
+        .data-tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 5px;
+        }
 
         nav {
             position: fixed;
@@ -88,155 +117,203 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+            z-index: 1001;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         .nav-item {
             text-decoration: none;
-            color: #777;
+            color: #95a5a6;
             font-size: 10px;
             text-align: center;
             flex: 1;
+            transition: color 0.3s;
         }
 
-        .nav-item i {
-            display: block;
-            font-size: 20px;
-            margin-bottom: 3px;
-        }
+        .nav-item i { display: block; font-size: 22px; margin-bottom: 4px; font-style: normal; }
+        .nav-item.active { color: var(--accent); font-weight: 700; }
 
-        .nav-item.active { color: var(--accent); font-weight: bold; }
-
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Vertriebs-Leitfaden apoll.on</h1>
+    <h1>Welcome Book Vertrieb</h1>
     <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Suche..." onkeyup="searchContent()">
+        <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
 </header>
 
 <div class="container">
-    <section id="grundlagen">
+    <section id="grundlagen" class="reveal">
         <h2>1. Grundlagen & Vpsp</h2>
-        <p>Als Energiedienstleister beraten wir B2B-Kunden und vermitteln passende Strom- und Gasverträge.</p>
+        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern. Unser Ziel ist die Reduktion von Strom- und Gaskosten für Industriekunden.</p>
         
-        <h3>Marktformen im Vergleich</h3>
+        <h3>Spotmarkt vs. Terminmarkt</h3>
         <div class="grid">
             <div class="card">
-                <strong>Spotmarkt</strong>
+                <strong>Spotmarkt (Flexibel)</strong>
                 <ul>
-                    <li>Tagesaktuelle Preise</li>
-                    <li>Hohe Transparenz</li>
-                    <li>Risiko bei Marktspitzen</li>
+                    <li>Tagesaktuelle Börsenpreise.</li>
+                    <li>Chance auf Ersparnis bei sinkenden Märkten.</li>
+                    <li>Risiko bei Preisspitzen.</li>
                 </ul>
             </div>
             <div class="card">
-                <strong>Terminmarkt</strong>
+                <strong>Terminmarkt (Sicher)</strong>
                 <ul>
-                    <li>Fixierte Preise</li>
-                    <li>Planungssicherheit</li>
-                    <li>Schutz vor Volatilität</li>
+                    <li>Fixierte Preise über die Laufzeit.</li>
+                    <li>Volle Budgetsicherheit.</li>
+                    <li>Wenig Flexibilität bei fallenden Preisen.</li>
                 </ul>
             </div>
         </div>
 
-        <h3>Begriffe</h3>
+        <h3>Abrechnungs-Basics</h3>
         <ul>
-            <li><strong>Grundpreis:</strong> Unabhängig vom Verbrauch.</li>
-            <li><strong>Arbeitspreis:</strong> Preis pro verbrauchte kWh.</li>
-            <li><strong>RLM:</strong> Registrierende Leistungsmessung.</li>
-            <li><strong>SLP:</strong> Standardlastprofil.</li>
+            <li><strong>Grundpreis:</strong> Feste monatliche Gebühr.</li>
+            <li><strong>Arbeitspreis:</strong> Verbrauchsabhängig (Cent pro kWh).</li>
+            <li><strong>Leistungspreis:</strong> Basierend auf der höchsten kW-Last (Spitzenlast).</li>
+            <li><strong>RLM:</strong> Registrierende Leistungsmessung (> 100.000 kWh).</li>
         </ul>
     </section>
 
-    <section id="uebergabe">
-        <h2>2. Lead-Übergabe</h2>
-        <div class="highlight">Backoffice ➔ Vertrieb</div>
-        <p>Anfragen werden im Vpsp vorqualifiziert.</p>
+    <section id="uebergabe" class="reveal">
+        <h2>2. Lead-Übergabe & Fokus</h2>
+        <div class="highlight-box">Schnittstelle: Backoffice ➔ Vertrieb</div>
+        <p>Alle Anfragen werden zentral im Vpsp verwaltet. Das Backoffice trifft die Vorauswahl, bevor du als Kundenbetreuer aktiv wirst.</p>
         <ul>
-            <li>Prüfung auf geschäftlichen Kontext.</li>
-            <li>Dublettenprüfung über globale Suche.</li>
-            <li>Zuweisung an den zuständigen Vertriebler.</li>
+            <li><strong>Qualitätssicherung:</strong> Das Backoffice filtert Privatanfragen heraus.</li>
+            <li><strong>Vpsp-Suche:</strong> Vor jedem Kontakt prüfen, ob der Kunde bereits existiert (globale Suche).</li>
+            <li><strong>Zuweisung:</strong> Sobald ein Lead "gelb" markiert ist, befindet er sich in Bearbeitung.</li>
         </ul>
     </section>
 
-    <section id="erstkontakt">
-        <h2>3. Erstkontakt</h2>
-        <p>Erster Eindruck: Anhauen, Umhauen, Abhauen.</p>
-        <ol>
-            <li>Vorstellung: "Schnellstrom + Name".</li>
-            <li>Zuhören und Bedarfsermittlung.</li>
-            <li>Um Rechnung oder Lastgang bitten.</li>
-            <li>Zweitgespräch terminieren.</li>
-        </ol>
-        <h3>Käufertypen</h3>
-        <div class="card"><strong>Schnäppchenjäger:</strong> Will den besten Preis.</div>
-        <div class="card"><strong>Verlustaversiv:</strong> Angst vor Fehlentscheidung.</div>
-        <div class="card"><strong>Gewohnheitskäufer:</strong> Möchte eigentlich bleiben.</div>
-    </section>
+    <section id="erstkontakt" class="reveal">
+        <h2>3. Erstkontakt & Gesprächsführung</h2>
+        <p>Wer fragt, der führt. Der Erstkontakt dient der Bedarfsanalyse und der Datenbeschaffung.</p>
+        
+        <h3>Professionelle Fragetechniken</h3>
+        <div class="card">
+            <strong>W-Fragen für den Erfolg:</strong>
+            <ul>
+                <li><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?)</li>
+                <li><em>"Was möchten Sie am Ende unserer Zusammenarbeit erreichen?"</em></li>
+                <li><em>"Mit wem rede ich, wenn es um die finale Entscheidung geht?"</em></li>
+            </ul>
+            <p><small>Vermeide Konjunktive und Fachbegriffe. Halte es einfach.</small></p>
+        </div>
 
-    <section id="angebot">
-        <h2>4. Angebotserstellung</h2>
-        <div class="highlight">Vertrieb ➔ Backoffice</div>
-        <p>Vertrieb dokumentiert, Backoffice erstellt.</p>
+        <h3>Daten-Checkliste (Was wir brauchen)</h3>
+        <div class="highlight-box">
+            "Das Einfachste für Sie ist, mir eine Rechnung zu schicken. Dort finde ich alle technischen Daten, die die Versorger oft verstecken."
+        </div>
         <ul>
-            <li>Eingabe technischer Daten ins Vpsp.</li>
-            <li>Aufgabe an Backoffice erstellen.</li>
-            <li>Versand erfolgt im Namen des Vertriebs.</li>
+            <li><span class="data-tag">Rechnung</span> <strong>Warum?</strong> Ermöglicht Prüfung des aktuellen Preissystems (Spot/Festpreis) und Identifikation technischer Parameter.</li>
+            <li><span class="data-tag">Lastgang</span> <strong>Warum?</strong> Essenziell für RLM-Kunden, um Verbrauchsspitzen und das Lastprofil genau zu analysieren.</li>
+            <li><span class="data-tag">MaLo-ID</span> <strong>Warum?</strong> Die Marktlokations-ID ist der "Fingerabdruck" der Lieferstelle und bleibt auch bei Zählerwechseln gleich.</li>
+            <li><span class="data-tag">Kündigungsfrist</span> <strong>Warum?</strong> Bestimmt das Startdatum für den neuen Versorger.</li>
         </ul>
     </section>
 
-    <section id="abschluss">
-        <h2>5. Abschluss</h2>
-        <p>Argumentation für Planungssicherheit.</p>
+    <section id="angebot" class="reveal">
+        <h2>4. Angebotsprozess</h2>
+        <div class="highlight-box">Schnittstelle: Vertrieb ➔ Backoffice</div>
+        <p>Nachdem du die Daten (Rechnung/Lastgang) erhalten hast, erfolgt die interne Abwicklung im Vpsp.</p>
         <ul>
-            <li>CO2-Preise steigen (Prognose bis 2029).</li>
-            <li>Steigende Netzentgelte durch Netzausbau.</li>
-            <li>"Sie gehen keinerlei Risiko ein."</li>
+            <li><strong>Vpsp-Aufgabe:</strong> Du erstellst eine Aufgabe an das Backoffice (Alex/Christine) zum Anlegen oder Updaten des Kunden.</li>
+            <li><strong>Angebotserstellung:</strong> Das Backoffice kalkuliert die Konditionen auf Basis der Lastgänge.</li>
+            <li><strong>Versand:</strong> Das Angebot wird vom Backoffice direkt <strong>im Namen des Vertriebsmitarbeiters</strong> versendet.</li>
         </ul>
+    </section>
+
+    <section id="abschluss" class="reveal">
+        <h2>5. Zweitgespräch & Abschluss</h2>
+        <p>Der Preis muss gut sein, aber Zuverlässigkeit schließt den Deal ab.</p>
+        
+        <h3>Argumentation 2025+</h3>
+        <div class="card">
+            <ul>
+                <li><strong>CO2-Preis:</strong> Steigt bis 2029 drastisch (fossile Brennstoffe werden teurer).</li>
+                <li><strong>Netzentgelte:</strong> Steigen jährlich durch den Netzausbau.</li>
+                <li><strong>Planungssicherheit:</strong> Schützen Sie sich jetzt vor Marktvolatilität.</li>
+            </ul>
+        </div>
+
+        <h3>Der "Closing"-Moment</h3>
+        <p>Frage den Kunden: <em>"Für welche Laufzeit wollen Sie sich entscheiden?"</em>. Bei Zusage sofort Eingangsbestätigung senden und Vollmachten für den Wechsel einholen.</p>
     </section>
 </div>
 
 <nav>
-    <a href="#grundlagen" class="nav-item"><i>📚</i>Vpsp</a>
+    <a href="#grundlagen" class="nav-item"><i>🏠</i>Vpsp</a>
     <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
-    <a href="#erstkontakt" class="nav-item"><i>📞</i>Anruf</a>
+    <a href="#erstkontakt" class="nav-item"><i>📞</i>Gespräch</a>
     <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
     <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
 </nav>
 
 <script>
+    // Reveal on Scroll Logic
+    const observerOptions = {
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Search Logic
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
-        let sections = document.getElementsByTagName('section');
-        for (let section of sections) {
+        let sections = document.querySelectorAll('.reveal');
+        
+        sections.forEach(section => {
             let text = section.innerText.toLowerCase();
-            section.classList.toggle('hidden', !text.includes(input));
-        }
+            if (text.includes(input)) {
+                section.classList.remove('hidden');
+                section.classList.add('active'); // Sofort einblenden bei Treffer
+            } else {
+                section.classList.add('hidden');
+            }
+        });
     }
 
+    // Scroll-Spy for Bottom Nav
     window.addEventListener('scroll', () => {
         let current = "";
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item');
+
         sections.forEach(section => {
-            if (pageYOffset >= section.offsetTop - 120) current = section.getAttribute('id');
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
         });
+
         navItems.forEach(item => {
-            item.classList.toggle('active', item.getAttribute('href').includes(current));
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
         });
     });
 </script>
+
 </body>
 </html>
