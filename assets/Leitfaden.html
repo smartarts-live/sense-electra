@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vertriebs-Leitfaden | apoll.on</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --nav-height: 65px;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding-bottom: calc(var(--nav-height) + 20px);
+        }
+
+        /* Sticky Search Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Content Sections */
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            background: var(--white);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 100px;
+        }
+
+        h1 { color: var(--white); font-size: 1.2rem; margin: 0 0 10px 0; text-align: center; }
+        h2 { color: var(--accent); border-left: 4px solid var(--accent); padding-left: 10px; margin-top: 0; }
+        h3 { color: var(--primary); font-size: 1.1rem; }
+
+        .card {
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .highlight { background: #e8f4fd; border-left: 4px solid var(--accent); padding: 10px; font-weight: bold; }
+
+        /* Bottom Nav */
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: var(--white);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #777;
+            font-size: 10px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .nav-item i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active { color: var(--accent); font-weight: bold; }
+
+        /* Tables & Lists */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+        /* Utility */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Vertriebs-Leitfaden apoll.on</h1>
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Suche nach Begriffen (z.B. RLM, Spot, Käufer)..." onkeyup="searchContent()">
+    </div>
+</header>
+
+<div class="container">
+    <section id="grundlagen">
+        <h2>1. Grundlagen & Vpsp</h2>
+        [span_0](start_span)<p>Als Energiedienstleister beraten wir B2B-Kunden und vermitteln passende Strom- und Gasverträge[span_0](end_span).</p>
+        
+        <h3>Marktformen im Vergleich</h3>
+        <div class="grid">
+            <div class="card">
+                <strong>Spotmarkt</strong>
+                <ul>
+                    [span_1](start_span)<li>Tagesaktuelle Preise[span_1](end_span)</li>
+                    [span_2](start_span)<li>Hohe Transparenz & Flexibilität[span_2](end_span)</li>
+                    [span_3](start_span)<li>Risiko bei Marktspitzen[span_3](end_span)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <strong>Terminmarkt</strong>
+                <ul>
+                    [span_4](start_span)<li>Fixierte Preise & Planungssicherheit[span_4](end_span)</li>
+                    [span_5](start_span)<li>Schutz vor Preisspitzen[span_5](end_span)</li>
+                    [span_6](start_span)<li>Risikozuschläge enthalten[span_6](end_span)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Begriffe & Abrechnung</h3>
+        <ul>
+            [span_7](start_span)[span_8](start_span)<li><strong>Grundpreis:</strong> Feste Gebühr für Anschluss & Wartung[span_7](end_span)[span_8](end_span).</li>
+            [span_9](start_span)<li><strong>Arbeitspreis:</strong> Preis pro verbrauchte kWh[span_9](end_span).</li>
+            [span_10](start_span)[span_11](start_span)<li><strong>Leistungspreis:</strong> Basiert auf der höchsten kW-Last[span_10](end_span)[span_11](end_span).</li>
+            [span_12](start_span)[span_13](start_span)<li><strong>RLM:</strong> Registrierende Leistungsmessung (>100k kWh Strom)[span_12](end_span)[span_13](end_span).</li>
+            [span_14](start_span)[span_15](start_span)<li><strong>SLP:</strong> Standardlastprofil (Privat/Kleingewerbe)[span_14](end_span)[span_15](end_span).</li>
+        </ul>
+    </section>
+
+    <section id="uebergabe">
+        <h2>2. Lead-Übergabe</h2>
+        <div class="highlight">Prozess: Backoffice ➔ Vertrieb</div>
+        [span_16](start_span)<p>Anfragen aus Google AdWords landen im Vpsp zur Vorauswahl[span_16](end_span).</p>
+        <ul>
+            [span_17](start_span)<li><strong>Vorauswahl:</strong> Das Backoffice prüft die Daten und schließt reine Privatanfragen aus[span_17](end_span).</li>
+            [span_18](start_span)<li><strong>Checkliste Vpsp:</strong> Prüfung auf Dubletten über die globale Suche (E-Mail/Name)[span_18](end_span).</li>
+            <li><strong>Zuweisung:</strong> Qualifizierte Leads werden im System an den Vertrieb übergeben.</li>
+        </ul>
+    </section>
+
+    <section id="erstkontakt">
+        <h2>3. Erstkontakt & Telefon</h2>
+        [span_19](start_span)<p>Ziel: Vertrauen aufbauen und Daten für das Angebot sichern[span_19](end_span).</p>
+        
+        [span_20](start_span)<h3>Telefon-Checkliste [cite: 33-38]</h3>
+        <ol>
+            <li>Vorstellung (Schnellstrom + Name).</li>
+            <li>Bedarf klären (Wofür? Ziel? Termin?).</li>
+            [cite_start]<li><strong>Zuhören & Mitschreiben:</strong> Konjunktive weglassen, einfache Wörter nutzen[span_20](end_span).</li>
+            [span_21](start_span)[span_22](start_span)<li>Nach Rechnung oder Lastgang fragen (per E-Mail/Fax)[span_21](end_span)[span_22](end_span).</li>
+        </ol>
+
+        [span_23](start_span)<h3>Käufertypen[span_23](end_span)</h3>
+        <div class="card"><strong>Schnäppchenjäger:</strong> Braucht Verhandlungsspielraum. Gib ihm das Gefühl, gewonnen zu haben.</div>
+        <div class="card"><strong>Verlustaversiv:</strong> Misstrauisch gegenüber Neuem. Betone Liefersicherheit & Erfahrung.</div>
+        <div class="card"><strong>Gewohnheitskäufer:</strong> Will nicht wechseln. Suche direkt den Entscheider.</div>
+    </section>
+
+    <section id="angebot">
+        <h2>4. Angebotserstellung</h2>
+        <div class="highlight">Prozess: Vertrieb ➔ Backoffice</div>
+        <p>Nach dem Gespräch pflegt der Vertrieb alle Infos ins Vpsp ein.</p>
+        <ul>
+            [span_24](start_span)[span_25](start_span)<li><strong>Datenpflege:</strong> Verbrauchswerte (HT/NT), Zählernummer und MaLo-ID erfassen[span_24](end_span)[span_25](end_span).</li>
+            <li><strong>Auftrag:</strong> Infos zur Anfrage werden im System als Aufgabe an das Backoffice gegeben.</li>
+            <li><strong>Versand:</strong> Das Backoffice erstellt das Angebot und sendet es <strong>im Namen des Vertrieblers</strong> an den Kunden.</li>
+        </ul>
+    </section>
+
+    <section id="abschluss">
+        <h2>5. Zweitgespräch & Abschluss</h2>
+        <p>Nach Erhalt des Angebots erfolgt das Follow-up durch den Vertrieb.</p>
+        
+        [span_26](start_span)<h3>Argumente für lange Laufzeiten [cite: 23-32]</h3>
+        <ul>
+            <li>Steigende CO2-Preise (Prognose 80-100€/t bis 2029).</li>
+            <li>Steigende Netzentgelte durch Netzausbau.</li>
+            <li>Schutz vor Preisspitzen durch Kernkraft/Kohle-Ausstieg.</li>
+        </ul>
+
+        [cite_start]<h3>Abschlusstechniken[span_26](end_span)</h3>
+        <ul>
+            <li>"Was haben Sie zu verlieren? Sie gehen kein Risiko ein."</li>
+            <li>"Wenn der Preis stimmt, sollten Sie unbedingt kaufen!"</li>
+            [span_27](start_span)<li>Bei Zusage: Sofort Eingangsbestätigung senden und alle Vollmachten einholen[span_27](end_span).</li>
+        </ul>
+    </section>
+</div>
+
+<nav>
+    <a href="#grundlagen" class="nav-item"><i>📚</i>Vpsp</a>
+    <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
+    <a href="#erstkontakt" class="nav-item"><i>📞</i>Anruf</a>
+    <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
+    <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
+</nav>
+
+<script>
+    function searchContent() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let sections = document.getElementsByTagName('section');
+        
+        for (let section of sections) {
+            let text = section.innerText.toLowerCase();
+            if (text.includes(input)) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        }
+    }
+
+    // Nav-Highlighting
+    window.addEventListener('scroll', () => {
+        let current = "";
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 120) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
