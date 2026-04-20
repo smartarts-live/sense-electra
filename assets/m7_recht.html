@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modul 7: Recht (EEG & KWKG) | sense electra</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #8e44ad; /* Violett für Recht/Gesetz */
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; line-height: 1.6; }
+        
+        header { background: var(--primary); color: var(--white); padding: 15px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between; }
+        header h1 { margin: 0; font-size: 1.2rem; }
+        .back-btn { color: var(--white); text-decoration: none; font-size: 1.5rem; }
+
+        .search-container { background: var(--white); padding: 10px 15px; border-bottom: 1px solid #ddd; position: sticky; top: 60px; z-index: 99; }
+        #searchBar { width: 100%; padding: 10px 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; outline: none; }
+
+        .container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        
+        .section { background: var(--white); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow); }
+        .section h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-top: 0; }
+        .section h3 { color: var(--primary); margin-top: 20px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: var(--primary); color: var(--white); }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        .law-box { background: #f4e8fb; border-left: 5px solid var(--accent); padding: 15px; border-radius: 4px; margin: 15px 0; font-weight: 500; }
+
+        nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 60px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-item { flex: 1; text-align: center; text-decoration: none; color: var(--accent); padding-top: 15px; font-size: 14px; font-weight: bold; }
+        .nav-item i { font-style: normal; font-size: 18px; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="expert.html" class="back-btn">◁</a>
+    <h1>M7: Recht (EEG & KWKG)</h1>
+    <div style="width: 24px;"></div>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Paragraphen suchen..." onkeyup="searchContent()">
+</div>
+
+<div class="container">
+    
+    <div class="section" id="eeg">
+        <h2>7.1 EEG 2023 Grundlagen</h2>
+        <div class="law-box">
+            Das Erneuerbare-Energien-Gesetz (EEG) regelt den Vorrang von Erneuerbaren Energien bei der Einspeisung und garantiert feste Vergütungssätze (Marktprämie).
+        </div>
+        <p>Entscheidend für Gewerbekunden sind die Regelungen zur Anlagengröße:</p>
+        <ul>
+            <li><strong>Eigenversorgung:</strong> Die EEG-Umlage auf den Eigenverbrauch wurde auf 0 Cent gesenkt (faktisch abgeschafft). Dies macht PV für Industrie enorm profitabel.</li>
+            <li><strong>Anlagenzusammenfassung (§ 24 EEG):</strong> Mehrere Anlagen auf demselben Grundstück, die innerhalb von 12 Monaten in Betrieb gehen, gelten vergütungstechnisch als EINE Anlage. Wichtig zur Vermeidung der 100 kWp-Grenze.</li>
+        </ul>
+    </div>
+
+    <div class="section" id="direktvermarktung">
+        <h2>7.2 Direktvermarktung & PPA</h2>
+        <p>Anlagenbetreiber erhalten den Strom nicht mehr starr vergütet, sondern müssen ihn an der Börse verkaufen.</p>
+        <table>
+            <tr>
+                <th>Modell</th>
+                <th>Erklärung</th>
+            </tr>
+            <tr>
+                <td><strong>Geförderte Direktvermarktung (Marktprämie)</strong></td>
+                <td>Pflicht für alle Neuanlagen <strong>> 100 kWp</strong>. Der Strom wird über einen Direktvermarkter verkauft. Der Staat zahlt die Differenz zwischen Börsenpreis und anzulegendem Wert (Marktprämie).</td>
+            </tr>
+            <tr>
+                <td><strong>PPA (Power Purchase Agreement)</strong></td>
+                <td>Langfristige, direkte Stromlieferverträge zwischen Erzeuger und Verbraucher außerhalb des EEG. Relevant für sehr große Freiflächenanlagen ohne Förderung.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section" id="kwkg">
+        <h2>7.3 KWKG (BHKW-Recht)</h2>
+        <p>Das Kraft-Wärme-Kopplungsgesetz fördert die hocheffiziente gleichzeitige Erzeugung von Strom und Wärme.</p>
+        <ul>
+            <li><strong>Zuschlagszahlungen:</strong> Betreiber erhalten einen fixen Cent-Betrag pro erzeugter kWh Strom.</li>
+            <li><strong>Unterscheidung:</strong> Die Förderung ist höher, wenn der Strom in das öffentliche Netz eingespeist wird, im Vergleich zur reinen Eigennutzung. Für Gewerbe (hoher Strombedarf) rechnet sich die Eigennutzung durch vermiedene Netzentgelte dennoch meist mehr.</li>
+            <li><strong>BAFA-Zulassung:</strong> Jedes BHKW muss beim BAFA angemeldet und zugelassen werden, bevor Zuschläge fließen können.</li>
+        </ul>
+    </div>
+
+</div>
+
+<nav>
+    <a href="expert.html" class="nav-item"><i>🏠</i>Zurück zum Dashboard</a>
+</nav>
+
+<script>
+    function searchContent() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            let text = section.innerText.toLowerCase();
+            section.style.display = text.includes(input) ? 'block' : 'none';
+        });
+    }
+</script>
+
+</body>
+</html>
