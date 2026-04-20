@@ -17,6 +17,9 @@
         header { background: var(--primary); color: var(--white); padding: 20px; text-align: center; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
         header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; text-transform: uppercase; }
         
+        .search-container { background: var(--white); padding: 15px; border-bottom: 1px solid #eaeaea; position: sticky; top: 68px; z-index: 99; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        #globalSearch { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #ccc; font-size: 16px; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
@@ -26,6 +29,10 @@
         .card i { font-size: 2.2rem; margin-bottom: 10px; font-style: normal; }
         .card strong { color: var(--primary); font-size: 1.1rem; display: block; }
         .card span { font-size: 0.8rem; color: #7f8c8d; margin-top: 5px; line-height: 1.2; }
+
+        #searchResults { display: none; }
+        .result-card { background: var(--white); border-left: 5px solid var(--accent); padding: 15px; border-radius: 8px; margin-bottom: 10px; display: block; text-decoration: none; color: var(--text); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .result-card strong { color: var(--primary); font-size: 1.1rem; }
 
         nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 70px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
         .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--accent); font-weight: bold; font-size: 14px; }
@@ -38,48 +45,22 @@
     <h1>Experten-Wiki</h1>
 </header>
 
+<div class="search-container">
+    <input type="text" id="globalSearch" placeholder="Gesamtes Wiki durchsuchen..." onkeyup="performGlobalSearch()">
+</div>
+
 <div class="container">
-    <div class="grid">
-        <a href="m1_pv.html" class="card">
-            <i>☀️</i>
-            <strong>Modul 1</strong>
-            <span>Photovoltaik & Technik</span>
-        </a>
-        <a href="m2_storage.html" class="card">
-            <i>🔋</i>
-            <strong>Modul 2</strong>
-            <span>Energiespeicher</span>
-        </a>
-        <a href="m3_bhkw.html" class="card">
-            <i>🔥</i>
-            <strong>Modul 3</strong>
-            <span>BHKW & Hydraulik</span>
-        </a>
-        <a href="m4_audit.html" class="card">
-            <i>📊</i>
-            <strong>Modul 4</strong>
-            <span>Energieaudits (DIN 16247)</span>
-        </a>
-        <a href="m5_metering.html" class="card">
-            <i>📡</i>
-            <strong>Modul 5</strong>
-            <span>Smart Metering</span>
-        </a>
-        <a href="m5_metering.html" class="card">
-            <i>📈</i>
-            <strong>Modul 6</strong>
-            <span>RLM & MSCONS</span>
-        </a>
-        <a href="m7_recht.html" class="card">
-            <i>⚖️</i>
-            <strong>Modul 7</strong>
-            <span>Recht (EEG, KWKG)</span>
-        </a>
-        <a href="m8_bafa.html" class="card">
-            <i>💰</i>
-            <strong>Modul 8</strong>
-            <span>BAFA & KfW Förderung</span>
-        </a>
+    <div id="searchResults"></div>
+
+    <div class="grid" id="mainGrid">
+        <a href="m1_pv.html" class="card"><i>☀️</i><strong>Modul 1</strong><span>Photovoltaik & Technik</span></a>
+        <a href="m2_storage.html" class="card"><i>🔋</i><strong>Modul 2</strong><span>Energiespeicher</span></a>
+        <a href="m3_bhkw.html" class="card"><i>🔥</i><strong>Modul 3</strong><span>BHKW & Hydraulik</span></a>
+        <a href="m4_audit.html" class="card"><i>📊</i><strong>Modul 4</strong><span>Energieaudits</span></a>
+        <a href="m5_metering.html" class="card"><i>📡</i><strong>Modul 5</strong><span>Smart Metering</span></a>
+        <a href="m5_metering.html" class="card"><i>📈</i><strong>Modul 6</strong><span>RLM & MSCONS</span></a>
+        <a href="m7_recht.html" class="card"><i>⚖️</i><strong>Modul 7</strong><span>Recht (EEG, KWKG)</span></a>
+        <a href="m8_bafa.html" class="card"><i>💰</i><strong>Modul 8</strong><span>BAFA & KfW</span></a>
     </div>
 </div>
 
@@ -87,5 +68,55 @@
     <a href="leitfaden.html" class="nav-item"><i>🔙</i>Zurück zum Leitfaden</a>
 </nav>
 
+<script>
+    const modules = [
+        { url: 'm1_pv.html', title: 'Modul 1: Photovoltaik & Technik' },
+        { url: 'm2_storage.html', title: 'Modul 2: Energiespeicher' },
+        { url: 'm3_bhkw.html', title: 'Modul 3: BHKW & Hydraulik' },
+        { url: 'm4_audit.html', title: 'Modul 4: Energieaudits' },
+        { url: 'm5_metering.html', title: 'Modul 5 & 6: Messwesen & RLM' },
+        { url: 'm7_recht.html', title: 'Modul 7: Recht (EEG & KWKG)' },
+        { url: 'm8_bafa.html', title: 'Modul 8: BAFA & KfW Förderung' }
+    ];
+    let moduleContents = {};
+
+    // Fetch all module contents quietly in the background
+    window.onload = () => {
+        modules.forEach(mod => {
+            fetch(mod.url).then(res => res.text()).then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                moduleContents[mod.url] = doc.body.innerText.toLowerCase();
+            }).catch(e => console.log("Fetch pending (requires server env): ", e));
+        });
+    };
+
+    function performGlobalSearch() {
+        const query = document.getElementById('globalSearch').value.toLowerCase();
+        const resultsDiv = document.getElementById('searchResults');
+        const gridDiv = document.getElementById('mainGrid');
+
+        if (query.length < 3) {
+            resultsDiv.style.display = 'none';
+            gridDiv.style.display = 'grid';
+            return;
+        }
+
+        resultsDiv.innerHTML = '';
+        let found = false;
+
+        modules.forEach(mod => {
+            if (moduleContents[mod.url] && moduleContents[mod.url].includes(query)) {
+                found = true;
+                resultsDiv.innerHTML += `<a href="${mod.url}" class="result-card"><strong>${mod.title}</strong><br>Treffer gefunden (Klicken zum Öffnen)</a>`;
+            }
+        });
+
+        if(!found) resultsDiv.innerHTML = '<div class="result-card">Keine Treffer gefunden.</div>';
+        
+        gridDiv.style.display = 'none';
+        resultsDiv.style.display = 'block';
+    }
+</script>
 </body>
 </html>
