@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V4 | apoll.on</title>
+    <title>Vertriebs-Leitfaden V5 | apoll.on</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -37,21 +37,6 @@
 
         h1 { color: var(--white); font-size: 1.1rem; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
 
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #searchBar {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: none;
-            font-size: 16px;
-            outline: none;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-
         .container {
             padding: 20px 15px;
             max-width: 800px;
@@ -59,31 +44,43 @@
         }
 
         .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
             background: var(--white);
             margin-bottom: 25px;
             padding: 25px;
             border-radius: 16px;
             box-shadow: var(--shadow);
-            scroll-margin-top: 100px;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; font-size: 1.4rem; }
         h3 { color: var(--primary); font-size: 1.15rem; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
-        .card {
+        /* Interaktive Script-Elemente */
+        .script-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            border-radius: 8px;
             background: #fdfdfd;
             border: 1px solid #eaeaea;
-            padding: 18px;
-            border-radius: 12px;
-            margin: 12px 0;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .script-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .script-item.completed {
+            opacity: 0.4;
+            background: #f0f0f0;
+            text-decoration: line-through;
+            transform: translateX(5px);
         }
 
         .highlight-box {
@@ -104,13 +101,6 @@
             font-weight: bold;
             color: var(--primary);
             margin-right: 5px;
-        }
-
-        .fallback {
-            border: 2px dashed var(--accent);
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 8px;
         }
 
         nav {
@@ -134,7 +124,6 @@
             font-size: 10px;
             text-align: center;
             flex: 1;
-            transition: color 0.3s;
         }
 
         .nav-item i { display: block; font-size: 22px; margin-bottom: 4px; font-style: normal; }
@@ -142,146 +131,110 @@
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-
-        .hidden { display: none !important; }
-
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome Book Vertrieb V4</h1>
-    <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
-    </div>
+    <h1>Welcome Book Vertrieb V5</h1>
 </header>
 
 <div class="container">
     <section id="grundlagen" class="reveal">
         <h2>1. Grundlagen & Vpsp</h2>
-        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern.</p>
+        <p>Bindeglied zwischen Netz, Versorger und Verbraucher.</p>
         <div class="grid">
-            <div class="card">
-                <strong>Spotmarkt (Flexibel)</strong>
-                <ul><li>Tagesaktuelle Börsenpreise.</li><li>Chance auf Ersparnis.</li></ul>
+            <div class="script-item" onclick="toggleComplete(this)">
+                <input type="checkbox">
+                <span><strong>Spotmarkt:</strong> Flexibel, Börsenpreise.</span>
             </div>
-            <div class="card">
-                <strong>Terminmarkt (Sicher)</strong>
-                <ul><li>Fixierte Preise.</li><li>Budgetsicherheit.</li></ul>
+            <div class="script-item" onclick="toggleComplete(this)">
+                <input type="checkbox">
+                <span><strong>Terminmarkt:</strong> Fixpreis, Sicherheit.</span>
             </div>
         </div>
-    </section>
-
-    <section id="uebergabe" class="reveal">
-        <h2>2. Lead-Übergabe & Fokus</h2>
-        <div class="highlight-box">Schnittstelle: Backoffice ➔ Vertrieb</div>
-        <ul>
-            <li><strong>Vpsp-Suche:</strong> Vor jedem Kontakt prüfen, ob der Kunde bereits existiert.</li>
-            <li><strong>Zuweisung:</strong> "Gelbe" Markierung = In Bearbeitung.</li>
-        </ul>
     </section>
 
     <section id="erstkontakt" class="reveal">
         <h2>3. Erstkontakt & Qualifizierung</h2>
-        <p>Folge diesem chronologischen Ablauf im Telefonat:</p>
         
         <h3>Phase 1: Motivation & Führung</h3>
-        <div class="card">
-            <strong>Die "W-Fragen":</strong>
-            <ul>
-                <li><em>"Wofür genau benötigen Sie das Angebot?"</em> (Vergleich, Wechsel, neues Projekt?)</li>
-                <li><em>"Was möchten Sie am Ende unserer Zusammenarbeit erreichen?"</em></li>
-            </ul>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><em>"Wofür genau benötigen Sie das Angebot?"</em></span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><em>"Was möchten Sie am Ende erreichen?"</em></span>
         </div>
 
-        <h3>Phase 2: Prozessorientierte Datenbeschaffung</h3>
-        <div class="highlight-box">
-            "Das Einfachste für Sie ist, mir eine <strong>Rechnung</strong> zu schicken. Dort finde ich alle spezifischen Kundeninformationen und technischen Daten der Abnahmestellen."
+        <h3>Phase 2: Datenbeschaffung</h3>
+        <div class="highlight-box">"Das Einfachste ist, mir eine Rechnung zu schicken."</div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><span class="data-tag">Rechnung</span> Spezifische Kundeninfo & technische Daten.</span>
         </div>
-        <ul>
-            <li><span class="data-tag">Rechnung</span> <strong>Ziel:</strong> Identifikation technischer Parameter & Preissystem.</li>
-            <li><span class="data-tag">Lastgang</span> <strong>Ziel:</strong> Unverzichtbar für RLM-Kunden (Bedarfs- & Spitzenlastanalyse).</li>
-            <li><span class="data-tag">Lieferbeginn</span> <strong>Frage:</strong> <em>"Zu wann wünschen Sie den Lieferbeginn?"</em> (Abgleich mit Kündigungsfrist).</li>
-        </ul>
-
-        <div class="fallback">
-            <strong>Plan B (Falls keine Rechnung verfügbar):</strong>
-            <p>Frage zwingend nach der <span class="data-tag">MaLo-ID</span>. Dies ist der "Fingerabdruck" der Lieferstelle.</p>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><span class="data-tag">Lastgang</span> Unverzichtbar für RLM (Spitzenlast-Check).</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><span class="data-tag">MaLo-ID</span> Fallback, falls keine Rechnung verfügbar.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><span class="data-tag">Lieferbeginn</span> Gewünschter Start vs. Kündigungsfrist.</span>
         </div>
 
-        <h3>Phase 3: Verbindliches Closing (Terminierung)</h3>
-        <div class="card" style="border: 2px solid var(--accent);">
-            <strong>Commitment einholen:</strong>
-            <p>Lege noch im Telefonat zwei Termine fest, die zeitlich nah beieinander liegen:</p>
-            <ol>
-                <li>Termin für die <strong>Zusendung des Angebots</strong>.</li>
-                <li>Termin für das <strong>Gespräch zur Besprechung</strong> des Angebots.</li>
-            </ol>
-            <p><em>"Ich sende Ihnen das Angebot bis [Mittwoch] zu. Passt es Ihnen, wenn wir uns am [Donnerstag] kurz dazu abstimmen?"</em></p>
+        <h3>Phase 3: Verbindlichkeit (Termine)</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--accent);">
+            <input type="checkbox">
+            <span><strong>Termin 1:</strong> Zusendung des Angebots fixiert.</span>
         </div>
-    </section>
-
-    <section id="angebot" class="reveal">
-        <h2>4. Angebotsprozess</h2>
-        <div class="highlight-box">Schnittstelle: Vertrieb ➔ Backoffice</div>
-        <ul>
-            <li><strong>Vpsp-Aufgabe:</strong> Aufgabe an Backoffice (Alex/Christine) zum Anlegen/Update des Kunden.</li>
-            <li><strong>Versand:</strong> Das Backoffice versendet das Angebot <strong>im Namen des Vertriebs</strong>.</li>
-        </ul>
+        <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--accent);">
+            <input type="checkbox">
+            <span><strong>Termin 2:</strong> Besprechung des Angebots fixiert.</span>
+        </div>
     </section>
 
     <section id="abschluss" class="reveal">
         <h2>5. Zweitgespräch & Abschluss</h2>
-        <div class="card">
-            <ul>
-                <li><strong>Eigenverbrauch:</strong> Senkung der Kosten um bis zu 30% durch PV.</li>
-                <li><strong>Netzentgelt-Optimierung:</strong> Peak-Shaving reduziert den Leistungspreis.</li>
-                <li><strong>Zukunftssicherheit:</strong> Schutz vor steigenden CO2-Preisen & Netzentgelten.</li>
-            </ul>
+        <h3>USP-Argumentation</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Peak-Shaving:</strong> Leistungspreis-Reduktion.</span>
         </div>
-        <p>Frage: <em>"Für welche Laufzeit wollen Sie sich entscheiden?"</em></p>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Eigenverbrauch:</strong> 30% Ersparnis durch PV.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Abschluss:</strong> <em>"Für welche Laufzeit entscheiden Sie sich?"</em></span>
+        </div>
     </section>
 </div>
 
 <nav>
     <a href="#grundlagen" class="nav-item"><i>🏠</i>Vpsp</a>
-    <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
     <a href="#erstkontakt" class="nav-item"><i>📞</i>Gespräch</a>
-    <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
     <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
     <a href="expert.html" class="nav-item"><i>📚</i>Wiki</a>
 </nav>
 
 <script>
-    const observerOptions = { threshold: 0.15 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
-        });
-    }, observerOptions);
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    function searchContent() {
-        let input = document.getElementById('searchBar').value.toLowerCase();
-        let sections = document.querySelectorAll('.reveal');
-        sections.forEach(section => {
-            let text = section.innerText.toLowerCase();
-            section.classList.toggle('hidden', !text.includes(input));
-            if (text.includes(input)) section.classList.add('active');
-        });
+    function toggleComplete(element) {
+        element.classList.toggle('completed');
+        const checkbox = element.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
     }
 
-    window.addEventListener('scroll', () => {
-        let current = "";
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item:not([href="expert.html"])');
-        sections.forEach(section => {
-            if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
-        });
-        navItems.forEach(item => {
-            item.classList.toggle('active', item.getAttribute('href').includes(current));
+    // Sicherstellen, dass Klick auf Checkbox selbst nicht doppelt toggelt
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.target.parentElement.classList.toggle('completed', e.target.checked);
         });
     });
 </script>
