@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V5 | apoll.on</title>
+    <title>Vertriebs-Leitfaden V6 | apoll.on</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -37,6 +37,21 @@
 
         h1 { color: var(--white); font-size: 1.1rem; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
 
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         .container {
             padding: 20px 15px;
             max-width: 800px;
@@ -49,12 +64,13 @@
             padding: 25px;
             border-radius: 16px;
             box-shadow: var(--shadow);
+            scroll-margin-top: 100px;
         }
 
         h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; font-size: 1.4rem; }
         h3 { color: var(--primary); font-size: 1.15rem; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
-        /* Interaktive Script-Elemente */
+        /* Interaktive Script-Elemente (Action) */
         .script-item {
             display: flex;
             align-items: flex-start;
@@ -83,6 +99,46 @@
             transform: translateX(5px);
         }
 
+        /* Info-Akkordeons (Theorie) */
+        details.info-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            margin: 15px 0;
+            border-radius: 4px 8px 8px 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        details.info-box summary {
+            padding: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #eef2f5;
+        }
+        
+        details.info-box summary::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+        
+        details.info-box[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        details.info-box .content {
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #444;
+            border-top: 1px solid #e1e8ed;
+            background: #fff;
+        }
+
         .highlight-box {
             background: #e8f4fd;
             border-left: 5px solid var(--accent);
@@ -101,6 +157,12 @@
             font-weight: bold;
             color: var(--primary);
             margin-right: 5px;
+        }
+
+        .cite {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            vertical-align: super;
         }
 
         nav {
@@ -128,51 +190,124 @@
 
         .nav-item i { display: block; font-size: 22px; margin-bottom: 4px; font-style: normal; }
         .nav-item.active { color: var(--accent); font-weight: 700; }
-
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome Book Vertrieb V5</h1>
+    <h1>Welcome Book Vertrieb V6</h1>
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
+    </div>
 </header>
 
 <div class="container">
     <section id="grundlagen" class="reveal">
-        <h2>1. Grundlagen & Vpsp</h2>
-        <p>Bindeglied zwischen Netz, Versorger und Verbraucher.</p>
-        <div class="grid">
-            <div class="script-item" onclick="toggleComplete(this)">
-                <input type="checkbox">
-                <span><strong>Spotmarkt:</strong> Flexibel, Börsenpreise.</span>
+        <h2>1. Grundlagen & Märkte</h2>
+        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern.</p>
+        
+        <details class="info-box">
+            <summary>📚 Info: Die Akteure am Markt</summary>
+            <div class="content">
+                <ul>
+                    [span_0](start_span)<li><strong>Netzbetreiber:</strong> Stellt die Infrastruktur für den Stromtransport <span class="cite">[span_0](end_span)</span>.</li>
+                    [span_1](start_span)<li><strong>Energieversorger:</strong> Produziert/beschafft den Strom und verkauft ihn an Verbraucher <span class="cite">[span_1](end_span)</span>.</li>
+                    [span_2](start_span)<li><strong>Wir (Dienstleister):</strong> Vermitteln und beraten Kunden <span class="cite">[span_2](end_span)</span>.</li>
+                </ul>
             </div>
-            <div class="script-item" onclick="toggleComplete(this)">
-                <input type="checkbox">
-                <span><strong>Terminmarkt:</strong> Fixpreis, Sicherheit.</span>
+        </details>
+
+        <details class="info-box">
+            <summary>📚 Info: Spotmarkt vs. Terminmarkt</summary>
+            <div class="content">
+                [span_3](start_span)<strong>Spotmarkt:</strong> Tagesaktuelle Preise bieten die Chance auf günstige Einkaufspreise bei sinkendem Markt <span class="cite">[span_3](end_span)</span>. [span_4](start_span)Hohe Preisschwankungen bergen jedoch Risiken bei Marktspitzen <span class="cite">[span_4](end_span)</span>. <br><br>
+                [span_5](start_span)<strong>Terminmarkt:</strong> Fixierte Preise bieten volle Planungssicherheit über die Laufzeit <span class="cite">[span_5](end_span)[span_6](start_span)</span> und Schutz vor Preisspitzen <span class="cite">[span_6](end_span)</span>. [span_7](start_span)Nachteil: Wenig Flexibilität bei fallenden Preisen <span class="cite">[span_7](end_span)</span>.
             </div>
+        </details>
+
+        <details class="info-box">
+            <summary>📚 Info: Glossar & Preisbestandteile</summary>
+            <div class="content">
+                <ul>
+                    [span_8](start_span)<li><strong>Grundpreis:</strong> Feste Gebühr, unabhängig vom Verbrauch <span class="cite">[span_8](end_span)</span>.</li>
+                    [span_9](start_span)<li><strong>Netzarbeitspreis:</strong> Verbrauchsabhängiger Teil (pro kWh) für den Transport <span class="cite">[span_9](end_span)</span>.</li>
+                    [span_10](start_span)<li><strong>Netzleistungspreis:</strong> Feste Gebühr auf der maximal abgenommenen Leistung (kW) <span class="cite">[span_10](end_span)</span>. [span_11](start_span)Deckt Kapazitätsreserven <span class="cite">[span_11](end_span)</span>.</li>
+                    [span_12](start_span)<li><strong>Konzessionsabgaben:</strong> Gebühren an Gemeinden für die Nutzung öffentlicher Flächen <span class="cite">[span_12](end_span)</span>.</li>
+                    [span_13](start_span)<li><strong>RLM:</strong> Registrierende Leistungsmessung (üblich > 100.000 kWh Strom) <span class="cite">[span_13](end_span)</span>.</li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <section id="uebergabe" class="reveal">
+        <h2>2. Lead-Übergabe & Fokus</h2>
+        
+        <details class="info-box">
+            <summary>📚 Info: Anfragenerfassung im Vpsp</summary>
+            <div class="content">
+                [span_14](start_span)Die Anfragenerfassung überführt Kunden aus Google AdWords in unser System <span class="cite">[span_14](end_span)</span>. [span_15](start_span)Bei der Firma immer "apoll.on GmbH" auswählen <span class="cite">[span_15](end_span)</span>. [span_16](start_span)Grundsätzlich ist von geschäftlichen Anfragen auszugehen <span class="cite">[span_16](end_span)</span>.
+            </div>
+        </details>
+
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            [span_17](start_span)<span><strong>Systemprüfung:</strong> Globale Suche im Vpsp nutzen, um zu prüfen, ob der Kunde bereits existiert <span class="cite">[span_17](end_span)</span>.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Zuweisung:</strong> Betreuer kontaktieren. [span_18](start_span)Wenn besetzt, Kunden auf Rückruf vertrösten <span class="cite">[span_18](end_span)</span>. [span_19](start_span)Mail mit Kundennummer senden <span class="cite">[span_19](end_span)</span>.</span>
         </div>
     </section>
 
     <section id="erstkontakt" class="reveal">
         <h2>3. Erstkontakt & Qualifizierung</h2>
         
+        <details class="info-box">
+            <summary>📚 Info: Verhaltensregeln im Gespräch</summary>
+            <div class="content">
+                <ul>
+                    [span_20](start_span)<li><strong>Führung:</strong> Wer fragt, der führt (Kundenfragen zurückgeben) <span class="cite">[span_20](end_span)</span>.</li>
+                    [span_21](start_span)<li><strong>Fokus:</strong> Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat <span class="cite">[span_21](end_span)</span>.</li>
+                    <li><strong>Klarheit:</strong> Konjunktiv weglassen. [span_22](start_span)Keine Fachwörter benutzen <span class="cite">[span_22](end_span)</span>.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="info-box">
+            <summary>📚 Info: Die 4 Käufertypen</summary>
+            <div class="content">
+                <ul>
+                    <li><strong>Schnäppchenjäger:</strong> Will den besten Preis. [span_23](start_span)Verhandlungsspielraum lassen <span class="cite">[span_23](end_span)</span>.</li>
+                    <li><strong>Preisbereite:</strong> Preis muss gut, aber nicht der beste sein. [span_24](start_span)Zuverlässigkeit zählt <span class="cite">[span_24](end_span)</span>.</li>
+                    <li><strong>Verlustaversive:</strong> Misstrauisch. [span_25](start_span)Langjährige Erfahrung und Liefersicherheit betonen <span class="cite">[span_25](end_span)</span>.</li>
+                    [span_26](start_span)<li><strong>Gewohnheitskäufer:</strong> Unbedingt versuchen, an den Entscheider heranzukommen <span class="cite">[span_26](end_span)</span>.</li>
+                </ul>
+            </div>
+        </details>
+
         <h3>Phase 1: Motivation & Führung</h3>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><em>"Wofür genau benötigen Sie das Angebot?"</em></span>
+            [span_27](start_span)<span><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?) <span class="cite">[span_27](end_span)</span></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><em>"Was möchten Sie am Ende erreichen?"</em></span>
+            [span_28](start_span)<span><em>"Was möchten Sie am Ende unserer Zusammenarbeit erreichen?"</em> <span class="cite">[span_28](end_span)</span></span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            [span_29](start_span)<span><em>"Mit wem rede ich, wenn es um die Entscheidung geht?"</em> (Nach Entscheider fragen) <span class="cite">[span_29](end_span)</span></span>
         </div>
 
         <h3>Phase 2: Datenbeschaffung</h3>
-        <div class="highlight-box">"Das Einfachste ist, mir eine Rechnung zu schicken."</div>
+        <div class="highlight-box">
+            "Das Einfachste für Sie ist, Sie schicken mir eine Rechnung." [span_30](start_span)<span class="cite">[span_30](end_span)</span>
+        </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><span class="data-tag">Rechnung</span> Spezifische Kundeninfo & technische Daten.</span>
+            <span><span class="data-tag">Rechnung</span> Abfragen. [span_31](start_span)<em>"Welche haben Sie vorliegen? Wie wollen Sie es schicken?"</em> <span class="cite">[span_31](end_span)</span></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
@@ -180,7 +315,7 @@
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><span class="data-tag">MaLo-ID</span> Fallback, falls keine Rechnung verfügbar.</span>
+            [span_32](start_span)<span><span class="data-tag">MaLo-ID</span> Fallback: Identifikationsnummer der Verbrauchsstelle <span class="cite">[span_32](end_span)</span>.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
@@ -190,35 +325,78 @@
         <h3>Phase 3: Verbindlichkeit (Termine)</h3>
         <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--accent);">
             <input type="checkbox">
-            <span><strong>Termin 1:</strong> Zusendung des Angebots fixiert.</span>
+            <span><strong>Termin 1:</strong> Zusendung des Angebots fixieren.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--accent);">
             <input type="checkbox">
-            <span><strong>Termin 2:</strong> Besprechung des Angebots fixiert.</span>
+            <span><strong>Termin 2:</strong> Besprechung des Angebots fixieren.</span>
+        </div>
+    </section>
+
+    <section id="angebot" class="reveal">
+        <h2>4. Angebotsprozess</h2>
+        
+        <details class="info-box">
+            <summary>📚 Info: Lastgänge analysieren</summary>
+            <div class="content">
+                [span_33](start_span)Im Tool über "Vpsp > Lastganganalyse" den letzten kompletten Monat auswählen <span class="cite">[span_33](end_span)</span>. [span_34](start_span)Wenn das Diagramm keine Auffälligkeiten aufweist, kann es versendet werden <span class="cite">[span_34](end_span)</span>.
+            </div>
+        </details>
+
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            [span_35](start_span)<span><strong>Vpsp-Aufgabe:</strong> Aufgabe an Backoffice zum Anlegen des Kunden <span class="cite">[span_35](end_span)</span>.</span>
         </div>
     </section>
 
     <section id="abschluss" class="reveal">
         <h2>5. Zweitgespräch & Abschluss</h2>
-        <h3>USP-Argumentation</h3>
+        
+        <details class="info-box">
+            <summary>📚 Info: Argumente für lange Laufzeiten</summary>
+            <div class="content">
+                <ul>
+                    [span_36](start_span)<li><strong>CO2-Preis:</strong> Steigt weiter, fossile Energieträger werden teurer <span class="cite">[span_36](end_span)</span>. [span_37](start_span)Prognose 2029: 80-100 EUR/t <span class="cite">[span_37](end_span)</span>.</li>
+                    [span_38](start_span)<li><strong>Netzentgelte:</strong> Steigen jährlich durch Netzausbau <span class="cite">[span_38](end_span)</span>.</li>
+                    [span_39](start_span)<li><strong>Planungssicherheit:</strong> Schutz vor Preissteigerungen und Volatilität <span class="cite">[span_39](end_span)</span>.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="info-box">
+            <summary>📚 Info: Der Closing-Moment</summary>
+            <div class="content">
+                [span_40](start_span)Argumentationshilfe: <em>"Warum sollte der Anbieter Ihnen einen Preis von x ct geben? Da könnte er sofort an der Börse verkaufen und würde den Gewinn realisieren."</em> <span class="cite">[span_40](end_span)</span>. [span_41](start_span)<em>"Sie gehen keinerlei Risiko ein."</em> <span class="cite">[span_41](end_span)</span>.
+            </div>
+        </details>
+
+        <h3>USP-Argumentation & Abschluss</h3>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Peak-Shaving:</strong> Leistungspreis-Reduktion.</span>
+            <span><strong>Peak-Shaving / Eigenverbrauch:</strong> Kostenreduktion besprechen.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Eigenverbrauch:</strong> 30% Ersparnis durch PV.</span>
+            [span_42](start_span)<span><strong>Abschluss:</strong> <em>"Für wie viele Monate wollen Sie sich entscheiden?"</em> <span class="cite">[span_42](end_span)</span></span>
+        </div>
+
+        <h3>Bei Angebotsannahme</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            [span_43](start_span)<span>Gratulieren und Eingangsbestätigung senden <span class="cite">[span_43](end_span)</span>.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Abschluss:</strong> <em>"Für welche Laufzeit entscheiden Sie sich?"</em></span>
+            [span_44](start_span)<span>Alle notwendigen Daten und <strong>Vollmacht</strong> einholen <span class="cite">[span_44](end_span)</span>.</span>
         </div>
     </section>
 </div>
 
 <nav>
     <a href="#grundlagen" class="nav-item"><i>🏠</i>Vpsp</a>
+    <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
     <a href="#erstkontakt" class="nav-item"><i>📞</i>Gespräch</a>
+    <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
     <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
     <a href="expert.html" class="nav-item"><i>📚</i>Wiki</a>
 </nav>
@@ -230,11 +408,35 @@
         checkbox.checked = !checkbox.checked;
     }
 
-    // Sicherstellen, dass Klick auf Checkbox selbst nicht doppelt toggelt
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('click', (e) => {
             e.stopPropagation();
             e.target.parentElement.classList.toggle('completed', e.target.checked);
+        });
+    });
+
+    function searchContent() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let sections = document.querySelectorAll('.reveal');
+        sections.forEach(section => {
+            let text = section.innerText.toLowerCase();
+            if (text.includes(input)) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        let current = "";
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item:not([href="expert.html"])');
+        sections.forEach(section => {
+            if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
+        });
+        navItems.forEach(item => {
+            item.classList.toggle('active', item.getAttribute('href').includes(current));
         });
     });
 </script>
