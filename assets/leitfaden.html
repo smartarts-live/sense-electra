@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden | apoll.on</title>
+    <title>Vertriebs-Leitfaden V4 | apoll.on</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -58,7 +58,6 @@
             margin: 0 auto;
         }
 
-        /* Reveal Effect Styles */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -77,7 +76,7 @@
         }
 
         h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; font-size: 1.4rem; }
-        h3 { color: var(--primary); font-size: 1.15rem; margin-top: 20px; }
+        h3 { color: var(--primary); font-size: 1.15rem; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
         .card {
             background: #fdfdfd;
@@ -105,6 +104,13 @@
             font-weight: bold;
             color: var(--primary);
             margin-right: 5px;
+        }
+
+        .fallback {
+            border: 2px dashed var(--accent);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
         }
 
         nav {
@@ -146,7 +152,7 @@
 <body>
 
 <header>
-    <h1>Welcome Book Vertrieb</h1>
+    <h1>Welcome Book Vertrieb V4</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -155,120 +161,87 @@
 <div class="container">
     <section id="grundlagen" class="reveal">
         <h2>1. Grundlagen & Vpsp</h2>
-        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern. Unser Ziel ist die Reduktion von Strom- und Gaskosten für Industriekunden.</p>
-        
-        <h3>Spotmarkt vs. Terminmarkt</h3>
+        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern.</p>
         <div class="grid">
             <div class="card">
                 <strong>Spotmarkt (Flexibel)</strong>
-                <ul>
-                    <li>Tagesaktuelle Börsenpreise.</li>
-                    <li>Chance auf Ersparnis bei sinkenden Märkten.</li>
-                    <li>Risiko bei Preisspitzen.</li>
-                </ul>
+                <ul><li>Tagesaktuelle Börsenpreise.</li><li>Chance auf Ersparnis.</li></ul>
             </div>
             <div class="card">
                 <strong>Terminmarkt (Sicher)</strong>
-                <ul>
-                    <li>Fixierte Preise über die Laufzeit.</li>
-                    <li>Volle Budgetsicherheit.</li>
-                    <li>Wenig Flexibilität bei fallenden Preisen.</li>
-                </ul>
+                <ul><li>Fixierte Preise.</li><li>Budgetsicherheit.</li></ul>
             </div>
         </div>
-
-        <h3>Abrechnungs-Basics</h3>
-        <ul>
-            <li><strong>Grundpreis:</strong> Feste monatliche Gebühr.</li>
-            <li><strong>Arbeitspreis:</strong> Verbrauchsabhängig (Cent pro kWh).</li>
-            <li><strong>Leistungspreis:</strong> Basierend auf der höchsten kW-Last (Spitzenlast).</li>
-            <li><strong>RLM:</strong> Registrierende Leistungsmessung (> 100.000 kWh).</li>
-        </ul>
     </section>
 
     <section id="uebergabe" class="reveal">
         <h2>2. Lead-Übergabe & Fokus</h2>
         <div class="highlight-box">Schnittstelle: Backoffice ➔ Vertrieb</div>
-        <p>Alle Anfragen werden zentral im Vpsp verwaltet. Das Backoffice trifft die Vorauswahl, bevor du als Kundenbetreuer aktiv wirst.</p>
         <ul>
-            <li><strong>Qualitätssicherung:</strong> Das Backoffice filtert Privatanfragen heraus.</li>
-            <li><strong>Vpsp-Suche:</strong> Vor jedem Kontakt prüfen, ob der Kunde bereits existiert (globale Suche).</li>
-            <li><strong>Zuweisung:</strong> Sobald ein Lead "gelb" markiert ist, befindet er sich in Bearbeitung.</li>
+            <li><strong>Vpsp-Suche:</strong> Vor jedem Kontakt prüfen, ob der Kunde bereits existiert.</li>
+            <li><strong>Zuweisung:</strong> "Gelbe" Markierung = In Bearbeitung.</li>
         </ul>
     </section>
 
     <section id="erstkontakt" class="reveal">
-        <h2>3. Erstkontakt & Gesprächsführung</h2>
-        <p>Wer fragt, der führt. Der Erstkontakt dient der Bedarfsanalyse und der Datenbeschaffung.</p>
+        <h2>3. Erstkontakt & Qualifizierung</h2>
+        <p>Folge diesem chronologischen Ablauf im Telefonat:</p>
         
-        <h3>Professionelle Fragetechniken</h3>
+        <h3>Phase 1: Motivation & Führung</h3>
         <div class="card">
-            <strong>W-Fragen für den Erfolg:</strong>
+            <strong>Die "W-Fragen":</strong>
             <ul>
-                <li><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?)</li>
+                <li><em>"Wofür genau benötigen Sie das Angebot?"</em> (Vergleich, Wechsel, neues Projekt?)</li>
                 <li><em>"Was möchten Sie am Ende unserer Zusammenarbeit erreichen?"</em></li>
-                <li><em>"Mit wem rede ich, wenn es um die finale Entscheidung geht?"</em></li>
-            </ul>
-            <p><small>Vermeide Konjunktive und Fachbegriffe. Halte es einfach.</small></p>
-        </div>
-
-        <h3>Qualifizierungs-Fragen (Technik & Lehrplan)</h3>
-        <div class="card">
-            <ul>
-                <li><em>"Wie heizen Sie aktuell?"</em> (BHKW-Potenzial bei hohem Wärmebedarf)</li>
-                <li><em>"Haben Sie bereits ein Smart Metering oder eine Wandlermessung?"</em></li>
-                <li><em>"Gibt es bereits PV-Dachflächen?"</em> (Statik/Einspeisepunkt geklärt?)</li>
             </ul>
         </div>
 
-        <h3>Daten-Checkliste (Was wir brauchen)</h3>
+        <h3>Phase 2: Prozessorientierte Datenbeschaffung</h3>
         <div class="highlight-box">
-            "Das Einfachste für Sie ist, mir eine Rechnung zu schicken. Dort finde ich alle technischen Daten, die die Versorger oft verstecken."
+            "Das Einfachste für Sie ist, mir eine <strong>Rechnung</strong> zu schicken. Dort finde ich alle spezifischen Kundeninformationen und technischen Daten der Abnahmestellen."
         </div>
         <ul>
-            <li><span class="data-tag">Rechnung</span> <strong>Warum?</strong> Ermöglicht Prüfung des aktuellen Preissystems (Spot/Festpreis) und Identifikation technischer Parameter.</li>
-            <li><span class="data-tag">Lastgang</span> <strong>Warum?</strong> Essenziell für RLM-Kunden, um Verbrauchsspitzen und das Lastprofil genau zu analysieren.</li>
-            <li><span class="data-tag">MaLo-ID</span> <strong>Warum?</strong> Die Marktlokations-ID ist der "Fingerabdruck" der Lieferstelle und bleibt auch bei Zählerwechseln gleich.</li>
-            <li><span class="data-tag">Kündigungsfrist</span> <strong>Warum?</strong> Bestimmt das Startdatum für den neuen Versorger.</li>
-            <li><span class="data-tag">Trafo-Daten</span> <strong>Warum?</strong> Kapazität für PV/Ladesäulen prüfen.</li>
+            <li><span class="data-tag">Rechnung</span> <strong>Ziel:</strong> Identifikation technischer Parameter & Preissystem.</li>
+            <li><span class="data-tag">Lastgang</span> <strong>Ziel:</strong> Unverzichtbar für RLM-Kunden (Bedarfs- & Spitzenlastanalyse).</li>
+            <li><span class="data-tag">Lieferbeginn</span> <strong>Frage:</strong> <em>"Zu wann wünschen Sie den Lieferbeginn?"</em> (Abgleich mit Kündigungsfrist).</li>
         </ul>
+
+        <div class="fallback">
+            <strong>Plan B (Falls keine Rechnung verfügbar):</strong>
+            <p>Frage zwingend nach der <span class="data-tag">MaLo-ID</span>. Dies ist der "Fingerabdruck" der Lieferstelle.</p>
+        </div>
+
+        <h3>Phase 3: Verbindliches Closing (Terminierung)</h3>
+        <div class="card" style="border: 2px solid var(--accent);">
+            <strong>Commitment einholen:</strong>
+            <p>Lege noch im Telefonat zwei Termine fest, die zeitlich nah beieinander liegen:</p>
+            <ol>
+                <li>Termin für die <strong>Zusendung des Angebots</strong>.</li>
+                <li>Termin für das <strong>Gespräch zur Besprechung</strong> des Angebots.</li>
+            </ol>
+            <p><em>"Ich sende Ihnen das Angebot bis [Mittwoch] zu. Passt es Ihnen, wenn wir uns am [Donnerstag] kurz dazu abstimmen?"</em></p>
+        </div>
     </section>
 
     <section id="angebot" class="reveal">
         <h2>4. Angebotsprozess</h2>
         <div class="highlight-box">Schnittstelle: Vertrieb ➔ Backoffice</div>
-        <p>Nachdem du die Daten (Rechnung/Lastgang) erhalten hast, erfolgt die interne Abwicklung im Vpsp.</p>
         <ul>
-            <li><strong>Vpsp-Aufgabe:</strong> Du erstellst eine Aufgabe an das Backoffice (Alex/Christine) zum Anlegen oder Updaten des Kunden.</li>
-            <li><strong>Angebotserstellung:</strong> Das Backoffice kalkuliert die Konditionen auf Basis der Lastgänge.</li>
-            <li><strong>Versand:</strong> Das Angebot wird vom Backoffice direkt <strong>im Namen des Vertriebsmitarbeiters</strong> versendet.</li>
+            <li><strong>Vpsp-Aufgabe:</strong> Aufgabe an Backoffice (Alex/Christine) zum Anlegen/Update des Kunden.</li>
+            <li><strong>Versand:</strong> Das Backoffice versendet das Angebot <strong>im Namen des Vertriebs</strong>.</li>
         </ul>
     </section>
 
     <section id="abschluss" class="reveal">
         <h2>5. Zweitgespräch & Abschluss</h2>
-        <p>Der Preis muss gut sein, aber Zuverlässigkeit schließt den Deal ab.</p>
-        
-        <h3>Argumentation 2025+</h3>
         <div class="card">
             <ul>
-                <li><strong>CO2-Preis:</strong> Steigt bis 2029 drastisch (fossile Brennstoffe werden teurer).</li>
-                <li><strong>Netzentgelte:</strong> Steigen jährlich durch den Netzausbau.</li>
-                <li><strong>Planungssicherheit:</strong> Schützen Sie sich jetzt vor Marktvolatilität.</li>
+                <li><strong>Eigenverbrauch:</strong> Senkung der Kosten um bis zu 30% durch PV.</li>
+                <li><strong>Netzentgelt-Optimierung:</strong> Peak-Shaving reduziert den Leistungspreis.</li>
+                <li><strong>Zukunftssicherheit:</strong> Schutz vor steigenden CO2-Preisen & Netzentgelten.</li>
             </ul>
         </div>
-
-        <h3>Der wirtschaftliche Case (ROI-Logik)</h3>
-        <div class="card">
-            <ul>
-                <li><strong>Eigenverbrauch:</strong> Senkung der Bezugskosten um bis zu 30% durch PV.</li>
-                <li><strong>Netzentgelt-Optimierung:</strong> Peak-Shaving reduziert den Leistungspreis drastisch.</li>
-                <li><strong>Steuervorteile:</strong> Nutzung von Investitionsabzugsbeträgen (IAB) bei PV-Anlagen.</li>
-            </ul>
-        </div>
-
-        <h3>Der "Closing"-Moment</h3>
-        <p>Frage den Kunden: <em>"Für welche Laufzeit wollen Sie sich entscheiden?"</em>. Bei Zusage sofort Eingangsbestätigung senden und Vollmachten für den Wechsel einholen.</p>
+        <p>Frage: <em>"Für welche Laufzeit wollen Sie sich entscheiden?"</em></p>
     </section>
 </div>
 
@@ -285,9 +258,7 @@
     const observerOptions = { threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, observerOptions);
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
@@ -297,12 +268,8 @@
         let sections = document.querySelectorAll('.reveal');
         sections.forEach(section => {
             let text = section.innerText.toLowerCase();
-            if (text.includes(input)) {
-                section.classList.remove('hidden');
-                section.classList.add('active');
-            } else {
-                section.classList.add('hidden');
-            }
+            section.classList.toggle('hidden', !text.includes(input));
+            if (text.includes(input)) section.classList.add('active');
         });
     }
 
@@ -311,16 +278,10 @@
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item:not([href="expert.html"])');
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
+            if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
         });
         navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').includes(current)) {
-                item.classList.add('active');
-            }
+            item.classList.toggle('active', item.getAttribute('href').includes(current));
         });
     });
 </script>
