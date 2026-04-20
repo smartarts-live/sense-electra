@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modul 5: Smart Metering | sense electra</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #2980b9; /* Blau für Daten/Technik */
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; line-height: 1.6; }
+        header { background: var(--primary); color: var(--white); padding: 15px; position: sticky; top: 0; z-index: 100; text-align: center; }
+        .container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        .section { background: var(--white); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .section h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+        .law-box { background: #fdf2e9; border-left: 5px solid #e67e22; padding: 15px; border-radius: 4px; margin: 15px 0; font-style: italic; }
+        .data-tag { display: inline-block; background: #eee; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="expert.html" style="color:white; text-decoration:none; float:left;">◁</a>
+    <h2>M5: Smart Metering & RLM</h2>
+</header>
+
+<div class="container">
+    <div class="section">
+        <h2>5.1 Grundlagen Messstellenbetrieb (MsbG)</h2>
+        <div class="law-box">
+            Das Messstellenbetriebsgesetz (MsbG) regelt die Einführung von intelligenten Messsystemen (iMSys).
+        </div>
+        <p>Unterscheidung der Zählerarten:</p>
+        <ul>
+            <li><strong>mME (moderne Messeinrichtung):</strong> Digitaler Zähler ohne Kommunikationseinheit.</li>
+            <li><strong>iMSys (intelligentes Messsystem):</strong> mME + Smart Meter Gateway (SMGW). Pflicht ab 6.000 kWh Jahresverbrauch.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5.2 RLM vs. SLP</h2>
+        <p>Für dein Gewerbegeschäft ist die <strong>Registrierende Leistungsmessung (RLM)</strong> der Standard:</p>
+        <ul>
+            <li><strong>SLP (Standardlastprofil):</strong> Schätzung basierend auf Durchschnittswerten (Haushalte, Kleingewerbe < 100.000 kWh).</li>
+            <li><strong>RLM:</strong> Alle 15 Minuten wird der Leistungsmittelwert (kW) erfasst und via Mobilfunk/PSTN an den Netzbetreiber übertragen.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5.3 Datenanalyse (MSCONS)</h2>
+        <p>Der Datenaustausch erfolgt im EDIFACT-Format <strong>MSCONS</strong>.</p>
+        <span class="data-tag">Wichtig für den Vertrieb:</span>
+        <p>Aus dem Lastgang lesen wir:</p>
+        <ol>
+            <li><strong>Lastspitzen:</strong> Wann treten sie auf? (Basis für Peak-Shaving).</li>
+            <li><strong>Grundlast:</strong> Welcher Verbrauch besteht nachts/am Wochenende? (Basis für BHKW/PV).</li>
+            <li><strong>Blindstromanteil:</strong> Besteht Bedarf für eine Kompensationsanlage?</li>
+        </ol>
+    </div>
+</div>
+
+<nav><a href="expert.html" style="flex:1; text-align:center; text-decoration:none; color:#2980b9; padding-top:15px; font-weight:bold;"><i>🏠</i>Dashboard</a></nav>
+</body>
+</html>
