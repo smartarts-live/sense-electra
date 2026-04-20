@@ -2,77 +2,75 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experten-Wiki | sense electra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Experten-Wiki Dashboard | sense electra</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --text: #333; --white: #ffffff; }
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; }
-        header { background: var(--primary); color: var(--white); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 100; }
-        .container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        header { background: var(--primary); color: var(--white); padding: 20px; text-align: center; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+        header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; text-transform: uppercase; }
         
-        details { background: var(--white); margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; }
-        summary { padding: 15px; font-weight: bold; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--accent); }
-        summary::after { content: '▶'; font-size: 0.8rem; transition: transform 0.3s; }
-        details[open] summary::after { transform: rotate(90deg); }
+        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
         
-        .content { padding: 15px; border-top: 1px solid #eee; font-size: 0.95rem; }
-        .content h4 { color: var(--accent); margin-top: 0; }
-        .tag { background: #e8f4fd; color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-        
-        nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 60px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
-        .nav-item { flex: 1; text-align: center; text-decoration: none; color: #95a5a6; padding-top: 10px; font-size: 12px; }
-        .nav-item i { display: block; font-style: normal; font-size: 1.2rem; }
+        .card { background: var(--white); border-radius: 12px; padding: 20px; text-align: center; text-decoration: none; color: var(--text); box-shadow: var(--shadow); transition: transform 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #eaeaea; }
+        .card:active { transform: scale(0.98); }
+        .card i { font-size: 2.5rem; margin-bottom: 10px; font-style: normal; }
+        .card strong { color: var(--primary); font-size: 1.1rem; }
+        .card span { font-size: 0.85rem; color: #7f8c8d; margin-top: 5px; }
+
+        nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 70px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--accent); font-weight: bold; font-size: 14px; }
+        .nav-item i { font-size: 24px; margin-bottom: 4px; font-style: normal; }
     </style>
 </head>
 <body>
 
 <header>
-    <h2>Experten-Wiki</h2>
+    <h1>Experten-Wiki</h1>
 </header>
 
 <div class="container">
-    <details>
-        <summary>Modul 1-2: Photovoltaik (Technik & ROI)</summary>
-        <div class="content">
-            <h4>Komponenten & Planung</h4>
-            <ul>
-                <li><strong>Module:</strong> Monokristallin vs. Polykristallin (Wirkungsgrad 20%+).</li>
-                <li><strong>Wechselrichter:</strong> Herzstück für DC/AC Wandlung.</li>
-                <li><strong>Wirtschaftlichkeit:</strong> Eigenverbrauchsquote ist der Gewinnhebel. ROI meist nach 6-9 Jahren.</li>
-            </ul>
-        </div>
-    </details>
-
-    <details>
-        <summary>Modul 3: BHKW (Kraft-Wärme-Kopplung)</summary>
-        <div class="content">
-            <h4>Hydraulik & Eignung</h4>
-            <p>Ideal bei konstantem Wärmebedarf (Prozesswärme, Hotels, Industrie). Wirtschaftlichkeit über 5.000 Betriebsstunden/Jahr.</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>Modul 5-6: Smart Metering & RLM</summary>
-        <div class="content">
-            <h4>Messstellenbetrieb (MsbG)</h4>
-            <ul>
-                <li><strong>iMSys:</strong> Intelligente Messsysteme für Transparenz.</li>
-                <li><strong>RLM:</strong> Registrierende Leistungsmessung ist Pflicht für Lastgang-Optimierung.</li>
-            </ul>
-        </div>
-    </details>
-
-    <details>
-        <summary>Modul 7-8: Recht & Förderung</summary>
-        <div class="content">
-            <h4>Zuschüsse & Gesetze</h4>
-            <ul>
-                <li><span class="tag">EEG 2023</span> Vorrang für Erneuerbare.</li>
-                <li><span class="tag">BAFA</span> Förderung für Energieaudits (DIN 16247).</li>
-                <li><span class="tag">KfW</span> Zinsgünstige Kredite für Effizienzmaßnahmen.</li>
-            </ul>
-        </div>
-    </details>
+    <div class="grid">
+        <a href="m1_pv.html" class="card">
+            <i>☀️</i>
+            <strong>Modul 1 & 2</strong>
+            <span>Photovoltaik & Speicher</span>
+        </a>
+        <a href="#" class="card">
+            <i>🔥</i>
+            <strong>Modul 3</strong>
+            <span>BHKW & Hydraulik</span>
+        </a>
+        <a href="#" class="card">
+            <i>📊</i>
+            <strong>Modul 4</strong>
+            <span>Energieaudits (DIN 16247)</span>
+        </a>
+        <a href="#" class="card">
+            <i>📡</i>
+            <strong>Modul 5 & 6</strong>
+            <span>Smart Metering & RLM</span>
+        </a>
+        <a href="#" class="card">
+            <i>⚖️</i>
+            <strong>Modul 7</strong>
+            <span>Recht (EEG, KWKG)</span>
+        </a>
+        <a href="#" class="card">
+            <i>💰</i>
+            <strong>Modul 8</strong>
+            <span>BAFA & KfW Förderung</span>
+        </a>
+    </div>
 </div>
 
 <nav>
