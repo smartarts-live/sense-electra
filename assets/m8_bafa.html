@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modul 8: BAFA & KfW Förderungen | sense electra</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #f39c12; /* Gold/Orange für Förderung/Geld */
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; line-height: 1.6; }
+        
+        header { background: var(--primary); color: var(--white); padding: 15px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between; }
+        header h1 { margin: 0; font-size: 1.2rem; }
+        .back-btn { color: var(--white); text-decoration: none; font-size: 1.5rem; }
+
+        .search-container { background: var(--white); padding: 10px 15px; border-bottom: 1px solid #ddd; position: sticky; top: 60px; z-index: 99; }
+        #searchBar { width: 100%; padding: 10px 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; outline: none; }
+
+        .container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        
+        .section { background: var(--white); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow); }
+        .section h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-top: 0; }
+        .section h3 { color: var(--primary); margin-top: 20px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: var(--primary); color: var(--white); }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        .alert-box { background: #feebeb; border-left: 5px solid #e74c3c; padding: 15px; border-radius: 4px; margin: 15px 0; font-weight: bold; color: #c0392b; }
+
+        nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 60px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-item { flex: 1; text-align: center; text-decoration: none; color: var(--accent); padding-top: 15px; font-size: 14px; font-weight: bold; }
+        .nav-item i { font-style: normal; font-size: 18px; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="expert.html" class="back-btn">◁</a>
+    <h1>M8: BAFA & KfW</h1>
+    <div style="width: 24px;"></div>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Förderung suchen..." onkeyup="searchContent()">
+</div>
+
+<div class="container">
+    
+    <div class="alert-box">
+        WICHTIG (Totsünde im Vertrieb): Fördermittel müssen IMMER vor dem Abschluss von Liefer- und Leistungsverträgen (Maßnahmenbeginn) beantragt werden! Nachträgliche Förderung ist gesetzlich ausgeschlossen.
+    </div>
+
+    <div class="section" id="bafa">
+        <h2>8.1 BAFA (EEW Programm)</h2>
+        <p>Die "Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft" (EEW) ist der mächtigste Hebel, um bei Gewerbekunden die Amortisationszeit zu halbieren.</p>
+        
+        <table>
+            <tr>
+                <th>Modul</th>
+                <th>Fördergegenstand</th>
+                <th>Zuschuss (Maximal)</th>
+            </tr>
+            <tr>
+                <td><strong>Modul 1</strong></td>
+                <td>Querschnittstechnologien (z.B. hocheffiziente Motoren, Druckluft, Pumpen).</td>
+                <td>Bis zu 40% für KMU / 30% für Nicht-KMU.</td>
+            </tr>
+            <tr>
+                <td><strong>Modul 3</strong></td>
+                <td>MSR, Sensorik und Energiemanagement-Software (z.B. für Peak-Shaving / Heartbeat).</td>
+                <td>Bis zu 40% der förderfähigen Kosten.</td>
+            </tr>
+            <tr>
+                <td><strong>Modul 4</strong></td>
+                <td>Energiebezogene Optimierung von Anlagen und Prozessen (Technologieoffen).</td>
+                <td>Förderung nach eingesparten Tonnen CO2 (max. 500 € / t CO2 pro Jahr).</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section" id="kfw">
+        <h2>8.2 KfW Kreditprogramme</h2>
+        <p>Die KfW bietet zinsverbilligte Kredite, oft kombiniert mit Tilgungszuschüssen (die nicht zurückgezahlt werden müssen).</p>
+        <ul>
+            <li><strong>KfW 270 (Erneuerbare Energien - Standard):</strong> Klassisches Kreditprogramm für die Errichtung von PV-Anlagen, Speichern und Biogasanlagen. Keine direkte Subvention, aber günstige Zinsen zur Finanzierung der Hardware.</li>
+            <li><strong>Klimaschutzoffensive (Programm 293):</strong> Unterstützt den Mittelstand bei Maßnahmen zur Reduktion von Treibhausgasen. Oft kombiniert mit attraktiven Tilgungszuschüssen, wenn die Maßnahme über den gesetzlichen Standard hinausgeht.</li>
+        </ul>
+    </div>
+
+    <div class="section" id="verkauf">
+        <h2>8.3 Vertriebs-Strategie (Der Hebel)</h2>
+        <p>Förderungen sind kompliziert und schrecken Kunden ab. Deine Dienstleistung als Energieberater/Verkäufer ist es, diesen "Papierkrieg" als Full-Service abzunehmen. Das rechtfertigt höhere Margen auf die Hardware und schützt dich vor reinen Preisvergleichen (Dumping-Wettbewerb).</p>
+    </div>
+
+</div>
+
+<nav>
+    <a href="expert.html" class="nav-item"><i>🏠</i>Zurück zum Dashboard</a>
+</nav>
+
+<script>
+    function searchContent() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            let text = section.innerText.toLowerCase();
+            section.style.display = text.includes(input) ? 'block' : 'none';
+        });
+    }
+</script>
+
+</body>
+</html>
