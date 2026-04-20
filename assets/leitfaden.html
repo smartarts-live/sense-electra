@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden | apoll.on</title>
+    <title>Vertriebs-Leitfaden V2 | sense electra</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -58,7 +58,6 @@
             margin: 0 auto;
         }
 
-        /* Reveal Effect Styles */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -131,7 +130,7 @@
             transition: color 0.3s;
         }
 
-        .nav-item i { display: block; font-size: 22px; margin-bottom: 4px; font-style: normal; }
+        .nav-item i { display: block; font-size: 20px; margin-bottom: 4px; font-style: normal; }
         .nav-item.active { color: var(--accent); font-weight: 700; }
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -146,7 +145,7 @@
 <body>
 
 <header>
-    <h1>Welcome Book Vertrieb</h1>
+    <h1>Vertriebs-Leitfaden V2</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -155,165 +154,72 @@
 <div class="container">
     <section id="grundlagen" class="reveal">
         <h2>1. Grundlagen & Vpsp</h2>
-        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern. Unser Ziel ist die Reduktion von Strom- und Gaskosten für Industriekunden.</p>
-        
-        <h3>Spotmarkt vs. Terminmarkt</h3>
-        <div class="grid">
-            <div class="card">
-                <strong>Spotmarkt (Flexibel)</strong>
-                <ul>
-                    <li>Tagesaktuelle Börsenpreise.</li>
-                    <li>Chance auf Ersparnis bei sinkenden Märkten.</li>
-                    <li>Risiko bei Preisspitzen.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <strong>Terminmarkt (Sicher)</strong>
-                <ul>
-                    <li>Fixierte Preise über die Laufzeit.</li>
-                    <li>Volle Budgetsicherheit.</li>
-                    <li>Wenig Flexibilität bei fallenden Preisen.</li>
-                </ul>
-            </div>
+        <p>Wir agieren als Bindeglied zwischen Netzbetreibern, Energieversorgern und Verbrauchern.</p>
+        <div class="card">
+            <strong>Key Argument:</strong> Wir senken OPEX durch intelligente Strombeschaffung und Peak-Shaving.
         </div>
-
-        <h3>Abrechnungs-Basics</h3>
-        <ul>
-            <li><strong>Grundpreis:</strong> Feste monatliche Gebühr.</li>
-            <li><strong>Arbeitspreis:</strong> Verbrauchsabhängig (Cent pro kWh).</li>
-            <li><strong>Leistungspreis:</strong> Basierend auf der höchsten kW-Last (Spitzenlast).</li>
-            <li><strong>RLM:</strong> Registrierende Leistungsmessung (> 100.000 kWh).</li>
-        </ul>
-    </section>
-
-    <section id="uebergabe" class="reveal">
-        <h2>2. Lead-Übergabe & Fokus</h2>
-        <div class="highlight-box">Schnittstelle: Backoffice ➔ Vertrieb</div>
-        <p>Alle Anfragen werden zentral im Vpsp verwaltet. Das Backoffice trifft die Vorauswahl, bevor du als Kundenbetreuer aktiv wirst.</p>
-        <ul>
-            <li><strong>Qualitätssicherung:</strong> Das Backoffice filtert Privatanfragen heraus.</li>
-            <li><strong>Vpsp-Suche:</strong> Vor jedem Kontakt prüfen, ob der Kunde bereits existiert (globale Suche).</li>
-            <li><strong>Zuweisung:</strong> Sobald ein Lead "gelb" markiert ist, befindet er sich in Bearbeitung.</li>
-        </ul>
     </section>
 
     <section id="erstkontakt" class="reveal">
-        <h2>3. Erstkontakt & Gesprächsführung</h2>
-        <p>Wer fragt, der führt. Der Erstkontakt dient der Bedarfsanalyse und der Datenbeschaffung.</p>
+        <h2>3. Erstkontakt & Qualifizierung</h2>
+        <p>Nutze tiefe Fragen, um technisches Potenzial sofort zu erkennen (Lehrplan-Check):</p>
         
-        <h3>Professionelle Fragetechniken</h3>
         <div class="card">
-            <strong>W-Fragen für den Erfolg:</strong>
+            <strong>Qualifizierungs-Fragen (Technik):</strong>
             <ul>
-                <li><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?)</li>
-                <li><em>"Was möchten Sie am Ende unserer Zusammenarbeit erreichen?"</em></li>
-                <li><em>"Mit wem rede ich, wenn es um die finale Entscheidung geht?"</em></li>
+                <li><em>"Wie heizen Sie aktuell? (BHKW-Potenzial bei hohem Wärmebedarf)"</em></li>
+                <li><em>"Haben Sie bereits ein Smart Metering oder eine Wandlermessung?"</em></li>
+                <li><em>"Gibt es bereits PV-Dachflächen? (Statik/Einspeisepunkt geklärt?)"</em></li>
             </ul>
-            <p><small>Vermeide Konjunktive und Fachbegriffe. Halte es einfach.</small></p>
         </div>
 
-        <h3>Daten-Checkliste (Was wir brauchen)</h3>
-        <div class="highlight-box">
-            "Das Einfachste für Sie ist, mir eine Rechnung zu schicken. Dort finde ich alle technischen Daten, die die Versorger oft verstecken."
-        </div>
+        <h3>Daten-Checkliste +</h3>
         <ul>
-            <li><span class="data-tag">Rechnung</span> <strong>Warum?</strong> Ermöglicht Prüfung des aktuellen Preissystems (Spot/Festpreis) und Identifikation technischer Parameter.</li>
-            <li><span class="data-tag">Lastgang</span> <strong>Warum?</strong> Essenziell für RLM-Kunden, um Verbrauchsspitzen und das Lastprofil genau zu analysieren.</li>
-            <li><span class="data-tag">MaLo-ID</span> <strong>Warum?</strong> Die Marktlokations-ID ist der "Fingerabdruck" der Lieferstelle und bleibt auch bei Zählerwechseln gleich.</li>
-            <li><span class="data-tag">Kündigungsfrist</span> <strong>Warum?</strong> Bestimmt das Startdatum für den neuen Versorger.</li>
-        </ul>
-    </section>
-
-    <section id="angebot" class="reveal">
-        <h2>4. Angebotsprozess</h2>
-        <div class="highlight-box">Schnittstelle: Vertrieb ➔ Backoffice</div>
-        <p>Nachdem du die Daten (Rechnung/Lastgang) erhalten hast, erfolgt die interne Abwicklung im Vpsp.</p>
-        <ul>
-            <li><strong>Vpsp-Aufgabe:</strong> Du erstellst eine Aufgabe an das Backoffice (Alex/Christine) zum Anlegen oder Updaten des Kunden.</li>
-            <li><strong>Angebotserstellung:</strong> Das Backoffice kalkuliert die Konditionen auf Basis der Lastgänge.</li>
-            <li><strong>Versand:</strong> Das Angebot wird vom Backoffice direkt <strong>im Namen des Vertriebsmitarbeiters</strong> versendet.</li>
+            <li><span class="data-tag">Lastgang</span> Für Peak-Shaving Analyse.</li>
+            <li><span class="data-tag">Trafo-Daten</span> Kapazität für PV/Ladesäulen.</li>
         </ul>
     </section>
 
     <section id="abschluss" class="reveal">
-        <h2>5. Zweitgespräch & Abschluss</h2>
-        <p>Der Preis muss gut sein, aber Zuverlässigkeit schließt den Deal ab.</p>
-        
-        <h3>Argumentation 2025+</h3>
+        <h2>5. Zweitgespräch & ROI</h2>
+        <div class="highlight-box">Der wirtschaftliche Case (ROI-Logik)</div>
         <div class="card">
+            <strong>Argumente für den Abschluss:</strong>
             <ul>
-                <li><strong>CO2-Preis:</strong> Steigt bis 2029 drastisch (fossile Brennstoffe werden teurer).</li>
-                <li><strong>Netzentgelte:</strong> Steigen jährlich durch den Netzausbau.</li>
-                <li><strong>Planungssicherheit:</strong> Schützen Sie sich jetzt vor Marktvolatilität.</li>
+                <li><strong>Eigenverbrauch:</strong> Senkung der Bezugskosten um bis zu 30% durch PV.</li>
+                <li><strong>Netzentgelt-Optimierung:</strong> Peak-Shaving reduziert den Leistungspreis drastisch.</li>
+                <li><strong>Steuervorteile:</strong> Nutzung von Investitionsabzugsbeträgen (IAB) bei PV-Anlagen.</li>
             </ul>
         </div>
-
-        <h3>Der "Closing"-Moment</h3>
-        <p>Frage den Kunden: <em>"Für welche Laufzeit wollen Sie sich entscheiden?"</em>. Bei Zusage sofort Eingangsbestätigung senden und Vollmachten für den Wechsel einholen.</p>
+        <p>Frage: <em>"Wollen wir die Netzentgelt-Senkung für das nächste Geschäftsjahr direkt mitnehmen?"</em></p>
     </section>
 </div>
 
 <nav>
     <a href="#grundlagen" class="nav-item"><i>🏠</i>Vpsp</a>
-    <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
     <a href="#erstkontakt" class="nav-item"><i>📞</i>Gespräch</a>
-    <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
     <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
+    <a href="expert.html" class="nav-item"><i>📚</i>Wiki</a>
 </nav>
 
 <script>
-    // Reveal on Scroll Logic
-    const observerOptions = {
-        threshold: 0.15
-    };
-
+    const observerOptions = { threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, observerOptions);
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Search Logic
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
         let sections = document.querySelectorAll('.reveal');
-        
         sections.forEach(section => {
             let text = section.innerText.toLowerCase();
-            if (text.includes(input)) {
-                section.classList.remove('hidden');
-                section.classList.add('active'); // Sofort einblenden bei Treffer
-            } else {
-                section.classList.add('hidden');
-            }
+            section.classList.toggle('hidden', !text.includes(input));
+            if (text.includes(input)) section.classList.add('active');
         });
     }
-
-    // Scroll-Spy for Bottom Nav
-    window.addEventListener('scroll', () => {
-        let current = "";
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').includes(current)) {
-                item.classList.add('active');
-            }
-        });
-    });
 </script>
-
 </body>
 </html>
