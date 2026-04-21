@@ -51,6 +51,24 @@
 
 <div class="container">
     <div id="searchResults"></div>
+    
+    <a href="m0_unternehmen.html" class="card" style="grid-column: 1 / -1; min-height: auto; padding: 25px; margin-bottom: 25px; text-align: left; align-items: flex-start; border-left: 5px solid var(--accent);">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <i style="margin: 0 15px 0 0; font-size: 2.5rem;">🏢</i>
+            <strong style="font-size: 1.3rem;">Unternehmensverbund & Identität</strong>
+        </div>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; width: 100%; font-size: 0.9rem; color: var(--text);">
+            <div style="flex: 1; min-width: 250px;">
+                <span style="color: var(--primary); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;">Die Marken:</span>
+                apoll.on • schnellstrom • united electra • sense electra
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <span style="color: var(--primary); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;">Kern-USPs:</span>
+                Single Point of Contact • Peak-Shaving • 100% Transparenz
+            </div>
+        </div>
+        <span style="margin-top: 15px; color: var(--accent); font-weight: bold;">Vollständiges Profil öffnen →</span>
+    </a>
 
     <div class="grid" id="mainGrid">
         <a href="m1_pv.html" class="card"><i>☀️</i><strong>Modul 1</strong><span>Photovoltaik & Technik</span></a>
@@ -70,6 +88,7 @@
 
 <script>
     const modules = [
+        { url: 'm0_unternehmen.html', title: 'Modul 0: Unternehmensverbund & Identität' }, 
         { url: 'm1_pv.html', title: 'Modul 1: Photovoltaik & Technik' },
         { url: 'm2_storage.html', title: 'Modul 2: Energiespeicher' },
         { url: 'm3_bhkw.html', title: 'Modul 3: BHKW & Hydraulik' },
