@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V7 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V7.1 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -99,14 +99,14 @@
             transform: translateX(5px);
         }
 
-        /* V7 - Future Features Badge & Styling */
+        /* V7/V7.1 - Future Features Badge & Styling */
         .future-feature {
             background-color: rgba(52, 152, 219, 0.15) !important;
             border: 1px dashed var(--accent) !important;
             position: relative;
             cursor: not-allowed !important;
             opacity: 0.8;
-            pointer-events: none; /* Verhindert Klicks auf das Element */
+            pointer-events: none;
         }
 
         .future-feature::after {
@@ -183,7 +183,7 @@
             margin-right: 5px;
         }
 
-        /* V7 - Wischbare Bottom Navigation */
+        /* V7/V7.1 - Wischbare Bottom Navigation */
         nav {
             position: fixed;
             bottom: 0;
@@ -199,13 +199,12 @@
             padding-bottom: env(safe-area-inset-bottom);
             overflow-x: auto;
             white-space: nowrap;
-            -webkit-overflow-scrolling: touch; /* Flüssiges Scrollen iOS */
+            -webkit-overflow-scrolling: touch;
             padding-left: 15px;
             padding-right: 15px;
             gap: 20px;
         }
 
-        /* Scrollbar für Touch-Geräte unsichtbar machen */
         nav::-webkit-scrollbar {
             display: none;
         }
@@ -215,7 +214,7 @@
             color: #95a5a6;
             font-size: 11px;
             text-align: center;
-            flex: 0 0 auto; /* Verhindert Stauchen */
+            flex: 0 0 auto;
             min-width: 60px;
             transition: color 0.2s ease;
         }
@@ -229,7 +228,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V7</h1>
+    <h1>Lifecycle Cockpit V7.1</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -317,7 +316,11 @@
             </div>
         </details>
 
-        <h3>Phase 0: Eisbrecher & Kurzvorstellung</h3>
+        <h3>Phase 0: Vorbereitung & Kurzvorstellung</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
+            <input type="checkbox">
+            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
+        </div>
         <div class="highlight-box">
             "Wir sind Ihr 360°-Partner für Energie. Wir beschaffen nicht nur Ihren Industriestrom zu tagesaktuellen Bestpreisen, sondern kappen aktiv Ihre teuren Leistungsspitzen – von der Lastganganalyse bis zum eigenen BHKW im Keller oder der PV-Anlage auf dem Dach bekommen Sie bei uns alles aus einer Hand."
         </div>
@@ -438,71 +441,105 @@
 
 
     <section id="service" class="reveal">
-        <h2>6. Serviceanruf (Betreuung)</h2>
+        <h2>6. Serviceanruf (Betreuung & Cross-Selling)</h2>
         <details class="info-box">
-            <summary>📚 Info: Verhaltensregel</summary>
+            <summary>📚 Info: Verhaltensregeln</summary>
             <div class="content">
-                Kunden immer bestätigen und loben. Kunden nicht unter Druck setzen oder "drücken". Ziel ist es, Service zu beweisen und ein konstanter Ansprechpartner zu bleiben.
+                Kunden immer bestätigen und loben. Kunden nicht "drücken" oder unter Verkaufsdruck setzen. Ziel: Service beweisen und als konstanter Ansprechpartner positionieren.
             </div>
         </details>
 
-        <div class="script-item" onclick="toggleComplete(this)">
+        <h3>Gesprächsleitfaden</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Rechnungsprüfung:</strong> Erste Rechnung nach Lieferbeginn einholen und gemeinsam mit dem Kunden besprechen.</span>
+            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Potenzial-Check:</strong> Fragen, ob in der Zwischenzeit noch weitere Abnahmestellen dazugekommen sind.</span>
+            <span><strong>Erstgespräch (nach Lieferbeginn):</strong> Erste Rechnung einholen und zur Prüfung gemeinsam besprechen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Folgegespräch (nach ca. 6 Monaten):</strong> Erneuter Anruf zur Besprechung des aktuellen Lastgangs und zur Effizienzprüfung.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Potenzial-Check:</strong> Fragen, ob seit dem letzten Kontakt neue Abnahmestellen oder Änderungen in der Produktion dazugekommen sind.</span>
+        </div>
+        
+        <div class="script-item future-feature">
+            <input type="checkbox">
+            <span><strong>Live-Metering:</strong> Anschluss an Live-Metering über Dienstleister 'Zählerfreunde' anbieten, um präzise Plandaten für PV/BHKW zu generieren.</span>
         </div>
     </section>
 
     <section id="verlaengerung" class="reveal">
         <h2>7. Vertragsverlängerung (Churn Prevention)</h2>
         <details class="info-box">
-            <summary>📚 Info: Prognose 2029 & Steigerungen</summary>
+            <summary>📚 Info: Prognose & Marktlage</summary>
             <div class="content">
-                Der CO2-Preis könnte 2029 bei 80-100 EUR/t liegen. Zudem steigen die Netzentgelte jährlich kontinuierlich durch den notwendigen Netzausbau, während zeitgleich staatliche Entlastungen auslaufen.
+                Staatliche Entlastungen laufen aus. Der CO2-Preis steigt massiv (Prognose 2029: 80-100 EUR/t). Netzentgelte steigen jährlich durch den massiven Netzausbau. Langfristige Verträge sind die einzige Versicherung gegen Volatilität.
             </div>
         </details>
 
-        <div class="script-item" onclick="toggleComplete(this)">
+        <h3>Gesprächsleitfaden</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Status-Quo klären:</strong> Auf allgemeine Kostensteigerungen und den steigenden Strombedarf (z.B. durch Wärmepumpen, E-Mobilität) hinweisen.</span>
+            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Argumentation:</strong> Planungssicherheit bieten. Auf die Wichtigkeit langfristig kalkulierbarer Betriebskosten hinweisen.</span>
+            <span><strong>Markt-Status:</strong> Auf allgemeine Kostensteigerungen am Energiemarkt und den steigenden Strombedarf durch Sektorenkopplung (WP, E-Mobilität) hinweisen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Sicherheitspitch:</strong> Fokus auf Planungssicherheit und die Wichtigkeit langfristig kalkulierbarer Betriebskosten.</span>
         </div>
     </section>
 
     <section id="winback" class="reveal">
-        <h2>8. Reaktivierung (Winback)</h2>
-        <div class="script-item" onclick="toggleComplete(this)">
+        <h2>8. Reaktivierung (Winback / Kündiger)</h2>
+        
+        <h3>Gesprächsleitfaden</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Gesprächsführung übernehmen:</strong> Wer fragt, der führt. Kundenfragen gezielt zurückgeben, um Ursachenforschung zu betreiben und das wahre Motiv für den Wechsel herauszufinden.</span>
+            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Neu-Qualifizierung:</strong> Neue Unternehmenskompetenzen (sense electra) vorstellen und fragen: <em>"Haben Sie im Energiebereich schon mal etwas gemacht?"</em> (z.B. Photovoltaik, BHKW).</span>
+            <span><strong>Psychologische Führung:</strong> Wer fragt, der führt. Kundenfragen gezielt spiegeln und zurückgeben, um das wahre Wechselmotiv zu isolieren.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>USP-Update:</strong> Vorstellung der neuen sense electra Kompetenzen (Photovoltaik, BHKW, Messstellenbetrieb). Frage: <em>"Haben Sie im Bereich Eigenversorgung schon mal etwas gemacht?"</em></span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>System-Hygiene:</strong> Dokumentation im Vpsp zwingend ergänzen (nächster Kontaktzeitraum, neue Pachtverhältnisse, eventuelle Insolvenzen).</span>
         </div>
     </section>
 
     <section id="reklamation" class="reveal">
         <h2>9. Reklamationsgespräch</h2>
         <details class="info-box">
-            <summary>📚 Info: Kommunikationsregeln</summary>
+            <summary>📚 Info: Rhetorik-Regeln</summary>
             <div class="content">
-                Konjunktiv komplett weglassen. Keine Füllwörter und keine Fachwörter benutzen. Eine klare und einfache Sprache deeskaliert die Situation am schnellsten.
+                Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat. Konjunktiv komplett weglassen (kein "könnte/würde"). Keine Fachwörter oder Branchenjargon. Klare, einfache Sprache deeskaliert.
             </div>
         </details>
 
-        <div class="script-item" onclick="toggleComplete(this)">
+        <h3>Gesprächsleitfaden</h3>
+        <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Aktiv zuhören:</strong> Den Kunden ausreden lassen und das Problem exakt mitschreiben.</span>
+            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Deeskalation:</strong> Entspannung vermitteln. Dem Kunden klar signalisieren, dass man sich sofort und persönlich um die Lösung kümmert.</span>
+            <span><strong>Aktiv Zuhören:</strong> Den Kunden vollständig ausreden lassen, Emotionen aufnehmen und das Problem exakt schriftlich fixieren.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Lösungsorientierung:</strong> Entspannung vermitteln. Dem Kunden klar signalisieren, dass man sich ab sofort persönlich um die Klärung kümmert.</span>
         </div>
     </section>
 </div>
@@ -518,7 +555,7 @@
 
 <script>
     function toggleComplete(element) {
-        // V7 Update: Ignoriere Klicks auf Future Features
+        // V7.1: Ignoriere Klicks auf Future Features
         if(element.classList.contains('future-feature')) return;
         
         element.classList.toggle('completed');
@@ -559,11 +596,11 @@
         
         navItems.forEach(item => {
             item.classList.remove('active');
-            // Wenn der href-Anker dem aktuellen Sektions-ID entspricht
+            // Aktive Sektion in der Navbar hervorheben
             if (item.getAttribute('href') === '#' + current) {
                 item.classList.add('active');
                 
-                // Optional: Die wischbare Navigation scrollt mit, sodass der aktive Punkt sichtbar ist
+                // Die wischbare Navigation scrollt mit
                 const nav = document.querySelector('nav');
                 const itemLeft = item.offsetLeft;
                 const itemWidth = item.offsetWidth;
