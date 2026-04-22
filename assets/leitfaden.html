@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V7.1 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V7.2 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -99,7 +99,7 @@
             transform: translateX(5px);
         }
 
-        /* V7/V7.1 - Future Features Badge & Styling */
+        /* Future Features Badge & Styling */
         .future-feature {
             background-color: rgba(52, 152, 219, 0.15) !important;
             border: 1px dashed var(--accent) !important;
@@ -183,7 +183,7 @@
             margin-right: 5px;
         }
 
-        /* V7/V7.1 - Wischbare Bottom Navigation */
+        /* Wischbare Bottom Navigation */
         nav {
             position: fixed;
             bottom: 0;
@@ -228,7 +228,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V7.1</h1>
+    <h1>Lifecycle Cockpit V7.2</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -265,7 +265,7 @@
                     <li><strong>Grundpreis:</strong> Feste Gebühr, unabhängig vom Verbrauch.</li>
                     <li><strong>Netzarbeitspreis:</strong> Verbrauchsabhängiger Teil (pro kWh) für den Transport.</li>
                     <li><strong>Netzleistungspreis:</strong> Feste Gebühr auf der maximal abgenommenen Leistung (kW). Deckt Kapazitätsreserven.</li>
-                    <li><strong>Konzessionsabgaben:</strong> Gebühren an Gemeinden für die Nutzung öffentlicher Flächen.</li>
+                    <li><strong>Konzessionsabgaben:</strong> Gebühren an Gemeinden für die Nutzung öffentlichen Flächen.</li>
                     <li><strong>RLM:</strong> Registrierende Leistungsmessung (üblich > 100.000 kWh Strom).</li>
                 </ul>
             </div>
@@ -443,103 +443,261 @@
     <section id="service" class="reveal">
         <h2>6. Serviceanruf (Betreuung & Cross-Selling)</h2>
         <details class="info-box">
-            <summary>📚 Info: Verhaltensregeln</summary>
+            <summary>📚 Info: Verhaltensregel</summary>
             <div class="content">
-                Kunden immer bestätigen und loben. Kunden nicht "drücken" oder unter Verkaufsdruck setzen. Ziel: Service beweisen und als konstanter Ansprechpartner positionieren.
+                Kunden immer bestätigen und loben. Kunden auf keinen Fall "drücken" oder unter Verkaufsdruck setzen. Ziel ist es, echten Service zu beweisen und ein konstanter Ansprechpartner zu sein.
             </div>
         </details>
 
-        <h3>Gesprächsleitfaden</h3>
+        <h3>Phase 0: Vorbereitung</h3>
         <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
+            <span><strong>Fragenkatalog:</strong> Individuellen Fragenkatalog vorab erstellen (z.B. "Welche Änderungen gab es seit unserem letzten Gespräch?").</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Erstgespräch (nach Lieferbeginn):</strong> Erste Rechnung einholen und zur Prüfung gemeinsam besprechen.</span>
+            <span><strong>System-Check:</strong> Im Vpsp prüfen, ob alle Rechnungen und Dokumente sauber hinterlegt sind.</span>
+        </div>
+
+        <h3>Phase 1: Eisbrecher & Status-Quo</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Einstieg:</strong> <em>"Herr/Frau [Name], unser Vertrag läuft nun seit einigen Wochen/Monaten. Wie zufrieden sind Sie bisher mit den Abläufen?"</em></span>
+        </div>
+
+        <h3>Phase 2: Rechnungs-Prüfung</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Rechnung einholen:</strong> <em>"Haben Sie die erste Rechnung nach Lieferbeginn vorliegen? Lassen Sie uns diese kurz gemeinsam abgleichen, damit auch wirklich alles stimmt."</em></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Folgegespräch (nach ca. 6 Monaten):</strong> Erneuter Anruf zur Besprechung des aktuellen Lastgangs und zur Effizienzprüfung.</span>
+            <span><strong>Prüfung:</strong> Stimmen Grund- und Arbeitspreise mit unserem Angebot überein?</span>
+        </div>
+
+        <h3>Phase 3: Potenzial-Check & Cross-Selling</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Bedarfsanalyse:</strong> <em>"Haben sich Ihre Lastspitzen verändert? Sind neue Maschinen oder weitere Abnahmestellen hinzugekommen?"</em></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Potenzial-Check:</strong> Fragen, ob seit dem letzten Kontakt neue Abnahmestellen oder Änderungen in der Produktion dazugekommen sind.</span>
+            <span><strong>Sense Electra Pitch:</strong> Kurz erwähnen, dass wir bei Bedarf auch PV, BHKW oder Ladeinfrastruktur prüfen können.</span>
         </div>
-        
+
+        <h3>Phase 4: Infrastruktur</h3>
         <div class="script-item future-feature">
             <input type="checkbox">
-            <span><strong>Live-Metering:</strong> Anschluss an Live-Metering über Dienstleister 'Zählerfreunde' anbieten, um präzise Plandaten für PV/BHKW zu generieren.</span>
+            <span><strong>Live-Metering:</strong> Anschluss an Live-Metering (Zählerfreunde) anbieten und Freigabeanträge abschließen, um klare Plandaten zu haben.</span>
+        </div>
+
+        <h3>Phase 5: Systempflege & Follow-up</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Vpsp-Update:</strong> Relevante Infos zu neuen Maschinen oder Abnahmestellen als Notiz hinterlegen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Wiedervorlage:</strong> Nächsten Routine-Anruf (z.B. in 6 Monaten) fest im Vpsp terminieren.</span>
         </div>
     </section>
 
     <section id="verlaengerung" class="reveal">
         <h2>7. Vertragsverlängerung (Churn Prevention)</h2>
         <details class="info-box">
-            <summary>📚 Info: Prognose & Marktlage</summary>
+            <summary>📚 Info: Prognose 2029 & Marktlage</summary>
             <div class="content">
-                Staatliche Entlastungen laufen aus. Der CO2-Preis steigt massiv (Prognose 2029: 80-100 EUR/t). Netzentgelte steigen jährlich durch den massiven Netzausbau. Langfristige Verträge sind die einzige Versicherung gegen Volatilität.
+                Staatliche Entlastungen laufen aus. Der CO2-Preis steigt massiv (Prognose 2029: 80-100 EUR/t). Die Netzentgelte steigen jährlich kontinuierlich durch den notwendigen Netzausbau. Langfristige Verträge sind der sicherste Schutz.
             </div>
         </details>
 
-        <h3>Gesprächsleitfaden</h3>
+        <h3>Phase 0: Vorbereitung</h3>
         <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
+            <span><strong>Fragenkatalog:</strong> Individuelle Fragen notieren (z.B. "Wie entwickelt sich Ihr Strombedarf durch E-Mobilität?").</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Markt-Status:</strong> Auf allgemeine Kostensteigerungen am Energiemarkt und den steigenden Strombedarf durch Sektorenkopplung (WP, E-Mobilität) hinweisen.</span>
+            <span><strong>Historien-Check:</strong> Letzten Angebotspreis mit dem aktuellen Marktpreis vergleichen, um den Verhandlungsspielraum zu kennen.</span>
+        </div>
+
+        <h3>Phase 1: Motivation & Einstieg</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Einstieg:</strong> Gemeinsame Erfolge der bisherigen Laufzeit betonen.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Sicherheitspitch:</strong> Fokus auf Planungssicherheit und die Wichtigkeit langfristig kalkulierbarer Betriebskosten.</span>
+            <span><strong>Bedarf klären:</strong> <em>"Gibt es strategische Veränderungen in Ihrem Unternehmen, die wir für die kommende Beschaffung berücksichtigen müssen?"</em></span>
+        </div>
+
+        <h3>Phase 2: Status-Quo am Markt erklären</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Aufklärung:</strong> Auf allgemeine Kostensteigerungen und den steigenden Strombedarf (Wärmepumpen, E-Mobilität) hinweisen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Risiko aufzeigen:</strong> Spotmarkt-Risiken vs. Terminmarkt-Sicherheit erläutern.</span>
+        </div>
+
+        <h3>Phase 3: Argumentation & Pitch</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>USP-Fokus:</strong> Planungssicherheit in den Vordergrund stellen. Auf die Wichtigkeit langfristig kalkulierbarer Betriebskosten (OPEX) pochen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Peak-Shaving Reminder:</strong> Erneut auf Kostensenkungspotenziale durch Spitzenkappung hinweisen.</span>
+        </div>
+
+        <h3>Phase 4: Abschlussfrage</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Closing:</strong> <em>"Um sich vor den steigenden Netzentgelten und CO2-Preisen abzusichern: Für wie viele Monate wollen Sie sich jetzt die aktuellen Konditionen sichern?"</em></span>
+        </div>
+
+        <h3>Phase 5: Verbindlichkeit & Systempflege</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Terminierung:</strong> Zusendung des Verlängerungsangebots und Folgetermin fixieren.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Vpsp-Aufgabe:</strong> Backoffice über geplante Verlängerung informieren.</span>
         </div>
     </section>
 
     <section id="winback" class="reveal">
         <h2>8. Reaktivierung (Winback / Kündiger)</h2>
-        
-        <h3>Gesprächsleitfaden</h3>
+        <details class="info-box">
+            <summary>📚 Info: Verhaltensregeln Winback</summary>
+            <div class="content">
+                Gesprächsführung übernehmen: Wer fragt, der führt. Kundenfragen gezielt spiegeln und zurückgeben. Den ehemaligen Wechsel nicht verurteilen, sondern Verständnis zeigen und den Blick nach vorne richten.
+            </div>
+        </details>
+
+        <h3>Phase 0: Vorbereitung</h3>
         <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
+            <span><strong>Fragenkatalog:</strong> Individuellen Fragenkatalog vorab erstellen (z.B. "Was können wir heute besser machen als damals?").</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Psychologische Führung:</strong> Wer fragt, der führt. Kundenfragen gezielt spiegeln und zurückgeben, um das wahre Wechselmotiv zu isolieren.</span>
+            <span><strong>Historien-Check:</strong> Im Vpsp prüfen: Welche Konditionen hatte der Kunde damals? Gab es Beschwerden oder offene Tickets?</span>
+        </div>
+
+        <h3>Phase 1: Ursachenforschung & Eisbrecher</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Eisbrecher:</strong> <em>"Herr/Frau [Name], wir haben Sie lange nicht gehört. Wie laufen die Geschäfte?"</em></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>USP-Update:</strong> Vorstellung der neuen sense electra Kompetenzen (Photovoltaik, BHKW, Messstellenbetrieb). Frage: <em>"Haben Sie im Bereich Eigenversorgung schon mal etwas gemacht?"</em></span>
+            <span><strong>Wechselmotiv isolieren:</strong> <em>"Was war damals für Sie der ausschlaggebende Punkt, sich für einen anderen Partner zu entscheiden?"</em></span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>System-Hygiene:</strong> Dokumentation im Vpsp zwingend ergänzen (nächster Kontaktzeitraum, neue Pachtverhältnisse, eventuelle Insolvenzen).</span>
+            <span><strong>Status-Quo prüfen:</strong> <em>"Wie zufrieden sind Sie mit der Betreuung durch Ihren aktuellen Versorger?"</em></span>
+        </div>
+
+        <h3>Phase 2: Der neue USP-Pitch (sense electra)</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Neuigkeiten pitchen:</strong> <em>"Wir optimieren jetzt nicht nur den reinen Strompreis, sondern kappen aktiv teure Leistungsspitzen."</em></span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Qualifizierung:</strong> <em>"Haben Sie im Bereich Eigenversorgung (PV, BHKW, Energiemanagement) in der Zwischenzeit schon etwas umgesetzt?"</em></span>
+        </div>
+
+        <h3>Phase 3: Daten-Update (Datenbeschaffung)</h3>
+        <div class="highlight-box">
+            "Auch wenn wir den Kunden kennen – wir brauchen die aktuellen Daten, da sich Verbräuche oder Zähler verändert haben können."
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Rechnung:</strong> <em>"Schicken Sie mir bitte Ihre aktuelle Rechnung, damit ich sehe, wie Ihr jetziger Versorger abrechnet."</em></span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Lastgang:</strong> Aktuellen Lastgang für erneuten Spitzenlast-Check anfordern (bei RLM).</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Kündigungsfrist:</strong> Exaktes Datum der Kündigungsfrist des aktuellen Vertrages abfragen.</span>
+        </div>
+
+        <h3>Phase 4: Verbindlichkeit (Termine)</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Termin 1:</strong> Termin für die Zusendung der neuen ROI-Analyse/des Angebots fixieren.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Termin 2:</strong> Termin für die gemeinsame Besprechung fixieren.</span>
+        </div>
+
+        <h3>Phase 5: Systempflege & Dokumentation</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Vpsp-Update:</strong> Neue Ansprechpartner, geänderte Pachtverhältnisse oder eventuelle Insolvenzen zwingend hinterlegen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Wiedervorlage:</strong> Den nächstmöglichen Kontaktzeitraum im Vpsp terminieren.</span>
         </div>
     </section>
 
     <section id="reklamation" class="reveal">
         <h2>9. Reklamationsgespräch</h2>
         <details class="info-box">
-            <summary>📚 Info: Rhetorik-Regeln</summary>
+            <summary>📚 Info: Kommunikationsregeln</summary>
             <div class="content">
-                Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat. Konjunktiv komplett weglassen (kein "könnte/würde"). Keine Fachwörter oder Branchenjargon. Klare, einfache Sprache deeskaliert.
+                Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat. Konjunktiv komplett weglassen. Keine Füllwörter und keine Fachwörter benutzen. Eine klare und einfache Sprache deeskaliert die Situation am schnellsten.
             </div>
         </details>
 
-        <h3>Gesprächsleitfaden</h3>
+        <h3>Phase 0: Vorbereitung</h3>
         <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--primary);">
             <input type="checkbox">
-            <span><strong>Phase 0: Vorbereitung:</strong> Individuellen Fragenkatalog vorab erstellen (Offene W-Fragen für das spezifische Kundenszenario notieren).</span>
+            <span><strong>Fragenkatalog:</strong> W-Fragen zur Sachverhaltsaufklärung notieren ("Was genau ist vorgefallen und wie stellen Sie sich die optimale Lösung vor?").</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Aktiv Zuhören:</strong> Den Kunden vollständig ausreden lassen, Emotionen aufnehmen und das Problem exakt schriftlich fixieren.</span>
+            <span><strong>System-Check:</strong> Bestehende Tickets oder Fehler im Vpsp im Vorfeld checken.</span>
+        </div>
+
+        <h3>Phase 1: Aktiv Zuhören & Analyse</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Zuhören:</strong> Den Kunden komplett ausreden lassen und das Problem exakt mitschreiben. Emotionen zulassen, nicht sofort rechtfertigen.</span>
         </div>
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
-            <span><strong>Lösungsorientierung:</strong> Entspannung vermitteln. Dem Kunden klar signalisieren, dass man sich ab sofort persönlich um die Klärung kümmert.</span>
+            <span><strong>Datenabgleich:</strong> Genaue Rechnungs- oder Zählernummer abgleichen, um Missverständnisse auszuschließen.</span>
+        </div>
+
+        <h3>Phase 2: Deeskalation</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Kümmern signalisieren:</strong> Entspannung vermitteln. Dem Kunden klar sagen, dass man sich sofort und persönlich um die Lösung kümmert.</span>
+        </div>
+
+        <h3>Phase 3: Verbindlichkeit</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Zeitrahmen setzen:</strong> Dem Kunden einen exakten Zeitpunkt nennen, bis wann er ein Feedback oder eine Lösung erhält (z.B. "Ich melde mich morgen bis 12 Uhr bei Ihnen").</span>
+        </div>
+
+        <h3>Phase 4: Systempflege & Klärung</h3>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Ticket-Erstellung:</strong> Das Problem präzise im internen System dokumentieren.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Backoffice:</strong> Rücksprache mit Backoffice oder Netzbetreiber halten.</span>
         </div>
     </section>
 </div>
@@ -555,7 +713,7 @@
 
 <script>
     function toggleComplete(element) {
-        // V7.1: Ignoriere Klicks auf Future Features
+        // Ignoriere Klicks auf Future Features
         if(element.classList.contains('future-feature')) return;
         
         element.classList.toggle('completed');
