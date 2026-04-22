@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V6.1 | apoll.on</title>
+    <title>Vertriebs-Leitfaden V7 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -12,7 +12,7 @@
             --text: #333;
             --white: #ffffff;
             --shadow: 0 4px 15px rgba(0,0,0,0.08);
-            --nav-height: 70px;
+            --nav-height: 75px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -99,6 +99,30 @@
             transform: translateX(5px);
         }
 
+        /* V7 - Future Features Badge & Styling */
+        .future-feature {
+            background-color: rgba(52, 152, 219, 0.15) !important;
+            border: 1px dashed var(--accent) !important;
+            position: relative;
+            cursor: not-allowed !important;
+            opacity: 0.8;
+            pointer-events: none; /* Verhindert Klicks auf das Element */
+        }
+
+        .future-feature::after {
+            content: "IN PLANUNG";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         /* Info-Akkordeons (Theorie) */
         details.info-box {
             background: #f8f9fa;
@@ -159,6 +183,7 @@
             margin-right: 5px;
         }
 
+        /* V7 - Wischbare Bottom Navigation */
         nav {
             position: fixed;
             bottom: 0;
@@ -167,22 +192,35 @@
             height: var(--nav-height);
             background: var(--white);
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
             align-items: center;
             box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
             z-index: 1001;
             padding-bottom: env(safe-area-inset-bottom);
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch; /* Flüssiges Scrollen iOS */
+            padding-left: 15px;
+            padding-right: 15px;
+            gap: 20px;
+        }
+
+        /* Scrollbar für Touch-Geräte unsichtbar machen */
+        nav::-webkit-scrollbar {
+            display: none;
         }
 
         .nav-item {
             text-decoration: none;
             color: #95a5a6;
-            font-size: 10px;
+            font-size: 11px;
             text-align: center;
-            flex: 1;
+            flex: 0 0 auto; /* Verhindert Stauchen */
+            min-width: 60px;
+            transition: color 0.2s ease;
         }
 
-        .nav-item i { display: block; font-size: 22px; margin-bottom: 4px; font-style: normal; }
+        .nav-item i { display: block; font-size: 24px; margin-bottom: 4px; font-style: normal; }
         .nav-item.active { color: var(--accent); font-weight: 700; }
         
         .hidden { display: none !important; }
@@ -191,7 +229,7 @@
 <body>
 
 <header>
-    <h1>Welcome Book Vertrieb V6.1</h1>
+    <h1>Lifecycle Cockpit V7</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -237,7 +275,6 @@
 
     <section id="uebergabe" class="reveal">
         <h2>2. Lead-Übergabe & Fokus</h2>
-        
         <details class="info-box">
             <summary>📚 Info: Anfragenerfassung im Vpsp</summary>
             <div class="content">
@@ -257,7 +294,6 @@
 
     <section id="erstkontakt" class="reveal">
         <h2>3. Erstkontakt & Qualifizierung</h2>
-        
         <details class="info-box">
             <summary>📚 Info: Verhaltensregeln im Gespräch</summary>
             <div class="content">
@@ -282,11 +318,17 @@
         </details>
 
         <h3>Phase 0: Eisbrecher & Kurzvorstellung</h3>
-        <div class="highlight-box">
+        <div class="highlight-box">
             "Wir sind Ihr 360°-Partner für Energie. Wir beschaffen nicht nur Ihren Industriestrom zu tagesaktuellen Bestpreisen, sondern kappen aktiv Ihre teuren Leistungsspitzen – von der Lastganganalyse bis zum eigenen BHKW im Keller oder der PV-Anlage auf dem Dach bekommen Sie bei uns alles aus einer Hand."
-        </div>
+        </div>
         
         <h3>Phase 1: Motivation & Führung</h3>
+        
+        <div class="script-item future-feature">
+            <input type="checkbox">
+            <span><strong>Video-Call:</strong> Teams-Einladung für Video-Erstcall automatisiert senden.</span>
+        </div>
+
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
             <span><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?)</span>
@@ -334,7 +376,6 @@
 
     <section id="angebot" class="reveal">
         <h2>4. Angebotsprozess</h2>
-        
         <details class="info-box">
             <summary>📚 Info: Lastgänge analysieren</summary>
             <div class="content">
@@ -350,7 +391,6 @@
 
     <section id="abschluss" class="reveal">
         <h2>5. Zweitgespräch & Abschluss</h2>
-        
         <details class="info-box">
             <summary>📚 Info: Argumente für lange Laufzeiten</summary>
             <div class="content">
@@ -374,6 +414,12 @@
             <input type="checkbox">
             <span><strong>Peak-Shaving / Eigenverbrauch:</strong> Kostenreduktion besprechen.</span>
         </div>
+        
+        <div class="script-item future-feature">
+            <input type="checkbox">
+            <span><strong>Lokale KI:</strong> Präsentation für ROI-Analyse über lokales OmniBook starten.</span>
+        </div>
+
         <div class="script-item" onclick="toggleComplete(this)">
             <input type="checkbox">
             <span><strong>Abschluss:</strong> <em>"Für wie viele Monate wollen Sie sich entscheiden?"</em></span>
@@ -389,25 +435,98 @@
             <span>Alle notwendigen Daten und <strong>Vollmacht</strong> einholen.</span>
         </div>
     </section>
+
+
+    <section id="service" class="reveal">
+        <h2>6. Serviceanruf (Betreuung)</h2>
+        <details class="info-box">
+            <summary>📚 Info: Verhaltensregel</summary>
+            <div class="content">
+                Kunden immer bestätigen und loben. Kunden nicht unter Druck setzen oder "drücken". Ziel ist es, Service zu beweisen und ein konstanter Ansprechpartner zu bleiben.
+            </div>
+        </details>
+
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Rechnungsprüfung:</strong> Erste Rechnung nach Lieferbeginn einholen und gemeinsam mit dem Kunden besprechen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Potenzial-Check:</strong> Fragen, ob in der Zwischenzeit noch weitere Abnahmestellen dazugekommen sind.</span>
+        </div>
+    </section>
+
+    <section id="verlaengerung" class="reveal">
+        <h2>7. Vertragsverlängerung (Churn Prevention)</h2>
+        <details class="info-box">
+            <summary>📚 Info: Prognose 2029 & Steigerungen</summary>
+            <div class="content">
+                Der CO2-Preis könnte 2029 bei 80-100 EUR/t liegen. Zudem steigen die Netzentgelte jährlich kontinuierlich durch den notwendigen Netzausbau, während zeitgleich staatliche Entlastungen auslaufen.
+            </div>
+        </details>
+
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Status-Quo klären:</strong> Auf allgemeine Kostensteigerungen und den steigenden Strombedarf (z.B. durch Wärmepumpen, E-Mobilität) hinweisen.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Argumentation:</strong> Planungssicherheit bieten. Auf die Wichtigkeit langfristig kalkulierbarer Betriebskosten hinweisen.</span>
+        </div>
+    </section>
+
+    <section id="winback" class="reveal">
+        <h2>8. Reaktivierung (Winback)</h2>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Gesprächsführung übernehmen:</strong> Wer fragt, der führt. Kundenfragen gezielt zurückgeben, um Ursachenforschung zu betreiben und das wahre Motiv für den Wechsel herauszufinden.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Neu-Qualifizierung:</strong> Neue Unternehmenskompetenzen (sense electra) vorstellen und fragen: <em>"Haben Sie im Energiebereich schon mal etwas gemacht?"</em> (z.B. Photovoltaik, BHKW).</span>
+        </div>
+    </section>
+
+    <section id="reklamation" class="reveal">
+        <h2>9. Reklamationsgespräch</h2>
+        <details class="info-box">
+            <summary>📚 Info: Kommunikationsregeln</summary>
+            <div class="content">
+                Konjunktiv komplett weglassen. Keine Füllwörter und keine Fachwörter benutzen. Eine klare und einfache Sprache deeskaliert die Situation am schnellsten.
+            </div>
+        </details>
+
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Aktiv zuhören:</strong> Den Kunden ausreden lassen und das Problem exakt mitschreiben.</span>
+        </div>
+        <div class="script-item" onclick="toggleComplete(this)">
+            <input type="checkbox">
+            <span><strong>Deeskalation:</strong> Entspannung vermitteln. Dem Kunden klar signalisieren, dass man sich sofort und persönlich um die Lösung kümmert.</span>
+        </div>
+    </section>
 </div>
 
 <nav>
-    <a href="#grundlagen" class="nav-item"><i>🏠</i>Vpsp</a>
-    <a href="#uebergabe" class="nav-item"><i>📥</i>Leads</a>
-    <a href="#erstkontakt" class="nav-item"><i>📞</i>Gespräch</a>
-    <a href="#angebot" class="nav-item"><i>📄</i>Angebot</a>
-    <a href="#abschluss" class="nav-item"><i>✅</i>Abschluss</a>
+    <a href="#grundlagen" class="nav-item"><i>🌟</i>Neu</a>
+    <a href="#service" class="nav-item"><i>🤝</i>Service</a>
+    <a href="#verlaengerung" class="nav-item"><i>🔄</i>Verläng.</a>
+    <a href="#winback" class="nav-item"><i>🧲</i>Winback</a>
+    <a href="#reklamation" class="nav-item"><i>⚠️</i>Reklamation</a>
     <a href="expert.html" class="nav-item"><i>📚</i>Wiki</a>
 </nav>
 
 <script>
     function toggleComplete(element) {
+        // V7 Update: Ignoriere Klicks auf Future Features
+        if(element.classList.contains('future-feature')) return;
+        
         element.classList.toggle('completed');
         const checkbox = element.querySelector('input[type="checkbox"]');
-        checkbox.checked = !checkbox.checked;
+        if(checkbox) checkbox.checked = !checkbox.checked;
     }
 
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    document.querySelectorAll('.script-item:not(.future-feature) input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('click', (e) => {
             e.stopPropagation();
             e.target.parentElement.classList.toggle('completed', e.target.checked);
@@ -431,11 +550,33 @@
         let current = "";
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item:not([href="expert.html"])');
+        
         sections.forEach(section => {
-            if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
+            if (pageYOffset >= section.offsetTop - 150) {
+                current = section.getAttribute('id');
+            }
         });
+        
         navItems.forEach(item => {
-            item.classList.toggle('active', item.getAttribute('href').includes(current));
+            item.classList.remove('active');
+            // Wenn der href-Anker dem aktuellen Sektions-ID entspricht
+            if (item.getAttribute('href') === '#' + current) {
+                item.classList.add('active');
+                
+                // Optional: Die wischbare Navigation scrollt mit, sodass der aktive Punkt sichtbar ist
+                const nav = document.querySelector('nav');
+                const itemLeft = item.offsetLeft;
+                const itemWidth = item.offsetWidth;
+                const navWidth = nav.offsetWidth;
+                const scrollLeft = nav.scrollLeft;
+                
+                if (itemLeft < scrollLeft || (itemLeft + itemWidth) > (scrollLeft + navWidth)) {
+                    nav.scrollTo({
+                        left: itemLeft - (navWidth / 2) + (itemWidth / 2),
+                        behavior: 'smooth'
+                    });
+                }
+            }
         });
     });
 </script>
