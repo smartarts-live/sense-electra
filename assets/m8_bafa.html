@@ -3,118 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Modul 8: BAFA & KfW Förderungen | sense electra</title>
+    <title>Experten-Wiki | Customer Lifecycle Cockpit</title>
     <style>
         :root {
+            /* Farb-Doktrin für das Experten-Wiki (Gediegene, matte Palette) */
+            --color-unternehmen: #34495e; /* Schieferblau */
+            --color-technik: #16a085;     /* Salbeigrün/Petrol */
+            --color-audit: #d35400;       /* Altgold */
+            --color-recht: #8e44ad;       /* Gedämpftes Pflaume */
+            --color-zurueck: #7f8c8d;     /* Anthrazit/Schiefergrau */
+
             --primary: #2c3e50;
-            --accent: #f39c12; /* Gold/Orange für Förderung/Geld */
+            --accent: #3498db;
             --bg: #f4f7f6;
             --text: #333;
             --white: #ffffff;
             --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --nav-height: 75px;
         }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; line-height: 1.6; }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        header { background: var(--primary); color: var(--white); padding: 15px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: space-between; }
-        header h1 { margin: 0; font-size: 1.2rem; }
-        .back-btn { color: var(--white); text-decoration: none; font-size: 1.5rem; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding-bottom: calc(var(--nav-height) + 70vh);
+        }
 
-        .search-container { background: var(--white); padding: 10px 15px; border-bottom: 1px solid #ddd; position: sticky; top: 60px; z-index: 99; }
-        #searchBar { width: 100%; padding: 10px 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; outline: none; }
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
 
-        .container { padding: 15px; max-width: 800px; margin: 0 auto; }
+        h1 { color: var(--white); font-size: 1.1rem; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+
+        .search-container { max-width: 600px; margin: 0 auto; }
+
+        #searchBar {
+            width: 100%; padding: 12px 20px; border-radius: 25px; border: none; font-size: 16px; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container { padding: 20px 15px; max-width: 800px; margin: 0 auto; }
+
+        /* Smart-Scroll-Akkordeon System */
+        .touchpoint {
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            scroll-margin-top: 80px;
+        }
+
+        .touchpoint-header {
+            margin: 0;
+            padding: 20px 15px;
+            color: var(--white);
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
+        }
+
+        .touchpoint-header:active { opacity: 0.8; }
         
-        .section { background: var(--white); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow); }
-        .section h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-top: 0; }
-        .section h3 { color: var(--primary); margin-top: 20px; }
+        .touchpoint-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.4s ease;
+        }
+
+        .touchpoint.active .touchpoint-header::after {
+            transform: rotate(45deg);
+        }
+
+        .touchpoint-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .touchpoint.active .touchpoint-content {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .touchpoint-content-inner {
+            overflow: hidden;
+            min-height: 0;
+            background: var(--white);
+        }
+
+        .reveal {
+            padding: 20px 15px;
+        }
         
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: var(--primary); color: var(--white); }
-        tr:nth-child(even) { background-color: #f9f9f9; }
+        h3 { color: var(--primary); font-size: 1.1rem; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        
+        /* Globale Wiki-Klassen (Design Kontinuität) */
+        .highlight-box { background: #e8f4fd; border-left: 5px solid var(--primary); padding: 15px; border-radius: 4px 12px 12px 4px; font-weight: 500; margin: 15px 0; }
+        
+        details.info-box { background: #f8f9fa; border-left: 4px solid var(--primary); margin: 15px 0; border-radius: 4px 8px 8px 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        details.info-box summary { padding: 15px; font-weight: 600; cursor: pointer; list-style: none; color: var(--primary); display: flex; justify-content: space-between; align-items: center; background: #eef2f5; }
+        details.info-box summary::after { content: '▼'; font-size: 0.8em; transition: transform 0.3s; }
+        details.info-box[open] summary::after { transform: rotate(180deg); }
+        details.info-box .content { padding: 15px; font-size: 0.9rem; color: #444; border-top: 1px solid #e1e8ed; background: #fff; }
 
-        .alert-box { background: #feebeb; border-left: 5px solid #e74c3c; padding: 15px; border-radius: 4px; margin: 15px 0; font-weight: bold; color: #c0392b; }
+        /* Wischbare Bottom Navigation */
+        nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: var(--white); display: flex; justify-content: flex-start; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); z-index: 1001; padding-bottom: env(safe-area-inset-bottom); overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-left: 15px; padding-right: 15px; gap: 20px;
+        }
+        nav::-webkit-scrollbar { display: none; }
 
-        nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; height: 60px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
-        .nav-item { flex: 1; text-align: center; text-decoration: none; color: var(--accent); padding-top: 15px; font-size: 14px; font-weight: bold; }
-        .nav-item i { font-style: normal; font-size: 18px; margin-right: 5px; }
+        .nav-item {
+            text-decoration: none; color: #95a5a6; font-size: 11px; text-align: center; flex: 0 0 auto; min-width: 60px; transition: color 0.3s ease;
+        }
+        .nav-item i { display: block; font-size: 24px; margin-bottom: 4px; font-style: normal; transition: all 0.3s ease; }
+        
+        /* Synchrone Nav-Farben & 40% Opacity für inaktive Icons */
+        .nav-item[data-target="unternehmen"] i { color: var(--color-unternehmen); opacity: 0.4; }
+        .nav-item[data-target="technik"] i { color: var(--color-technik); opacity: 0.4; }
+        .nav-item[data-target="audit"] i { color: var(--color-audit); opacity: 0.4; }
+        .nav-item[data-target="recht"] i { color: var(--color-recht); opacity: 0.4; }
+        .nav-item[data-target="zurueck"] i { color: var(--color-zurueck); opacity: 1; }
+
+        /* Aktiver Zustand: 100% Farbe & Opacity für Text UND Icon */
+        .nav-item[data-target="unternehmen"].active { color: var(--color-unternehmen); font-weight: 700; }
+        .nav-item[data-target="unternehmen"].active i { opacity: 1; }
+
+        .nav-item[data-target="technik"].active { color: var(--color-technik); font-weight: 700; }
+        .nav-item[data-target="technik"].active i { opacity: 1; }
+
+        .nav-item[data-target="audit"].active { color: var(--color-audit); font-weight: 700; }
+        .nav-item[data-target="audit"].active i { opacity: 1; }
+
+        .nav-item[data-target="recht"].active { color: var(--color-recht); font-weight: 700; }
+        .nav-item[data-target="recht"].active i { opacity: 1; }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="expert.html" class="back-btn">◁</a>
-    <h1>M8: BAFA & KfW</h1>
-    <div style="width: 24px;"></div>
+    <h1>Experten-Wiki V7.5</h1>
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
+    </div>
 </header>
 
-<div class="search-container">
-    <input type="text" id="searchBar" placeholder="Förderung suchen..." onkeyup="searchContent()">
-</div>
-
 <div class="container">
-    
-    <div class="alert-box">
-        WICHTIG (Totsünde im Vertrieb): Fördermittel müssen IMMER vor dem Abschluss von Liefer- und Leistungsverträgen (Maßnahmenbeginn) beantragt werden! Nachträgliche Förderung ist gesetzlich ausgeschlossen.
-    </div>
 
-    <div class="section" id="bafa">
-        <h2>8.1 BAFA (EEW Programm)</h2>
-        <p>Die "Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft" (EEW) ist der mächtigste Hebel, um bei Gewerbekunden die Amortisationszeit zu halbieren.</p>
-        
-        <table>
-            <tr>
-                <th>Modul</th>
-                <th>Fördergegenstand</th>
-                <th>Zuschuss (Maximal)</th>
-            </tr>
-            <tr>
-                <td><strong>Modul 1</strong></td>
-                <td>Querschnittstechnologien (z.B. hocheffiziente Motoren, Druckluft, Pumpen).</td>
-                <td>Bis zu 40% für KMU / 30% für Nicht-KMU.</td>
-            </tr>
-            <tr>
-                <td><strong>Modul 3</strong></td>
-                <td>MSR, Sensorik und Energiemanagement-Software (z.B. für Peak-Shaving / Heartbeat).</td>
-                <td>Bis zu 40% der förderfähigen Kosten.</td>
-            </tr>
-            <tr>
-                <td><strong>Modul 4</strong></td>
-                <td>Energiebezogene Optimierung von Anlagen und Prozessen (Technologieoffen).</td>
-                <td>Förderung nach eingesparten Tonnen CO2 (max. 500 € / t CO2 pro Jahr).</td>
-            </tr>
-        </table>
-    </div>
+    <article class="touchpoint" id="touchpoint-unternehmen">
+        <h2 class="touchpoint-header" style="background: var(--color-unternehmen);">Unternehmensverbund & Identität (Marken, USPs, Strategie)</h2>
+        <div class="touchpoint-content">
+            <div class="touchpoint-content-inner">
+                <section class="reveal">
+                    <p>Als leistungsstarker Unternehmensverbund mit Hauptsitz in Berlin bündeln wir über 20 Jahre Markterfahrung. Unser Ziel ist die ganzheitliche Begleitung bei der Senkung der Betriebskosten (OPEX).</p>
 
-    <div class="section" id="kfw">
-        <h2>8.2 KfW Kreditprogramme</h2>
-        <p>Die KfW bietet zinsverbilligte Kredite, oft kombiniert mit Tilgungszuschüssen (die nicht zurückgezahlt werden müssen).</p>
-        <ul>
-            <li><strong>KfW 270 (Erneuerbare Energien - Standard):</strong> Klassisches Kreditprogramm für die Errichtung von PV-Anlagen, Speichern und Biogasanlagen. Keine direkte Subvention, aber günstige Zinsen zur Finanzierung der Hardware.</li>
-            <li><strong>Klimaschutzoffensive (Programm 293):</strong> Unterstützt den Mittelstand bei Maßnahmen zur Reduktion von Treibhausgasen. Oft kombiniert mit attraktiven Tilgungszuschüssen, wenn die Maßnahme über den gesetzlichen Standard hinausgeht.</li>
-        </ul>
-    </div>
+                    <h3>Die Marken im Detail</h3>
+                    <div class="highlight-box" style="border-left-color: var(--color-unternehmen);">
+                        <strong>1. apoll.on GmbH:</strong> Das strategische Fundament. Administrative und prozessuale Exzellenz für komplexe Energiekonzepte.<br><br>
+                        <strong>2. schnellstrom & schnellgas:</strong> Die Beschaffungsexperten. Kostenfreie, börsenbasierte Preisermittlung für RLM-Kunden (> 100.000 kWh).<br><br>
+                        <strong>3. united electra:</strong> Spezialist für Industriestrom-Konzepte mit direktem Zugang zur EEX in Leipzig.<br><br>
+                        <strong>4. sense electra GmbH:</strong> Die technischen Innovatoren. Planung, Montage und Betrieb von BHKW, PV und Smart Metering.
+                    </div>
 
-    <div class="section" id="verkauf">
-        <h2>8.3 Vertriebs-Strategie (Der Hebel)</h2>
-        <p>Förderungen sind kompliziert und schrecken Kunden ab. Deine Dienstleistung als Energieberater/Verkäufer ist es, diesen "Papierkrieg" als Full-Service abzunehmen. Das rechtfertigt höhere Margen auf die Hardware und schützt dich vor reinen Preisvergleichen (Dumping-Wettbewerb).</p>
-    </div>
+                    <h3>Kernkompetenzen (Vertriebs-USPs)</h3>
+                    <ul>
+                        <li><strong>Alles aus einer Hand:</strong> Single Point of Contact von der Börse bis zum Heizungskeller.</li>
+                        <li><strong>Maximale Kostensenkung:</strong> Aktives Peak-Shaving und Optimierung des Eigenverbrauchs.</li>
+                        <li><strong>Unabhängigkeit:</strong> 100% Transparenz bei Netzkosten, Abgaben und Steuern.</li>
+                        <li><strong>Expertise:</strong> Über 20 Jahre Erfahrung durch Ingenieure und Projektentwickler.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <article class="touchpoint" id="touchpoint-technik">
+        <h2 class="touchpoint-header" style="background: var(--color-technik);">PV, Speicher & BHKW (Modul 1-3, Erzeugung)</h2>
+        <div class="touchpoint-content">
+            <div class="touchpoint-content-inner">
+                <section class="reveal">
+                    <p style="color: #7f8c8d; font-style: italic;">Inhalte für Technik & Erzeugung werden hier platziert...</p>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <article class="touchpoint" id="touchpoint-audit">
+        <h2 class="touchpoint-header" style="background: var(--color-audit);">Energieaudits & RLM (Modul 4-6, Messwesen)</h2>
+        <div class="touchpoint-content">
+            <div class="touchpoint-content-inner">
+                <section class="reveal">
+                    <p style="color: #7f8c8d; font-style: italic;">Inhalte für Audits und Messwesen werden hier platziert...</p>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <article class="touchpoint" id="touchpoint-recht">
+        <h2 class="touchpoint-header" style="background: var(--color-recht);">Recht & Förderung (Modul 7-8, BAFA, KfW)</h2>
+        <div class="touchpoint-content">
+            <div class="touchpoint-content-inner">
+                <section class="reveal">
+                    <p style="color: #7f8c8d; font-style: italic;">Inhalte für Gesetze und Förderprogramme werden hier platziert...</p>
+                </section>
+            </div>
+        </div>
+    </article>
 
 </div>
 
 <nav>
-    <a href="expert.html" class="nav-item"><i>🏠</i>Zurück zum Dashboard</a>
+    <a href="#touchpoint-unternehmen" class="nav-item" data-target="unternehmen"><i>🏢</i>Identität</a>
+    <a href="#touchpoint-technik" class="nav-item" data-target="technik"><i>⚙️</i>Technik</a>
+    <a href="#touchpoint-audit" class="nav-item" data-target="audit"><i>📊</i>Audit</a>
+    <a href="#touchpoint-recht" class="nav-item" data-target="recht"><i>⚖️</i>Recht</a>
+    <a href="leitfaden.html" class="nav-item" data-target="zurueck"><i>🔙</i>Leitfaden</a>
 </nav>
 
 <script>
+    // Status-Variable für Initial-Load
+    let isInitialLoad = true;
+
+    window.onload = () => {
+        document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
+        document.getElementById('touchpoint-unternehmen').classList.add('active');
+        
+        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+        const firstNav = document.querySelector('.nav-item[data-target="unternehmen"]');
+        if (firstNav) firstNav.classList.add('active');
+
+        setTimeout(() => {
+            isInitialLoad = false;
+        }, 500);
+    };
+
+    // Globale Suche (Live-Filter)
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
-        let sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            let text = section.innerText.toLowerCase();
-            section.style.display = text.includes(input) ? 'block' : 'none';
+        let touchpoints = document.querySelectorAll('.touchpoint');
+        
+        touchpoints.forEach(tp => {
+            let text = tp.innerText.toLowerCase();
+            if (text.includes(input)) {
+                tp.classList.remove('hidden');
+                if (input.length > 0) {
+                    tp.classList.add('active');
+                }
+            } else {
+                tp.classList.add('hidden');
+                tp.classList.remove('active');
+            }
         });
     }
+
+    // Smart-Scroll Accordion & Nav-Sync
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px', 
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        if (isInitialLoad || window.scrollY < 50) return;
+
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const touchpoint = entry.target.closest('.touchpoint');
+                const targetData = touchpoint.getAttribute('id').replace('touchpoint-', '');
+                
+                touchpoint.classList.add('active');
+
+                document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => nav.classList.remove('active'));
+                const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
+                
+                if(activeNav) {
+                    activeNav.classList.add('active');
+                    
+                    const navBar = document.querySelector('nav');
+                    const itemLeft = activeNav.offsetLeft;
+                    const itemWidth = activeNav.offsetWidth;
+                    const navWidth = navBar.offsetWidth;
+                    const scrollLeft = navBar.scrollLeft;
+                    
+                    if (itemLeft < scrollLeft || (itemLeft + itemWidth) > (scrollLeft + navWidth)) {
+                        navBar.scrollTo({
+                            left: itemLeft - (navWidth / 2) + (itemWidth / 2),
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Interceptor für Klicks auf die Bottom-Navigation
+    document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => {
+        nav.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            const targetData = nav.getAttribute('data-target');
+            const targetElement = document.getElementById('touchpoint-' + targetData);
+            
+            document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
+            if(targetElement) targetElement.classList.add('active');
+
+            document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(n => n.classList.remove('active'));
+            nav.classList.add('active');
+
+            setTimeout(() => {
+                if(targetElement) targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }, 150);
+        });
+    });
+
+    // Klick-Verhalten auf Header & Observer anbinden
+    document.querySelectorAll('.touchpoint-header').forEach(header => {
+        observer.observe(header);
+        
+        header.addEventListener('click', () => {
+            const parent = header.closest('.touchpoint');
+            const wasActive = parent.classList.contains('active');
+            
+            document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
+            
+            if (!wasActive) {
+                parent.classList.add('active');
+                
+                const targetData = parent.getAttribute('id').replace('touchpoint-', '');
+                document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => nav.classList.remove('active'));
+                const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
+                if(activeNav) activeNav.classList.add('active');
+
+                setTimeout(() => {
+                     header.scrollIntoView({behavior: 'smooth', block: 'start'});
+                }, 150); 
+            }
+        });
+    });
 </script>
 
 </body>
