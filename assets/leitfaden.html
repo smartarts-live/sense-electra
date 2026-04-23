@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V7.4 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V7.5 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
-            /* V7.4 Farb-Doktrin (Gediegene, matte Palette) */
+            /* V7.4/V7.5 Farb-Doktrin (Gediegene, matte Palette) */
             --color-neu: #34495e;           /* Schieferblau */
             --color-service: #16a085;       /* Salbeigrün/Petrol */
             --color-verlaengerung: #c46c25; /* Gedämpftes Altgold */
@@ -30,7 +30,8 @@
             color: var(--text);
             background-color: var(--bg);
             margin: 0;
-            padding-bottom: calc(var(--nav-height) + 40px);
+            /* BUGFIX V7.5: 70vh Padding sorgt dafür, dass auch letzte Elemente die Bildschirmmitte erreichen können */
+            padding-bottom: calc(var(--nav-height) + 70vh);
         }
 
         header {
@@ -52,7 +53,7 @@
 
         .container { padding: 20px 15px; max-width: 800px; margin: 0 auto; }
 
-        /* V7.4 Smart-Scroll-Akkordeon System */
+        /* Smart-Scroll-Akkordeon System */
         .touchpoint {
             background: var(--white);
             margin-bottom: 20px;
@@ -100,10 +101,6 @@
             background: var(--white);
         }
 
-        .touchpoint.active .touchpoint-content {
-            grid-template-rows: 1fr;
-        }
-
         .reveal {
             padding: 20px 15px;
             border-bottom: 1px dashed #eaeaea;
@@ -120,7 +117,7 @@
         .script-item input[type="checkbox"] { width: 24px; height: 24px; margin-right: 15px; cursor: pointer; flex-shrink: 0; }
         .script-item.completed { opacity: 0.4; background: #f0f0f0; text-decoration: line-through; transform: translateX(5px); }
 
-        /* V7.4 Farben für Checkboxen in den Touchpoints */
+        /* Farben für Checkboxen in den Touchpoints */
         #touchpoint-neu .script-item input[type="checkbox"] { accent-color: var(--color-neu); }
         #touchpoint-service .script-item input[type="checkbox"] { accent-color: var(--color-service); }
         #touchpoint-verlaengerung .script-item input[type="checkbox"] { accent-color: var(--color-verlaengerung); }
@@ -154,14 +151,30 @@
         .nav-item {
             text-decoration: none; color: #95a5a6; font-size: 11px; text-align: center; flex: 0 0 auto; min-width: 60px; transition: color 0.3s ease;
         }
-        .nav-item i { display: block; font-size: 24px; margin-bottom: 4px; font-style: normal; transition: color 0.3s ease; }
+        .nav-item i { display: block; font-size: 24px; margin-bottom: 4px; font-style: normal; transition: all 0.3s ease; }
         
-        /* V7.4 Synchrone Nav-Farben im aktiven Zustand */
+        /* BUGFIX V7.5: Synchrone Nav-Farben & 40% Opacity für inaktive Icons */
+        .nav-item[data-target="neu"] i { color: var(--color-neu); opacity: 0.4; }
+        .nav-item[data-target="service"] i { color: var(--color-service); opacity: 0.4; }
+        .nav-item[data-target="verlaengerung"] i { color: var(--color-verlaengerung); opacity: 0.4; }
+        .nav-item[data-target="winback"] i { color: var(--color-winback); opacity: 0.4; }
+        .nav-item[data-target="reklamation"] i { color: var(--color-reklamation); opacity: 0.4; }
+
+        /* Aktiver Zustand: 100% Farbe & Opacity für Text UND Icon */
         .nav-item[data-target="neu"].active { color: var(--color-neu); font-weight: 700; }
+        .nav-item[data-target="neu"].active i { opacity: 1; }
+
         .nav-item[data-target="service"].active { color: var(--color-service); font-weight: 700; }
+        .nav-item[data-target="service"].active i { opacity: 1; }
+
         .nav-item[data-target="verlaengerung"].active { color: var(--color-verlaengerung); font-weight: 700; }
+        .nav-item[data-target="verlaengerung"].active i { opacity: 1; }
+
         .nav-item[data-target="winback"].active { color: var(--color-winback); font-weight: 700; }
+        .nav-item[data-target="winback"].active i { opacity: 1; }
+
         .nav-item[data-target="reklamation"].active { color: var(--color-reklamation); font-weight: 700; }
+        .nav-item[data-target="reklamation"].active i { opacity: 1; }
         
         .hidden { display: none !important; }
     </style>
@@ -169,7 +182,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V7.4</h1>
+    <h1>Lifecycle Cockpit V7.5</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -684,6 +697,26 @@
 </nav>
 
 <script>
+    // BUGFIX V7.5: Status-Variable für Initial-Load
+    let isInitialLoad = true;
+
+    // Initialisierung beim Seitenstart
+    window.onload = () => {
+        // Sektion "Neu" sofort beim Start öffnen
+        document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
+        document.getElementById('touchpoint-neu').classList.add('active');
+        
+        // Navigation für "Neu" auf aktiv setzen
+        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+        const firstNav = document.querySelector('.nav-item[data-target="neu"]');
+        if (firstNav) firstNav.classList.add('active');
+
+        // Initial-Load Phase nach kurzem Moment beenden, damit Observer übernehmen kann
+        setTimeout(() => {
+            isInitialLoad = false;
+        }, 500);
+    };
+
     // 1. Interaktive Elemente Steuerung
     function toggleComplete(element) {
         if(element.classList.contains('future-feature')) return;
@@ -699,7 +732,7 @@
         });
     });
 
-    // 2. Globale Suche (öffnet alle Sektionen temporär bei Eingabe)
+    // 2. Globale Suche
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
         let sections = document.querySelectorAll('.touchpoint-content-inner section');
@@ -720,29 +753,28 @@
     }
 
     // 3. Smart-Scroll Accordion & Nav-Sync
-    // Observer für manuelles Scrollen (Sektionen bleiben offen, um Layout-Jumps zu verhindern)
     const observerOptions = {
         root: null,
-        rootMargin: '-40% 0px -40% 0px', // Triggert, wenn der Header in der Bildschirmmitte ist
+        rootMargin: '-40% 0px -40% 0px', 
         threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
+        // BUGFIX V7.5: Verhindert, dass der Observer direkt beim Neuladen oder ganz oben feuert und das Layout zerreißt
+        if (isInitialLoad || window.scrollY < 50) return;
+
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const touchpoint = entry.target.closest('.touchpoint');
                 const targetData = touchpoint.getAttribute('id').replace('touchpoint-', '');
                 
-                // Sektion weich öffnen (andere nicht schließen -> Scroll-Jump Schutz)
                 touchpoint.classList.add('active');
 
-                // Navigation anpassen
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
                 if(activeNav) {
                     activeNav.classList.add('active');
                     
-                    // Wischbare Navigation zentrieren
                     const navBar = document.querySelector('nav');
                     const itemLeft = activeNav.offsetLeft;
                     const itemWidth = activeNav.offsetWidth;
@@ -760,7 +792,7 @@
         });
     }, observerOptions);
 
-    // Initialisierung: Klick-Verhalten auf Header (schließt andere) & Observer anbinden
+    // Klick-Verhalten auf Header & Observer anbinden
     document.querySelectorAll('.touchpoint-header').forEach(header => {
         observer.observe(header);
         
@@ -768,20 +800,24 @@
             const parent = header.closest('.touchpoint');
             const wasActive = parent.classList.contains('active');
             
-            // Beim Klick schließen wir die anderen, da der User explizit wechselt
+            // Beim expliziten Klick andere Sektionen schließen
             document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
             
             if (!wasActive) {
                 parent.classList.add('active');
+                
+                // Setze Navigation aktiv nach manuellem Klick
+                const targetData = parent.getAttribute('id').replace('touchpoint-', '');
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
+                if(activeNav) activeNav.classList.add('active');
+
                 setTimeout(() => {
                      header.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 400); // Warten bis Animation abgeschlossen
+                }, 400); 
             }
         });
     });
-
-    // Optionale Initialisierung: Erstes Element immer offen lassen? 
-    // Nach den Regeln ist der "Initialzustand: Alle Sektionen geschlossen".
 </script>
 
 </body>
