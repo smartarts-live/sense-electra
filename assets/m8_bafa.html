@@ -122,6 +122,11 @@
         details.info-box[open] summary::after { transform: rotate(180deg); }
         details.info-box .content { padding: 15px; font-size: 0.9rem; color: #444; border-top: 1px solid #e1e8ed; background: #fff; }
 
+        /* Standard-Tabellen Styling */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        th { background: #eef2f5; color: var(--primary); font-weight: 600; text-align: left; padding: 10px; border-bottom: 2px solid #dde4e9; }
+        td { padding: 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+
         /* Wischbare Bottom Navigation */
         nav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: var(--white); display: flex; justify-content: flex-start; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); z-index: 1001; padding-bottom: env(safe-area-inset-bottom); overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-left: 15px; padding-right: 15px; gap: 20px;
@@ -174,7 +179,7 @@
                 <section class="reveal">
                     <p>Als leistungsstarker Unternehmensverbund mit Hauptsitz in Berlin bündeln wir über 20 Jahre Markterfahrung. Unser Ziel ist die ganzheitliche Begleitung bei der Senkung der Betriebskosten (OPEX).</p>
 
-                    <h3>Die Marken im Detail</h3>
+                    <h3 style="color: var(--color-unternehmen);">Die Marken im Detail</h3>
                     <div class="highlight-box" style="border-left-color: var(--color-unternehmen);">
                         <strong>1. apoll.on GmbH:</strong> Das strategische Fundament. Administrative und prozessuale Exzellenz für komplexe Energiekonzepte.<br><br>
                         <strong>2. schnellstrom & schnellgas:</strong> Die Beschaffungsexperten. Kostenfreie, börsenbasierte Preisermittlung für RLM-Kunden (> 100.000 kWh).<br><br>
@@ -182,7 +187,7 @@
                         <strong>4. sense electra GmbH:</strong> Die technischen Innovatoren. Planung, Montage und Betrieb von BHKW, PV und Smart Metering.
                     </div>
 
-                    <h3>Kernkompetenzen (Vertriebs-USPs)</h3>
+                    <h3 style="color: var(--color-unternehmen);">Kernkompetenzen (Vertriebs-USPs)</h3>
                     <ul>
                         <li><strong>Alles aus einer Hand:</strong> Single Point of Contact von der Börse bis zum Heizungskeller.</li>
                         <li><strong>Maximale Kostensenkung:</strong> Aktives Peak-Shaving und Optimierung des Eigenverbrauchs.</li>
@@ -199,7 +204,38 @@
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
                 <section class="reveal">
-                    <p style="color: #7f8c8d; font-style: italic;">Inhalte für Technik & Erzeugung werden hier platziert...</p>
+                    <h3 style="color: var(--color-technik);">M1: Photovoltaik</h3>
+                    <p>Die Auswahl des richtigen Modultyps ist entscheidend für die Flächeneffizienz und den ROI von Gewerbedächern.</p>
+                    <table>
+                        <tr><th>Modultyp</th><th>Wirkungsgrad</th><th>Einsatzbereich (Gewerbe)</th></tr>
+                        <tr><td><strong>Monokristallin (PERC)</strong></td><td>19% - 22%</td><td>Standard für Flachdächer mit begrenzter Fläche.</td></tr>
+                        <tr><td><strong>Bifazial (Glas-Glas)</strong></td><td>Bis 24%</td><td>Weiße Flachdächer, Carports, Freiflächen. (Nutzt Reflexion)</td></tr>
+                    </table>
+                    
+                    <details class="info-box" style="border-left-color: var(--color-technik);">
+                        <summary style="color: var(--color-technik);">📚 Info: Wechselrichter & Anlagenplanung</summary>
+                        <div class="content">
+                            <strong>String- vs. Zentralwechselrichter:</strong> Stringwechselrichter bieten Redundanz bei Ausfällen, Zentralwechselrichter sind günstiger bei großen Freiflächen.<br><br>
+                            <strong>Planungs-Checkliste Dach:</strong> Dachstatik (Zusatzlast 15-25 kg/m²), Dacheindeckung (Trapezblech, Folie), Trafo/Netzanschluss, Brandschutz-Abstände.
+                        </div>
+                    </details>
+
+                    <h3 style="color: var(--color-technik);">M2: Energiespeicher</h3>
+                    <p>Im gewerblichen Bereich dominieren Lithium-Ionen-Systeme (LFP für stationäre Speicher aufgrund hoher Sicherheit und Zyklenfestigkeit).</p>
+                    <div class="highlight-box" style="font-family: monospace; border-left-color: var(--color-technik);">
+                        C-Rate = Leistung (kW) / Kapazität (kWh)
+                    </div>
+                    <p>Für <strong>Peak-Shaving</strong> werden oft hohe C-Raten benötigt, um kurzfristige Lastspitzen abzufangen. ROI-Hebel: Atypische Netznutzung (§ 19 StromNEV) oder USV-Funktion zur Vermeidung von Produktionsausfällen.</p>
+
+                    <h3 style="color: var(--color-technik);">M3: BHKW & Hydraulik</h3>
+                    <p>Blockheizkraftwerke nutzen das Prinzip der Kraft-Wärme-Kopplung (KWK). Der Gesamtwirkungsgrad liegt bei bis zu 90%.</p>
+                    <details class="info-box" style="border-left-color: var(--color-technik);">
+                        <summary style="color: var(--color-technik);">📚 Info: BHKW Eignung & Hydraulik</summary>
+                        <div class="content">
+                            <strong>Eignung:</strong> Hoher, ganzjähriger Wärmebedarf nötig (z.B. Krankenhäuser, Schwimmbäder). Mindestens 5.000 bis 6.000 Vollbenutzungsstunden pro Jahr für schnellen ROI.<br><br>
+                            <strong>Hydraulik:</strong> Pufferspeicher ist Pflicht (verhindert Takten). System muss kühle Rücklauftemperaturen liefern. Spitzenlastkessel bleibt für den Winter bestehen.
+                        </div>
+                    </details>
                 </section>
             </div>
         </div>
@@ -264,99 +300,4 @@
             if (text.includes(input)) {
                 tp.classList.remove('hidden');
                 if (input.length > 0) {
-                    tp.classList.add('active');
-                }
-            } else {
-                tp.classList.add('hidden');
-                tp.classList.remove('active');
-            }
-        });
-    }
-
-    // Smart-Scroll Accordion & Nav-Sync
-    const observerOptions = {
-        root: null,
-        rootMargin: '-40% 0px -40% 0px', 
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        if (isInitialLoad || window.scrollY < 50) return;
-
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const touchpoint = entry.target.closest('.touchpoint');
-                const targetData = touchpoint.getAttribute('id').replace('touchpoint-', '');
-                
-                touchpoint.classList.add('active');
-
-                document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => nav.classList.remove('active'));
-                const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
-                
-                if(activeNav) {
-                    activeNav.classList.add('active');
-                    
-                    const navBar = document.querySelector('nav');
-                    const itemLeft = activeNav.offsetLeft;
-                    const itemWidth = activeNav.offsetWidth;
-                    const navWidth = navBar.offsetWidth;
-                    const scrollLeft = navBar.scrollLeft;
-                    
-                    if (itemLeft < scrollLeft || (itemLeft + itemWidth) > (scrollLeft + navWidth)) {
-                        navBar.scrollTo({
-                            left: itemLeft - (navWidth / 2) + (itemWidth / 2),
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            }
-        });
-    }, observerOptions);
-
-    // Interceptor für Klicks auf die Bottom-Navigation
-    document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => {
-        nav.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            const targetData = nav.getAttribute('data-target');
-            const targetElement = document.getElementById('touchpoint-' + targetData);
-            
-            document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
-            if(targetElement) targetElement.classList.add('active');
-
-            document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(n => n.classList.remove('active'));
-            nav.classList.add('active');
-
-            setTimeout(() => {
-                if(targetElement) targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
-            }, 150);
-        });
-    });
-
-    // Klick-Verhalten auf Header & Observer anbinden
-    document.querySelectorAll('.touchpoint-header').forEach(header => {
-        observer.observe(header);
-        
-        header.addEventListener('click', () => {
-            const parent = header.closest('.touchpoint');
-            const wasActive = parent.classList.contains('active');
-            
-            document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
-            
-            if (!wasActive) {
-                parent.classList.add('active');
-                
-                const targetData = parent.getAttribute('id').replace('touchpoint-', '');
-                document.querySelectorAll('.nav-item:not([data-target="zurueck"])').forEach(nav => nav.classList.remove('active'));
-                const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
-                if(activeNav) activeNav.classList.add('active');
-
-                setTimeout(() => {
-                     header.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 150); 
-            }
-        });
-    });
-</script>
-
-</body>
-</html>
+                    tp.classList.add
