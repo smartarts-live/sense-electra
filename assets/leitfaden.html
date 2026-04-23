@@ -6,7 +6,7 @@
     <title>Vertriebs-Leitfaden V7.5 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
-            /* V7.4/V7.5 Farb-Doktrin (Gediegene, matte Palette) */
+            /* Farb-Doktrin (Gediegene, matte Palette) */
             --color-neu: #34495e;           /* Schieferblau */
             --color-service: #16a085;       /* Salbeigrün/Petrol */
             --color-verlaengerung: #c46c25; /* Gedämpftes Altgold */
@@ -30,7 +30,6 @@
             color: var(--text);
             background-color: var(--bg);
             margin: 0;
-            /* BUGFIX V7.5: 70vh Padding sorgt dafür, dass auch letzte Elemente die Bildschirmmitte erreichen können */
             padding-bottom: calc(var(--nav-height) + 70vh);
         }
 
@@ -90,16 +89,25 @@
             transform: rotate(45deg);
         }
 
+        /* --- BUGFIX BEREICH START --- */
         .touchpoint-content {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .touchpoint.active .touchpoint-content {
+            grid-template-rows: 1fr;
+            opacity: 1;
         }
 
         .touchpoint-content-inner {
             overflow: hidden;
+            min-height: 0; /* KRITISCHER FIX: Zwingt die Grid-Engine zur korrekten Berechnung */
             background: var(--white);
         }
+        /* --- BUGFIX BEREICH ENDE --- */
 
         .reveal {
             padding: 20px 15px;
@@ -153,7 +161,7 @@
         }
         .nav-item i { display: block; font-size: 24px; margin-bottom: 4px; font-style: normal; transition: all 0.3s ease; }
         
-        /* BUGFIX V7.5: Synchrone Nav-Farben & 40% Opacity für inaktive Icons */
+        /* Synchrone Nav-Farben & 40% Opacity für inaktive Icons */
         .nav-item[data-target="neu"] i { color: var(--color-neu); opacity: 0.4; }
         .nav-item[data-target="service"] i { color: var(--color-service); opacity: 0.4; }
         .nav-item[data-target="verlaengerung"] i { color: var(--color-verlaengerung); opacity: 0.4; }
@@ -697,7 +705,7 @@
 </nav>
 
 <script>
-    // BUGFIX V7.5: Status-Variable für Initial-Load
+    // Status-Variable für Initial-Load
     let isInitialLoad = true;
 
     // Initialisierung beim Seitenstart
@@ -760,7 +768,6 @@
     };
 
     const observer = new IntersectionObserver((entries) => {
-        // BUGFIX V7.5: Verhindert, dass der Observer direkt beim Neuladen oder ganz oben feuert und das Layout zerreißt
         if (isInitialLoad || window.scrollY < 50) return;
 
         entries.forEach(entry => {
@@ -792,6 +799,28 @@
         });
     }, observerOptions);
 
+    // FIX: Interceptor für Klicks auf die Bottom-Navigation
+    document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => {
+        nav.addEventListener('click', (e) => {
+            e.preventDefault(); // Verhindert den harten Anker-Sprung
+            const targetData = nav.getAttribute('data-target');
+            const targetElement = document.getElementById('touchpoint-' + targetData);
+            
+            // Alle Sektionen schließen, gewählte öffnen
+            document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
+            if(targetElement) targetElement.classList.add('active');
+
+            // Aktiven Nav-Button setzen
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            nav.classList.add('active');
+
+            // Leicht verzögertes, weiches Scrollen, damit das CSS Grid Zeit hat aufzuklappen
+            setTimeout(() => {
+                if(targetElement) targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }, 150);
+        });
+    });
+
     // Klick-Verhalten auf Header & Observer anbinden
     document.querySelectorAll('.touchpoint-header').forEach(header => {
         observer.observe(header);
@@ -814,7 +843,7 @@
 
                 setTimeout(() => {
                      header.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 400); 
+                }, 150); 
             }
         });
     });
