@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V7.5 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V7.6 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             /* Farb-Doktrin (Gediegene, matte Palette) */
@@ -58,7 +58,7 @@
             margin-bottom: 20px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            overflow: hidden;
+            /* V7.6 FIX: overflow: hidden entfernt für Sticky Headers */
             scroll-margin-top: 80px;
         }
 
@@ -73,7 +73,19 @@
             align-items: center;
             font-weight: 600;
             letter-spacing: 0.5px;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s, border-radius 0.3s;
+            border-radius: 12px 12px 0 0; /* Oben abgerundet, unten flach (offene Sektion) */
+            
+            /* V7.6 UX FEATURE: Sticky Positioning */
+            position: sticky;
+            top: 114px; /* Exakt bündig unter dem Main-Header (inkl. Padding) */
+            z-index: 90;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Wenn der Touchpoint zu ist, muss auch unten abgerundet sein */
+        .touchpoint:not(.active) .touchpoint-header {
+            border-radius: 12px;
         }
 
         .touchpoint-header:active { opacity: 0.8; }
@@ -89,12 +101,14 @@
             transform: rotate(45deg);
         }
 
-        /* --- BUGFIX BEREICH START --- */
         .touchpoint-content {
             display: grid;
             grid-template-rows: 0fr;
             opacity: 0;
             transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
+            /* Um das Überlappen an den unteren Ecken zu fixieren */
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
         }
 
         .touchpoint.active .touchpoint-content {
@@ -104,10 +118,9 @@
 
         .touchpoint-content-inner {
             overflow: hidden;
-            min-height: 0; /* KRITISCHER FIX: Zwingt die Grid-Engine zur korrekten Berechnung */
+            min-height: 0; /* Zwingt die Grid-Engine zur korrekten Berechnung */
             background: var(--white);
         }
-        /* --- BUGFIX BEREICH ENDE --- */
 
         .reveal {
             padding: 20px 15px;
@@ -190,7 +203,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V7.5</h1>
+    <h1>Lifecycle Cockpit V7.6</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -761,6 +774,7 @@
     }
 
     // 3. Smart-Scroll Accordion & Nav-Sync
+    // V7.6 JS FIX: Observer überwacht nun die .touchpoint Container, nicht mehr die sticky Header
     const observerOptions = {
         root: null,
         rootMargin: '-40% 0px -40% 0px', 
@@ -772,12 +786,12 @@
 
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const touchpoint = entry.target.closest('.touchpoint');
+                const touchpoint = entry.target; // Direktes Target ist der Touchpoint-Container
                 const targetData = touchpoint.getAttribute('id').replace('touchpoint-', '');
                 
                 touchpoint.classList.add('active');
 
-                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => nav.classList.remove('active'));
                 const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
                 if(activeNav) {
                     activeNav.classList.add('active');
@@ -799,6 +813,11 @@
         });
     }, observerOptions);
 
+    // Observer an die Container binden
+    document.querySelectorAll('.touchpoint').forEach(touchpoint => {
+        observer.observe(touchpoint);
+    });
+
     // FIX: Interceptor für Klicks auf die Bottom-Navigation
     document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => {
         nav.addEventListener('click', (e) => {
@@ -814,17 +833,18 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             nav.classList.add('active');
 
-            // Leicht verzögertes, weiches Scrollen, damit das CSS Grid Zeit hat aufzuklappen
+            // Leicht verzögertes, weiches Scrollen, inkl. Sticky-Header Offset (-114px)
             setTimeout(() => {
-                if(targetElement) targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+                if(targetElement) {
+                    const y = targetElement.getBoundingClientRect().top + window.scrollY - 114;
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                }
             }, 150);
         });
     });
 
-    // Klick-Verhalten auf Header & Observer anbinden
+    // Klick-Verhalten auf Header
     document.querySelectorAll('.touchpoint-header').forEach(header => {
-        observer.observe(header);
-        
         header.addEventListener('click', () => {
             const parent = header.closest('.touchpoint');
             const wasActive = parent.classList.contains('active');
@@ -837,12 +857,14 @@
                 
                 // Setze Navigation aktiv nach manuellem Klick
                 const targetData = parent.getAttribute('id').replace('touchpoint-', '');
-                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => nav.classList.remove('active'));
                 const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
                 if(activeNav) activeNav.classList.add('active');
 
                 setTimeout(() => {
-                     header.scrollIntoView({behavior: 'smooth', block: 'start'});
+                    // Exaktes scrollen, sodass der Header genau unter dem Main-Header klebt
+                    const y = parent.getBoundingClientRect().top + window.scrollY - 114;
+                    window.scrollTo({top: y, behavior: 'smooth'});
                 }, 150); 
             }
         });
