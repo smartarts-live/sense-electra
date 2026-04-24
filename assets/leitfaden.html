@@ -302,17 +302,20 @@
                     </div>
                     
                     <h3 style="color: var(--color-neu);">Phase 1: Motivation & Führung</h3>
-
-                    <div class="highlight-box" data-wording="icebreaker-branche" style="border-left-color: var(--color-neu);">
-                        "Wie gehen Sie aktuell in Ihrer Branche mit den steigenden Netzentgelten um?"
-                    </div>
-                    <div class="highlight-box" data-wording="pain-point" style="border-left-color: var(--color-neu);">
-                        "Sind die Energiekosten in Ihrem Betrieb aktuell überhaupt ein Thema, über das gesprochen wird?"
-                    </div>
                     
                     <div class="script-item future-feature">
                         <input type="checkbox">
                         <span><strong>Video-Call:</strong> Teams-Einladung für Video-Erstcall automatisiert senden.</span>
+                    </div>
+
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="icebreaker-branche">
+                        <input type="checkbox">
+                        <span><strong>Branchen-Icebreaker:</strong> <em>"Wie gehen Sie aktuell in Ihrer Branche mit den steigenden Netzentgelten um?"</em></span>
+                    </div>
+
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="pain-point">
+                        <input type="checkbox">
+                        <span><strong>Pain-Point:</strong> <em>"Sind die Energiekosten in Ihrem Betrieb aktuell überhaupt ein Thema, über das gesprochen wird?"</em></span>
                     </div>
 
                     <div class="script-item" onclick="toggleComplete(this)">
@@ -339,6 +342,10 @@
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
                         <span><strong>Qualifizierung Zahlart:</strong> <em>"Zahlen Sie monatliche Abschläge oder wird bei Ihnen jeden Monat exakt das abgerechnet, was Sie verbraucht haben?"</em></span>
+                    </div>
+                    <div class="script-item" onclick="toggleComplete(this)">
+                        <input type="checkbox">
+                        <span><span class="data-tag">Lastgang</span> Unverzichtbar für RLM (Spitzenlast-Check).</span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
@@ -406,8 +413,9 @@
                         <span><strong>Lokale KI:</strong> Präsentation für ROI-Analyse über lokales OmniBook starten.</span>
                     </div>
 
-                    <div class="highlight-box" data-wording="best-price" style="border-left-color: var(--color-neu);">
-                        "Ich habe Ihre Daten geprüft und sende Ihnen jetzt meinen besten Preis für Ihre Abnahmestelle."
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="best-price">
+                        <input type="checkbox">
+                        <span><strong>Best-Price Pitch:</strong> <em>"Ich habe Ihre Daten geprüft und sende Ihnen jetzt meinen besten Preis für Ihre Abnahmestelle."</em></span>
                     </div>
 
                     <div class="script-item" onclick="toggleComplete(this)">
@@ -607,8 +615,9 @@
 
                     <h3 style="color: var(--color-winback);">Phase 2: Der neue USP-Pitch (sense electra)</h3>
                     
-                    <div class="highlight-box" data-wording="winback-bridge" style="border-left-color: var(--color-winback);">
-                        "Wir haben unser Konzept massiv weiterentwickelt. Was genau müsste passieren, damit Sie heute sagen: 'Das klingt fair, das schauen wir uns noch mal an'?"
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="winback-bridge">
+                        <input type="checkbox">
+                        <span><strong>Die Brücke bauen:</strong> <em>"Wir haben unser Konzept massiv weiterentwickelt. Was genau müsste passieren, damit Sie heute sagen: 'Das klingt fair, das schauen wir uns noch mal an'?"</em></span>
                     </div>
 
                     <div class="script-item" onclick="toggleComplete(this)">
@@ -730,27 +739,21 @@
 </nav>
 
 <script>
-    // Status-Variable für Initial-Load
     let isInitialLoad = true;
 
-    // Initialisierung beim Seitenstart
     window.onload = () => {
-        // Sektion "Neu" sofort beim Start öffnen
         document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
         document.getElementById('touchpoint-neu').classList.add('active');
         
-        // Navigation für "Neu" auf aktiv setzen
         document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
         const firstNav = document.querySelector('.nav-item[data-target="neu"]');
         if (firstNav) firstNav.classList.add('active');
 
-        // Initial-Load Phase nach kurzem Moment beenden, damit Observer übernehmen kann
         setTimeout(() => {
             isInitialLoad = false;
         }, 500);
     };
 
-    // 1. Interaktive Elemente Steuerung
     function toggleComplete(element) {
         if(element.classList.contains('future-feature')) return;
         element.classList.toggle('completed');
@@ -765,7 +768,6 @@
         });
     });
 
-    // 2. Globale Suche
     function searchContent() {
         let input = document.getElementById('searchBar').value.toLowerCase();
         let sections = document.querySelectorAll('.touchpoint-content-inner section');
@@ -785,7 +787,6 @@
         });
     }
 
-    // 3. Smart-Scroll Accordion & Nav-Sync
     const observerOptions = {
         root: null,
         rootMargin: '-40% 0px -40% 0px', 
@@ -797,7 +798,7 @@
 
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const touchpoint = entry.target; // Direktes Target ist der Touchpoint-Container
+                const touchpoint = entry.target; 
                 const targetData = touchpoint.getAttribute('id').replace('touchpoint-', '');
                 
                 touchpoint.classList.add('active');
@@ -824,27 +825,22 @@
         });
     }, observerOptions);
 
-    // Observer an die Container binden
     document.querySelectorAll('.touchpoint').forEach(touchpoint => {
         observer.observe(touchpoint);
     });
 
-    // FIX: Interceptor für Klicks auf die Bottom-Navigation
     document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => {
         nav.addEventListener('click', (e) => {
-            e.preventDefault(); // Verhindert den harten Anker-Sprung
+            e.preventDefault(); 
             const targetData = nav.getAttribute('data-target');
             const targetElement = document.getElementById('touchpoint-' + targetData);
             
-            // Alle Sektionen schließen, gewählte öffnen
             document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
             if(targetElement) targetElement.classList.add('active');
 
-            // Aktiven Nav-Button setzen
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             nav.classList.add('active');
 
-            // Leicht verzögertes, weiches Scrollen, inkl. Sticky-Header Offset (-114px)
             setTimeout(() => {
                 if(targetElement) {
                     const y = targetElement.getBoundingClientRect().top + window.scrollY - 114;
@@ -854,26 +850,22 @@
         });
     });
 
-    // Klick-Verhalten auf Header
     document.querySelectorAll('.touchpoint-header').forEach(header => {
         header.addEventListener('click', () => {
             const parent = header.closest('.touchpoint');
             const wasActive = parent.classList.contains('active');
             
-            // Beim expliziten Klick andere Sektionen schließen
             document.querySelectorAll('.touchpoint').forEach(tp => tp.classList.remove('active'));
             
             if (!wasActive) {
                 parent.classList.add('active');
                 
-                // Setze Navigation aktiv nach manuellem Klick
                 const targetData = parent.getAttribute('id').replace('touchpoint-', '');
                 document.querySelectorAll('.nav-item:not([href="expert.html"])').forEach(nav => nav.classList.remove('active'));
                 const activeNav = document.querySelector(`.nav-item[data-target="${targetData}"]`);
                 if(activeNav) activeNav.classList.add('active');
 
                 setTimeout(() => {
-                    // Exaktes scrollen, sodass der Header genau unter dem Main-Header klebt
                     const y = parent.getBoundingClientRect().top + window.scrollY - 114;
                     window.scrollTo({top: y, behavior: 'smooth'});
                 }, 150); 
