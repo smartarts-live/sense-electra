@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V7.6 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V8.0 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             /* Farb-Doktrin (Gediegene, matte Palette) */
@@ -58,7 +58,6 @@
             margin-bottom: 20px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            /* V7.6 FIX: overflow: hidden entfernt für Sticky Headers */
             scroll-margin-top: 80px;
         }
 
@@ -74,16 +73,14 @@
             font-weight: 600;
             letter-spacing: 0.5px;
             transition: opacity 0.2s, border-radius 0.3s;
-            border-radius: 12px 12px 0 0; /* Oben abgerundet, unten flach (offene Sektion) */
+            border-radius: 12px 12px 0 0; 
             
-            /* V7.6 UX FEATURE: Sticky Positioning */
             position: sticky;
-            top: 114px; /* Exakt bündig unter dem Main-Header (inkl. Padding) */
+            top: 114px; 
             z-index: 90;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Wenn der Touchpoint zu ist, muss auch unten abgerundet sein */
         .touchpoint:not(.active) .touchpoint-header {
             border-radius: 12px;
         }
@@ -106,7 +103,6 @@
             grid-template-rows: 0fr;
             opacity: 0;
             transition: grid-template-rows 0.4s ease-out, opacity 0.4s ease-out;
-            /* Um das Überlappen an den unteren Ecken zu fixieren */
             border-radius: 0 0 12px 12px;
             overflow: hidden;
         }
@@ -118,7 +114,7 @@
 
         .touchpoint-content-inner {
             overflow: hidden;
-            min-height: 0; /* Zwingt die Grid-Engine zur korrekten Berechnung */
+            min-height: 0; 
             background: var(--white);
         }
 
@@ -203,7 +199,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V7.6</h1>
+    <h1>Lifecycle Cockpit V8.0</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -306,6 +302,13 @@
                     </div>
                     
                     <h3 style="color: var(--color-neu);">Phase 1: Motivation & Führung</h3>
+
+                    <div class="highlight-box" data-wording="icebreaker-branche" style="border-left-color: var(--color-neu);">
+                        "Wie gehen Sie aktuell in Ihrer Branche mit den steigenden Netzentgelten um?"
+                    </div>
+                    <div class="highlight-box" data-wording="pain-point" style="border-left-color: var(--color-neu);">
+                        "Sind die Energiekosten in Ihrem Betrieb aktuell überhaupt ein Thema, über das gesprochen wird?"
+                    </div>
                     
                     <div class="script-item future-feature">
                         <input type="checkbox">
@@ -314,7 +317,7 @@
 
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><em>"Wofür genau benötigen Sie das Angebot?"</em> (Projekt, Vergleich, Wechsel?)</span>
+                        <span><em>"Wofür genau benötigen Sie das Konzept?"</em> (Projekt, Vergleich, Wechsel?)</span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
@@ -335,7 +338,7 @@
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><span class="data-tag">Lastgang</span> Unverzichtbar für RLM (Spitzenlast-Check).</span>
+                        <span><strong>Qualifizierung Zahlart:</strong> <em>"Zahlen Sie monatliche Abschläge oder wird bei Ihnen jeden Monat exakt das abgerechnet, was Sie verbraucht haben?"</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
@@ -349,16 +352,16 @@
                     <h3 style="color: var(--color-neu);">Phase 3: Verbindlichkeit (Termine)</h3>
                     <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--color-neu);">
                         <input type="checkbox">
-                        <span><strong>Termin 1:</strong> Zusendung des Angebots fixieren.</span>
+                        <span><strong>Termin 1:</strong> Zusendung der ROI-Analyse fixieren.</span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--color-neu);">
                         <input type="checkbox">
-                        <span><strong>Termin 2:</strong> Besprechung des Angebots fixieren.</span>
+                        <span><strong>Termin 2:</strong> Besprechung des Konzepts fixieren.</span>
                     </div>
                 </section>
 
                 <section id="angebot" class="reveal">
-                    <h2>4. Angebotsprozess</h2>
+                    <h2>4. Ausarbeitungsprozess</h2>
                     <details class="info-box" style="border-left-color: var(--color-neu);">
                         <summary style="color: var(--color-neu);">📚 Info: Lastgänge analysieren</summary>
                         <div class="content">
@@ -403,12 +406,16 @@
                         <span><strong>Lokale KI:</strong> Präsentation für ROI-Analyse über lokales OmniBook starten.</span>
                     </div>
 
+                    <div class="highlight-box" data-wording="best-price" style="border-left-color: var(--color-neu);">
+                        "Ich habe Ihre Daten geprüft und sende Ihnen jetzt meinen besten Preis für Ihre Abnahmestelle."
+                    </div>
+
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
                         <span><strong>Abschluss:</strong> <em>"Für wie viele Monate wollen Sie sich entscheiden?"</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-neu);">Bei Angebotsannahme</h3>
+                    <h3 style="color: var(--color-neu);">Bei Konzeptannahme</h3>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
                         <span>Gratulieren und Eingangsbestätigung senden.</span>
@@ -453,11 +460,11 @@
                     <h3 style="color: var(--color-service);">Phase 2: Rechnungs-Prüfung</h3>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><strong>Rechnung einholen:</strong> <em>"Haben Sie die erste Rechnung nach Lieferbeginn vorliegen? Lassen Sie uns diese kurz gemeinsam abgleichen, damit auch wirklich alles stimmt."</em></span>
+                        <span><strong>Rechnungskontrolle:</strong> <em>"Haben Sie die letzte Rechnung griffbereit? Lassen Sie uns gemeinsam kurz drüberschauen – ich möchte sichergehen, dass man Ihnen keine versteckten Risikoaufschläge berechnet hat."</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><strong>Prüfung:</strong> Stimmen Grund- und Arbeitspreise mit unserem Angebot überein?</span>
+                        <span><strong>Prüfung:</strong> Stimmen Grund- und Arbeitspreise mit unserem Konzept überein?</span>
                     </div>
 
                     <h3 style="color: var(--color-service);">Phase 3: Potenzial-Check & Cross-Selling</h3>
@@ -509,7 +516,7 @@
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><strong>Historien-Check:</strong> Letzten Angebotspreis mit dem aktuellen Marktpreis vergleichen, um den Verhandlungsspielraum zu kennen.</span>
+                        <span><strong>Historien-Check:</strong> Letzten Preis mit dem aktuellen Marktpreis vergleichen, um den Verhandlungsspielraum zu kennen.</span>
                     </div>
 
                     <h3 style="color: var(--color-verlaengerung);">Phase 1: Motivation & Einstieg</h3>
@@ -551,7 +558,7 @@
                     <h3 style="color: var(--color-verlaengerung);">Phase 5: Verbindlichkeit & Systempflege</h3>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><strong>Terminierung:</strong> Zusendung des Verlängerungsangebots und Folgetermin fixieren.</span>
+                        <span><strong>Terminierung:</strong> Zusendung der ROI-Analyse und Folgetermin fixieren.</span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
@@ -599,6 +606,11 @@
                     </div>
 
                     <h3 style="color: var(--color-winback);">Phase 2: Der neue USP-Pitch (sense electra)</h3>
+                    
+                    <div class="highlight-box" data-wording="winback-bridge" style="border-left-color: var(--color-winback);">
+                        "Wir haben unser Konzept massiv weiterentwickelt. Was genau müsste passieren, damit Sie heute sagen: 'Das klingt fair, das schauen wir uns noch mal an'?"
+                    </div>
+
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
                         <span><strong>Neuigkeiten pitchen:</strong> <em>"Wir optimieren jetzt nicht nur den reinen Strompreis, sondern kappen aktiv teure Leistungsspitzen."</em></span>
@@ -628,7 +640,7 @@
                     <h3 style="color: var(--color-winback);">Phase 4: Verbindlichkeit (Termine)</h3>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
-                        <span><strong>Termin 1:</strong> Termin für die Zusendung der neuen ROI-Analyse/des Angebots fixieren.</span>
+                        <span><strong>Termin 1:</strong> Termin für die Zusendung der neuen ROI-Analyse fixieren.</span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)">
                         <input type="checkbox">
@@ -774,7 +786,6 @@
     }
 
     // 3. Smart-Scroll Accordion & Nav-Sync
-    // V7.6 JS FIX: Observer überwacht nun die .touchpoint Container, nicht mehr die sticky Header
     const observerOptions = {
         root: null,
         rootMargin: '-40% 0px -40% 0px', 
