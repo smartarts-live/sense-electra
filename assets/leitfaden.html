@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vertriebs-Leitfaden V8.0 | Customer Lifecycle Cockpit</title>
+    <title>Vertriebs-Leitfaden V8.1 | Customer Lifecycle Cockpit</title>
     <style>
         :root {
             /* Farb-Doktrin (Gediegene, matte Palette) */
@@ -124,8 +124,8 @@
         }
         .reveal:last-child { border-bottom: none; }
 
-        .reveal h2 { color: var(--primary); font-size: 1.25rem; margin-top: 0; padding-bottom: 10px; border-bottom: 2px solid #eaeaea; }
-        h3 { color: var(--primary); font-size: 1.1rem; margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: var(--primary); font-size: 1.15rem; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        p { margin-top: 0; margin-bottom: 15px; font-size: 0.95rem; }
 
         /* Interaktive Script-Elemente (Action) */
         .script-item {
@@ -141,22 +141,15 @@
         #touchpoint-winback .script-item input[type="checkbox"] { accent-color: var(--color-winback); }
         #touchpoint-reklamation .script-item input[type="checkbox"] { accent-color: var(--color-reklamation); }
 
-        /* Future Features Badge & Styling */
-        .future-feature {
-            background-color: rgba(52, 152, 219, 0.15) !important; border: 1px dashed var(--accent) !important; position: relative; cursor: not-allowed !important; opacity: 0.8; pointer-events: none;
-        }
-        .future-feature::after {
-            content: "IN PLANUNG"; position: absolute; top: -10px; right: 15px; background: var(--accent); color: var(--white); font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
         /* Info-Akkordeons (Theorie) */
-        details.info-box { background: #f8f9fa; border-left: 4px solid var(--primary); margin: 15px 0; border-radius: 4px 8px 8px 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        details.info-box { background: #f8f9fa; border-left: 4px solid var(--primary); margin: 15px 0 25px 0; border-radius: 4px 8px 8px 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
         details.info-box summary { padding: 15px; font-weight: 600; cursor: pointer; list-style: none; color: var(--primary); display: flex; justify-content: space-between; align-items: center; background: #eef2f5; }
         details.info-box summary::after { content: '▼'; font-size: 0.8em; transition: transform 0.3s; }
         details.info-box[open] summary::after { transform: rotate(180deg); }
         details.info-box .content { padding: 15px; font-size: 0.9rem; color: #444; border-top: 1px solid #e1e8ed; background: #fff; }
+        details.info-box ul { margin: 0; padding-left: 20px; }
+        details.info-box li { margin-bottom: 8px; }
 
-        .highlight-box { background: #e8f4fd; border-left: 5px solid var(--primary); padding: 15px; border-radius: 4px 12px 12px 4px; font-weight: 500; margin: 15px 0; }
         .data-tag { display: inline-block; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; color: var(--primary); margin-right: 5px; }
 
         /* Wischbare Bottom Navigation */
@@ -199,7 +192,7 @@
 <body>
 
 <header>
-    <h1>Lifecycle Cockpit V8.0</h1>
+    <h1>Lifecycle Cockpit V8.1</h1>
     <div class="search-container">
         <input type="text" id="searchBar" placeholder="Suchen..." onkeyup="searchContent()">
     </div>
@@ -211,60 +204,39 @@
         <h2 class="touchpoint-header" style="background: var(--color-neu);">Neu: Akquise, Potenzial, Abschluss</h2>
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
-                
-                <section id="erstkontakt" class="reveal">
-                    <h2>1. Erstkontakt & Qualifizierung</h2>
-                    <details class="info-box" style="border-left-color: var(--color-neu);">
-                        <summary style="color: var(--color-neu);">📚 Info: Verhaltensregeln im Gespräch</summary>
-                        <div class="content">
-                            <ul>
-                                <li><strong>Führung:</strong> Wer fragt, der führt (Kundenfragen zurückgeben).</li>
-                                <li><strong>Fokus:</strong> Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat.</li>
-                                <li><strong>Klarheit:</strong> Konjunktiv weglassen. Keine Fachwörter benutzen.</li>
-                            </ul>
-                        </div>
-                    </details>
-
-                    <details class="info-box" style="border-left-color: var(--color-neu);">
-                        <summary style="color: var(--color-neu);">📚 Info: Die 4 Käufertypen</summary>
-                        <div class="content">
-                            <ul>
-                                <li><strong>Schnäppchenjäger:</strong> Will den besten Preis. Verhandlungsspielraum lassen.</li>
-                                <li><strong>Preisbereite:</strong> Preis muss gut, aber nicht der beste sein. Zuverlässigkeit zählt.</li>
-                                <li><strong>Verlustaversive:</strong> Misstrauisch. Langjährige Erfahrung und Liefersicherheit betonen.</li>
-                                <li><strong>Gewohnheitskäufer:</strong> Unbedingt versuchen, an den Entscheider heranzukommen.</li>
-                            </ul>
-                        </div>
-                    </details>
-
+                <section class="reveal">
+                    
                     <h3 style="color: var(--color-neu);">Phase 0: Vorbereitung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" data-wording="prep-backoffice" style="border-left: 4px solid var(--color-neu);">
-                        <input type="checkbox">
-                        <span><span class="data-tag">💬 Interner Check</span> <em>"Vpsp-Briefing lesen: Welche Vorinformationen oder Pain-Points hat das Backoffice bereits notiert?"</em></span>
-                    </div>
-                    
-                    <h3 style="color: var(--color-neu);">Phase 1: Eisbrecher & Fokus</h3>
-                    
-                    <div class="script-item future-feature">
-                        <input type="checkbox">
-                        <span><strong>Video-Call:</strong> Teams-Einladung für Video-Erstcall automatisiert senden.</span>
-                    </div>
+                    <p><strong>Ziel der Phase:</strong> Den warmen Lead analysieren und sich auf das Gesprächs-Szenario einstellen.</p>
+                    <details class="info-box" style="border-left-color: var(--color-neu);">
+                        <summary style="color: var(--color-neu);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Vpsp-Briefing lesen: Welche Pain-Points hat das Backoffice notiert?</li>
+                                <li>Systemprüfung: Sind alle relevanten Unternehmensdaten im CRM erfasst?</li>
+                            </ul>
+                        </div>
+                    </details>
 
+                    <h3 style="color: var(--color-neu);">Phase 1: Eisbrecher & Fokus</h3>
+                    <p><strong>Ziel der Phase:</strong> Den warmen Lead abholen, Kompetenz durch interne Vorbereitung signalisieren und das Gesprächsziel fixieren.</p>
+                    <details class="info-box" style="border-left-color: var(--color-neu);">
+                        <summary style="color: var(--color-neu);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Video-Call: Teams-Einladung für Video-Erstcall aus dem System versenden.</li>
+                                <li>Regel: Wer fragt, der führt. Keine Fachwörter nutzen.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="ice-uebergabe">
                         <input type="checkbox">
-                        <span><span class="data-tag">💬 Warmer Lead</span> <em>"Guten Tag [Name], mein Kollege hat mir Ihre Vorab-Anfrage übergeben. An welchem Punkt im Prozess sollen wir heute direkt einhaken?"</em></span>
+                        <span><span class="data-tag">💬 Warmer Lead</span> <em>"Guten Tag [Name], mein Kollege hat mir Ihre Vorab-Anfrage übergeben. An welchem Punkt sollen wir heute direkt einhaken?"</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="ice-fokus">
                         <input type="checkbox">
-                        <span><span class="data-tag">💬 Ziel-Fokus</span> <em>"Lassen Sie uns keine Zeit verlieren: Was muss am Ende unserer Zusammenarbeit auf dem Tisch liegen, damit sich das Gespräch heute für Sie lohnt?"</em></span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ice-produktion">
-                        <input type="checkbox">
-                        <span><span class="data-tag">💬 Produktion</span> <em>"Wie stark fließen die aktuellen Stromkosten bei Ihnen bereits in die Stückkostenkalkulation Ihrer Maschinen ein?"</em></span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ice-gastro">
-                        <input type="checkbox">
-                        <span><span class="data-tag">💬 Hotel/Gastro</span> <em>"Welche Erfahrungen haben Sie in der Hotellerie mit der Optimierung von starken Grundlasten wie Kühlung oder Wellness gemacht?"</em></span>
+                        <span><span class="data-tag">💬 Ziel-Fokus</span> <em>"Was muss am Ende unserer Zusammenarbeit auf dem Tisch liegen, damit sich das Gespräch heute für Sie lohnt?"</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="ice-schmerz">
                         <input type="checkbox">
@@ -272,103 +244,70 @@
                     </div>
 
                     <h3 style="color: var(--color-neu);">Phase 2: Datenbeschaffung</h3>
+                    <p><strong>Ziel der Phase:</strong> Belastbare Daten für die ROI-Analyse sichern, ohne den Kunden technisch zu überfordern.</p>
+                    <details class="info-box" style="border-left-color: var(--color-neu);">
+                        <summary style="color: var(--color-neu);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>MaLo-ID: Fallback-Identifikationsnummer der Verbrauchsstelle intern prüfen.</li>
+                                <li>Lieferbeginn: Gewünschter Start vs. Kündigungsfrist abgleichen.</li>
+                            </ul>
+                        </div>
+                    </details>
+
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="data-rechnung">
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Rechnung</span> <em>"Auf welchem Weg können Sie mir am einfachsten Ihre aktuelle Rechnung zur Prüfung zukommen lassen?"</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="data-zahlart">
                         <input type="checkbox">
-                        <span><span class="data-tag">💬 Qualifizierung RLM/SLP</span> <em>"Wie rechnet Ihr aktueller Versorger ab – zahlen Sie feste monatliche Abschläge oder exakt das, was verbraucht wurde?"</em></span>
+                        <span><span class="data-tag">💬 Qualifizierung RLM/SLP</span> <em>"Wie rechnet Ihr aktueller Versorger ab – zahlen Sie feste Abschläge oder exakt das, was verbraucht wurde?"</em></span>
                     </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="data-lastgang">
                         <input type="checkbox">
-                        <span><span class="data-tag">💬 Lastgang</span> <em>"Um Ihre Leistungsspitzen zu kappen, brauche ich Ihren Viertelstunden-Lastgang. Wer ist da intern bei Ihnen der schnellste Ansprechpartner?"</em></span>
-                    </div>
-                    
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><span class="data-tag">MaLo-ID</span> Fallback: Identifikationsnummer der Verbrauchsstelle abfragen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><span class="data-tag">Lieferbeginn</span> Gewünschter Start vs. Kündigungsfrist.</span>
+                        <span><span class="data-tag">💬 Lastgang</span> <em>"Um Ihre Leistungsspitzen zu kappen, brauche ich Ihren Viertelstunden-Lastgang. Wer ist da bei Ihnen der schnellste Ansprechpartner?"</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-neu);">Phase 3: Verbindlichkeit (Termine)</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--color-neu);">
-                        <input type="checkbox">
-                        <span><strong>Termin 1:</strong> Zusendung der ROI-Analyse fixieren.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border: 2px solid var(--color-neu);">
-                        <input type="checkbox">
-                        <span><strong>Termin 2:</strong> Besprechung des Konzepts fixieren.</span>
-                    </div>
-                </section>
-
-                <section id="ausarbeitung" class="reveal">
-                    <h2>2. Ausarbeitungsprozess</h2>
+                    <h3 style="color: var(--color-neu);">Phase 3 & 4: Verbindlichkeit & Ausarbeitung</h3>
+                    <p><strong>Ziel der Phase:</strong> Den nächsten logischen Schritt terminieren und die Ausarbeitung im Backoffice anstoßen.</p>
                     <details class="info-box" style="border-left-color: var(--color-neu);">
-                        <summary style="color: var(--color-neu);">📚 Info: Lastgänge analysieren</summary>
-                        <div class="content">
-                            Im Tool über "Vpsp > Lastganganalyse" den letzten kompletten Monat auswählen. Wenn das Diagramm keine Auffälligkeiten aufweist, kann es versendet werden.
-                        </div>
-                    </details>
-
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Vpsp-Aufgabe:</strong> Aufgabe an Backoffice zum Anlegen des Kunden.</span>
-                    </div>
-                </section>
-
-                <section id="abschluss" class="reveal">
-                    <h2>3. Zweitgespräch & Abschluss</h2>
-                    <details class="info-box" style="border-left-color: var(--color-neu);">
-                        <summary style="color: var(--color-neu);">📚 Info: Argumente für lange Laufzeiten</summary>
+                        <summary style="color: var(--color-neu);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
                             <ul>
-                                <li><strong>CO2-Preis:</strong> Steigt weiter, fossile Energieträger werden teurer. Prognose 2029: 80-100 EUR/t.</li>
-                                <li><strong>Netzentgelte:</strong> Steigen jährlich durch Netzausbau.</li>
-                                <li><strong>Planungssicherheit:</strong> Schutz vor Preissteigerungen und Volatilität.</li>
+                                <li>Terminierung: Termin für Zusendung & Besprechung im Kalender eintragen.</li>
+                                <li>Ausarbeitung: "Vpsp > Lastganganalyse" nutzen und Aufgabe an Backoffice zum Anlegen des Kunden übergeben.</li>
                             </ul>
                         </div>
                     </details>
 
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="term-fix">
+                        <input type="checkbox">
+                        <span><span class="data-tag">💬 Terminsetzung</span> <em>"Wann in der kommenden Woche haben Sie 15 Minuten Zeit, damit wir gemeinsam auf die fertige Analyse schauen können?"</em></span>
+                    </div>
+
+                    <h3 style="color: var(--color-neu);">Phase 5: Zweitgespräch & Abschluss</h3>
+                    <p><strong>Ziel der Phase:</strong> Das Konzept als unschlagbare Lösung präsentieren und Verbindlichkeit für die Unterschrift erzeugen.</p>
                     <details class="info-box" style="border-left-color: var(--color-neu);">
-                        <summary style="color: var(--color-neu);">📚 Info: Der Closing-Moment</summary>
+                        <summary style="color: var(--color-neu);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
-                            Argumentationshilfe: <em>"Warum sollte der Versorger Ihnen einen Preis von x ct geben? Da könnte er sofort an der Börse verkaufen und würde den Gewinn realisieren."</em>. <em>"Sie gehen keinerlei Risiko ein."</em>.
+                            <ul>
+                                <li>Argumente: CO2-Preis steigt (80-100 EUR/t bis 2029), Netzentgelte steigen. Planungssicherheit betonen.</li>
+                                <li>Post-Closing: Bei Annahme sofort Gratulieren, Eingangsbestätigung senden und Vollmacht einholen.</li>
+                            </ul>
                         </div>
                     </details>
-
-                    <h3 style="color: var(--color-neu);">USP-Argumentation & Abschluss</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Peak-Shaving / Eigenverbrauch:</strong> Kostenreduktion besprechen.</span>
-                    </div>
-                    
-                    <div class="script-item future-feature">
-                        <input type="checkbox">
-                        <span><strong>Lokale KI:</strong> Präsentation für ROI-Analyse über lokales OmniBook starten.</span>
-                    </div>
 
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="close-pitch">
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Best-Price Pitch</span> <em>"Ich habe Ihre Daten geprüft und sende Ihnen hier unseren besten Preis für Ihre Abnahmestelle."</em></span>
                     </div>
-                    
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="close-peak">
+                        <input type="checkbox">
+                        <span><span class="data-tag">💬 Peak-Shaving Pitch</span> <em>"Wenn wir uns die Analyse ansehen: Durch das Kappungskonzept amortisiert sich die Lösung nach X Monaten."</em></span>
+                    </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="close-laufzeit">
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Closing (Offen)</span> <em>"Welche Laufzeit passt aktuell am besten zu Ihrer strategischen Unternehmensplanung?"</em></span>
-                    </div>
-
-                    <h3 style="color: var(--color-neu);">Bei Konzeptannahme</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span>Gratulieren und Eingangsbestätigung senden.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span>Alle notwendigen Daten und <strong>Vollmacht</strong> einholen.</span>
                     </div>
                 </section>
             </div>
@@ -380,64 +319,54 @@
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
                 <section class="reveal">
+                    
+                    <h3 style="color: var(--color-service);">Phase 0 & 1: Vorbereitung & Einstieg</h3>
+                    <p><strong>Ziel der Phase:</strong> Aktive Betreuung beweisen und die Zufriedenheit abklopfen.</p>
                     <details class="info-box" style="border-left-color: var(--color-service);">
-                        <summary style="color: var(--color-service);">📚 Info: Verhaltensregel</summary>
+                        <summary style="color: var(--color-service);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
-                            Kunden immer bestätigen und loben. Kunden auf keinen Fall "drücken" oder unter Verkaufsdruck setzen. Ziel ist es, echten Service zu beweisen und ein konstanter Ansprechpartner zu sein.
+                            <ul>
+                                <li>Vpsp prüfen auf neue Rechnungen. Individuelle Fragen aus Notizen ableiten.</li>
+                            </ul>
                         </div>
                     </details>
 
-                    <h3 style="color: var(--color-service);">Phase 0: Vorbereitung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--color-service);">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="srv-einstieg">
                         <input type="checkbox">
-                        <span><strong>Fragenkatalog:</strong> Individuellen Fragenkatalog vorab erstellen (z.B. "Welche Änderungen gab es seit unserem letzten Gespräch?").</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>System-Check:</strong> Im Vpsp prüfen, ob alle Rechnungen und Dokumente sauber hinterlegt sind.</span>
+                        <span><span class="data-tag">💬 Eisbrecher</span> <em>"Unser Vertrag läuft nun einige Zeit. Wie zufrieden sind Sie bisher mit den Abläufen im Hintergrund?"</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-service);">Phase 1: Eisbrecher & Status-Quo</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
+                    <h3 style="color: var(--color-service);">Phase 2 & 3: Rechnung & Cross-Selling</h3>
+                    <p><strong>Ziel der Phase:</strong> Rechnungen als Vertrauensanker nutzen und Potenziale (Maschinen, PV) aufdecken.</p>
+                    <details class="info-box" style="border-left-color: var(--color-service);">
+                        <summary style="color: var(--color-service);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Rechnung intern auf korrekte Grund-/Arbeitspreise abgleichen. Zählerfreunde (Live-Metering) vorbereiten.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="srv-rechnung">
                         <input type="checkbox">
-                        <span><strong>Einstieg:</strong> <em>"Herr/Frau [Name], unser Vertrag läuft nun seit einigen Wochen/Monaten. Wie zufrieden sind Sie bisher mit den Abläufen?"</em></span>
+                        <span><span class="data-tag">💬 Rechnungskontrolle</span> <em>"Haben Sie die aktuelle Rechnung vorliegen? Lassen Sie uns kurz prüfen, um versteckte Risikoaufschläge auszuschließen."</em></span>
+                    </div>
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="srv-potenzial">
+                        <input type="checkbox">
+                        <span><span class="data-tag">💬 Bedarfsanalyse</span> <em>"Haben sich Ihre Lastspitzen verändert? Sind neue Anlagen oder Abnahmestellen hinzugekommen?"</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-service);">Phase 2: Rechnungs-Prüfung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" data-wording="service-rechnung">
-                        <input type="checkbox">
-                        <span><span class="data-tag">💬 Rechnungskontrolle</span> <em>"Haben Sie die aktuelle Rechnung vorliegen? Auf welche Parameter sollen wir gemeinsam einen Blick werfen, um versteckte Risikoaufschläge auszuschließen?"</em></span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Prüfung:</strong> Stimmen Grund- und Arbeitspreise mit unserem Konzept überein?</span>
-                    </div>
+                    <h3 style="color: var(--color-service);">Phase 4: Systempflege</h3>
+                    <p><strong>Ziel der Phase:</strong> Nachbereitung der Kunden-Historie.</p>
+                    <details class="info-box" style="border-left-color: var(--color-service);">
+                        <summary style="color: var(--color-service);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Vpsp-Update (neue Maschinen hinterlegen), Wiedervorlage für 6 Monate setzen.</li>
+                            </ul>
+                        </div>
+                    </details>
 
-                    <h3 style="color: var(--color-service);">Phase 3: Potenzial-Check & Cross-Selling</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Bedarfsanalyse:</strong> <em>"Haben sich Ihre Lastspitzen verändert? Sind neue Maschinen oder weitere Abnahmestellen hinzugekommen?"</em></span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Sense Electra Pitch:</strong> Kurz erwähnen, dass wir bei Bedarf auch PV, BHKW oder Ladeinfrastruktur prüfen können.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-service);">Phase 4: Infrastruktur</h3>
-                    <div class="script-item future-feature">
-                        <input type="checkbox">
-                        <span><strong>Live-Metering:</strong> Anschluss an Live-Metering (Zählerfreunde) anbieten und Freigabeanträge abschließen, um klare Plandaten zu haben.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-service);">Phase 5: Systempflege & Follow-up</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Vpsp-Update:</strong> Relevante Infos zu neuen Maschinen oder Abnahmestellen als Notiz hinterlegen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Wiedervorlage:</strong> Nächsten Routine-Anruf (z.B. in 6 Monaten) fest im Vpsp terminieren.</span>
-                    </div>
                 </section>
             </div>
         </div>
@@ -448,68 +377,47 @@
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
                 <section class="reveal">
+                    
+                    <h3 style="color: var(--color-verlaengerung);">Phase 1 & 2: Bedarf & Marktlage</h3>
+                    <p><strong>Ziel der Phase:</strong> Den Alt-Kunden auf die neuen Marktgegebenheiten kalibrieren.</p>
                     <details class="info-box" style="border-left-color: var(--color-verlaengerung);">
-                        <summary style="color: var(--color-verlaengerung);">📚 Info: Prognose 2029 & Marktlage</summary>
+                        <summary style="color: var(--color-verlaengerung);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
-                            Staatliche Entlastungen laufen aus. Der CO2-Preis steigt massiv (Prognose 2029: 80-100 EUR/t). Die Netzentgelte steigen jährlich kontinuierlich durch den notwendigen Netzausbau. Langfristige Verträge sind der sicherste Schutz.
+                            <ul>
+                                <li>Historien-Check (Alt-Preis vs. Neu-Preis prüfen). Prognose 2029 (Entlastungen laufen aus) verinnerlichen.</li>
+                            </ul>
                         </div>
                     </details>
 
-                    <h3 style="color: var(--color-verlaengerung);">Phase 0: Vorbereitung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--color-verlaengerung);">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ver-bedarf">
                         <input type="checkbox">
-                        <span><strong>Fragenkatalog:</strong> Individuelle Fragen notieren (z.B. "Wie entwickelt sich Ihr Strombedarf durch E-Mobilität?").</span>
+                        <span><span class="data-tag">💬 Strategie-Check</span> <em>"Gibt es strategische Veränderungen bei Ihnen, die wir für die kommende Beschaffung berücksichtigen müssen?"</em></span>
                     </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ver-aufklaerung">
                         <input type="checkbox">
-                        <span><strong>Historien-Check:</strong> Letzten Preis mit dem aktuellen Marktpreis vergleichen, um den Verhandlungsspielraum zu kennen.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-verlaengerung);">Phase 1: Motivation & Einstieg</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Einstieg:</strong> Gemeinsame Erfolge der bisherigen Laufzeit betonen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Bedarf klären:</strong> <em>"Gibt es strategische Veränderungen in Ihrem Unternehmen, die wir für die kommende Beschaffung berücksichtigen müssen?"</em></span>
+                        <span><span class="data-tag">💬 Marktlage</span> <em>"Der Markt hat sich gewandelt. Wir müssen uns jetzt gegen den steigenden Strombedarf durch Sektorenkopplung absichern."</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-verlaengerung);">Phase 2: Status-Quo am Markt erklären</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
+                    <h3 style="color: var(--color-verlaengerung);">Phase 3 & 4: Pitch & Abschluss</h3>
+                    <p><strong>Ziel der Phase:</strong> Den Schutzmechanismus (Planungssicherheit) verkaufen und verlängern.</p>
+                    <details class="info-box" style="border-left-color: var(--color-verlaengerung);">
+                        <summary style="color: var(--color-verlaengerung);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Termin für Folgetelefonat eintragen und Backoffice informieren.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ver-pitch">
                         <input type="checkbox">
-                        <span><strong>Aufklärung:</strong> Auf allgemeine Kostensteigerungen und den steigenden Strombedarf (Wärmepumpen, E-Mobilität) hinweisen.</span>
+                        <span><span class="data-tag">💬 USP-Fokus</span> <em>"Langfristige Planungssicherheit und kalkulierbare Betriebskosten sind aktuell der stärkste Hebel."</em></span>
                     </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="ver-close">
                         <input type="checkbox">
-                        <span><strong>Risiko aufzeigen:</strong> Spotmarkt-Risiken vs. Terminmarkt-Sicherheit erläutern.</span>
+                        <span><span class="data-tag">💬 Closing</span> <em>"Um sich vor steigenden Netzentgelten abzusichern: Für wie viele Monate wollen Sie die Konditionen sichern?"</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-verlaengerung);">Phase 3: Argumentation & Pitch</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>USP-Fokus:</strong> Planungssicherheit in den Vordergrund stellen. Auf die Wichtigkeit langfristig kalkulierbarer Betriebskosten (OPEX) pochen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Peak-Shaving Reminder:</strong> Erneut auf Kostensenkungspotenziale durch Spitzenkappung hinweisen.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-verlaengerung);">Phase 4: Abschlussfrage</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Closing:</strong> <em>"Um sich vor den steigenden Netzentgelten und CO2-Preisen abzusichern: Für wie viele Monate wollen Sie sich jetzt die aktuellen Konditionen sichern?"</em></span>
-                    </div>
-
-                    <h3 style="color: var(--color-verlaengerung);">Phase 5: Verbindlichkeit & Systempflege</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Terminierung:</strong> Zusendung der ROI-Analyse und Folgetermin fixieren.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Vpsp-Aufgabe:</strong> Backoffice über geplante Verlängerung informieren.</span>
-                    </div>
                 </section>
             </div>
         </div>
@@ -520,51 +428,39 @@
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
                 <section class="reveal">
+                    
+                    <h3 style="color: var(--color-winback);">Phase 1 & 2: Motiv & Brücke</h3>
+                    <p><strong>Ziel der Phase:</strong> Das alte Wechselmotiv isolieren und eine goldene Brücke für den Neustart bauen.</p>
                     <details class="info-box" style="border-left-color: var(--color-winback);">
-                        <summary style="color: var(--color-winback);">📚 Info: Verhaltensregeln Winback</summary>
+                        <summary style="color: var(--color-winback);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
-                            Gesprächsführung übernehmen: Wer fragt, der führt. Kundenfragen gezielt spiegeln und zurückgeben. Den ehemaligen Wechsel nicht verurteilen, sondern Verständnis zeigen und den Blick nach vorne richten.
+                            <ul>
+                                <li>Im Vpsp alte Konditionen und frühere Tickets checken.</li>
+                                <li>Verhaltensregel: Wer fragt, führt. Den Alt-Wechsel nicht verurteilen.</li>
+                            </ul>
                         </div>
                     </details>
 
-                    <h3 style="color: var(--color-winback);">Phase 0: Vorbereitung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--color-winback);">
-                        <input type="checkbox">
-                        <span><strong>Fragenkatalog:</strong> Individuellen Fragenkatalog vorab erstellen (z.B. "Was können wir heute besser machen als damals?").</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Historien-Check:</strong> Im Vpsp prüfen: Welche Konditionen hatte der Kunde damals? Gab es Beschwerden oder offene Tickets?</span>
-                    </div>
-
-                    <h3 style="color: var(--color-winback);">Phase 1: Ursachenforschung & Eisbrecher</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Eisbrecher:</strong> <em>"Herr/Frau [Name], wir haben Sie lange nicht gehört. Wie laufen die Geschäfte?"</em></span>
-                    </div>
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="winback-motiv">
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Wechsel-Motiv</span> <em>"Wie hat sich die Betreuung durch Ihren aktuellen Versorger im Vergleich zu unserer damaligen Zusammenarbeit entwickelt?"</em></span>
                     </div>
-
-                    <h3 style="color: var(--color-winback);">Phase 2: Der neue USP-Pitch (sense electra)</h3>
-                    
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="winback-bridge">
                         <input type="checkbox">
-                        <span><span class="data-tag">💬 Die Brücke bauen</span> <em>"Was genau muss unser neues Konzept heute beinhalten, damit Sie sagen: 'Das schaue ich mir nochmal an'?"</em></span>
+                        <span><span class="data-tag">💬 Die Brücke bauen</span> <em>"Was genau muss unser neues Konzept beinhalten, damit Sie sagen: 'Das schaue ich mir nochmal an'?"</em></span>
                     </div>
 
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Neuigkeiten pitchen:</strong> <em>"Wir optimieren jetzt nicht nur den reinen Strompreis, sondern kappen aktiv teure Leistungsspitzen."</em></span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Qualifizierung:</strong> <em>"Haben Sie im Bereich Eigenversorgung (PV, BHKW, Energiemanagement) in der Zwischenzeit schon etwas umgesetzt?"</em></span>
-                    </div>
+                    <h3 style="color: var(--color-winback);">Phase 3: Daten-Update (Zwingend für RLM)</h3>
+                    <p><strong>Ziel der Phase:</strong> Veraltete Lastgänge zwingend erneuern, um marktfähig zu sein.</p>
+                    <details class="info-box" style="border-left-color: var(--color-winback);">
+                        <summary style="color: var(--color-winback);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Exakte Kündigungsfrist eintragen.</li>
+                            </ul>
+                        </div>
+                    </details>
 
-                    <h3 style="color: var(--color-winback);">Phase 3: Daten-Update (Datenbeschaffung)</h3>
-                    
                     <div class="script-item" onclick="toggleComplete(this)" data-wording="winback-zahlart">
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Qualifizierung RLM/SLP</span> <em>"Zahlen Sie dort aktuell feste monatliche Abschläge oder wird jeden Monat exakt abgerechnet?"</em></span>
@@ -573,35 +469,7 @@
                         <input type="checkbox">
                         <span><span class="data-tag">💬 Lastgang-Update</span> <em>"Um Ihnen einen tagesaktuellen Bestpreis zu sichern: Wie schnell bekommen wir von Ihnen den aktuellsten Viertelstunden-Lastgang?"</em></span>
                     </div>
-                    
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Rechnung:</strong> Aktuelle Rechnung für den Abgleich einfordern.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Kündigungsfrist:</strong> Exaktes Datum der Kündigungsfrist des aktuellen Vertrages abfragen.</span>
-                    </div>
 
-                    <h3 style="color: var(--color-winback);">Phase 4: Verbindlichkeit (Termine)</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Termin 1:</strong> Termin für die Zusendung der neuen ROI-Analyse fixieren.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Termin 2:</strong> Termin für die gemeinsame Besprechung fixieren.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-winback);">Phase 5: Systempflege & Dokumentation</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Vpsp-Update:</strong> Neue Ansprechpartner, geänderte Pachtverhältnisse oder eventuelle Insolvenzen zwingend hinterlegen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Wiedervorlage:</strong> Den nächstmöglichen Kontaktzeitraum im Vpsp terminieren.</span>
-                    </div>
                 </section>
             </div>
         </div>
@@ -612,54 +480,39 @@
         <div class="touchpoint-content">
             <div class="touchpoint-content-inner">
                 <section class="reveal">
+                    
+                    <h3 style="color: var(--color-reklamation);">Phase 1 & 2: Analyse & Deeskalation</h3>
+                    <p><strong>Ziel der Phase:</strong> Druck aus dem Kessel nehmen, sachlich bleiben und das Problem übernehmen.</p>
                     <details class="info-box" style="border-left-color: var(--color-reklamation);">
-                        <summary style="color: var(--color-reklamation);">📚 Info: Kommunikationsregeln</summary>
+                        <summary style="color: var(--color-reklamation);">💻 System-Aufgaben & Regeln</summary>
                         <div class="content">
-                            Nichts erzählen, wonach der Kunde nicht ausdrücklich gefragt hat. Konjunktiv komplett weglassen. Keine Füllwörter und keine Fachwörter benutzen. Eine klare und einfache Sprache deeskaliert die Situation am schnellsten.
+                            <ul>
+                                <li>System-Check (Tickets prüfen).</li>
+                                <li>Kommunikationsregel: Konjunktiv weglassen, aktiv zuhören, Daten (Zählernummer) abgleichen.</li>
+                            </ul>
                         </div>
                     </details>
 
-                    <h3 style="color: var(--color-reklamation);">Phase 0: Vorbereitung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)" style="border-left: 4px solid var(--color-reklamation);">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="rek-deeskalation">
                         <input type="checkbox">
-                        <span><strong>Fragenkatalog:</strong> W-Fragen zur Sachverhaltsaufklärung notieren ("Was genau ist vorgefallen und wie stellen Sie sich die optimale Lösung vor?").</span>
+                        <span><span class="data-tag">💬 Kümmern</span> <em>"Ich verstehe Ihren Ärger absolut. Ich übernehme das jetzt persönlich und kümmere mich sofort um die Klärung."</em></span>
                     </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
+                    <div class="script-item" onclick="toggleComplete(this)" data-wording="rek-verbindlichkeit">
                         <input type="checkbox">
-                        <span><strong>System-Check:</strong> Bestehende Tickets oder Fehler im Vpsp im Vorfeld checken.</span>
-                    </div>
-
-                    <h3 style="color: var(--color-reklamation);">Phase 1: Aktiv Zuhören & Analyse</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Zuhören:</strong> Den Kunden komplett ausreden lassen und das Problem exakt mitschreiben. Emotionen zulassen, nicht sofort rechtfertigen.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Datenabgleich:</strong> Genaue Rechnungs- oder Zählernummer abgleichen, um Missverständnisse auszuschließen.</span>
+                        <span><span class="data-tag">💬 Zeitrahmen</span> <em>"Ich setze mich mit dem Netzbetreiber in Verbindung und melde mich morgen bis 12 Uhr verlässlich bei Ihnen."</em></span>
                     </div>
 
-                    <h3 style="color: var(--color-reklamation);">Phase 2: Deeskalation</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Kümmern signalisieren:</strong> Entspannung vermitteln. Dem Kunden klar sagen, dass man sich sofort und persönlich um die Lösung kümmert.</span>
-                    </div>
+                    <h3 style="color: var(--color-reklamation);">Phase 3: Systempflege</h3>
+                    <p><strong>Ziel der Phase:</strong> Sauberes Ticket-Management.</p>
+                    <details class="info-box" style="border-left-color: var(--color-reklamation);">
+                        <summary style="color: var(--color-reklamation);">💻 System-Aufgaben & Regeln</summary>
+                        <div class="content">
+                            <ul>
+                                <li>Problem präzise im internen System als Ticket dokumentieren und Rücksprache mit dem Backoffice halten.</li>
+                            </ul>
+                        </div>
+                    </details>
 
-                    <h3 style="color: var(--color-reklamation);">Phase 3: Verbindlichkeit</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Zeitrahmen setzen:</strong> Dem Kunden einen exakten Zeitpunkt nennen, bis wann er ein Feedback oder eine Lösung erhält (z.B. "Ich melde mich morgen bis 12 Uhr bei Ihnen").</span>
-                    </div>
-
-                    <h3 style="color: var(--color-reklamation);">Phase 4: Systempflege & Klärung</h3>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Ticket-Erstellung:</strong> Das Problem präzise im internen System dokumentieren.</span>
-                    </div>
-                    <div class="script-item" onclick="toggleComplete(this)">
-                        <input type="checkbox">
-                        <span><strong>Backoffice:</strong> Rücksprache mit Backoffice oder Netzbetreiber halten.</span>
-                    </div>
                 </section>
             </div>
         </div>
